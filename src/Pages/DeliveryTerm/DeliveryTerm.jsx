@@ -1,5 +1,4 @@
 import React from 'react'
-// import Filter from '../../components/Filter/Filter';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -108,7 +107,6 @@ const DeliveryTerm = () => {
                     </div>
                     <div className="right-side-col">
                         <img src="/assets/img/location.png" className="w-100" alt="" />
-                        {/* <GoogleMapContent /> */}
                     </div>
                 </div>
 
