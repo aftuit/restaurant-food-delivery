@@ -1,0 +1,84 @@
+@import "../../mainStyle.scss";
+
+.filter-form{
+  padding: 20px;
+  border-bottom: 1px solid #4f4c4c;
+  border-top: 1px solid #4f4c4c;
+  
+  .filter-content {
+    .search-filter {
+  
+      background: #434141;
+      border-radius: 4px;
+      width: 100%;
+      align-items: center;
+      display: flex;
+      padding: 8px 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      transition: all 0.5s ease-in-out;
+        &.searching{
+          width: fit-content;
+          background-color: transparent;
+          border: none;
+        }
+      svg {
+          color: #fff;
+      }
+      input {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        padding: 7px 9px;
+        color: #fff;
+        width: 95%;
+        &::placeholder {
+          color: $text--color;
+        }
+      }
+      button {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        &[class*="search"] {
+          margin-right: auto;
+        }
+        &[class*="filter"] {
+          margin-left: auto;
+        }
+      }
+    }
+  
+    .item-filter{
+        ul{
+            li{
+                list-style-type: none;
+                color: #fff;    
+                font-size: 20px;   
+                position: relative;
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+                &::before{
+                  content: "";
+                  height: 2px;
+                  width: 0;
+                  position: absolute;
+                  bottom: -10px;
+                  background-color: $green--lightcolor;
+                  transition: all .2s ease;
+                }
+                &:hover, &.active{
+                  &::before{
+                    width: 100%;
+                  }
+                }         
+            }
+        }
+    }
+  }
+}

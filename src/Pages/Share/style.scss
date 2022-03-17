@@ -1,0 +1,33 @@
+@import "../../mainStyle.scss";
+.share-content {
+  background-color: $bg--color;
+  .row_itms{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding-bottom: 2rem;
+      .share-item-card{
+          width: 32%;
+        //   border: 1px solid gray;
+          background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
+        border-radius: 10px;
+          img{
+              width: 100%;
+          }
+          .card--body{
+              padding: 10px;
+              h3{
+                margin-top: 5px;  
+              }
+              p{
+                  margin-top: 10px;
+              }
+              .deadline{
+                  margin-top: 10px;
+                  color: $green--color;
+                  font-size: 20px;
+              }
+          }
+      }
+  }
+}

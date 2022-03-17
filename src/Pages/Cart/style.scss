@@ -1,0 +1,154 @@
+@import "../../mainStyle.scss";
+
+.empty-card {
+  background-color: transparent;
+  border: 1px solid #5e5c5c;
+  border-radius: 10px;
+  padding: 20px;
+  width: 75%;
+  height: 300px;
+  margin: 2rem auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h3 {
+    color: #fff;
+    font-size: 25px;
+  }
+  p {
+    margin-top: 18px;
+    font-size: 20px;
+    color: lightgray;
+    a {
+      color: #03a9f4;
+    }
+  }
+}
+.cart-content {
+  padding-top: 1.2rem;
+  padding-bottom: 1.4rem;
+  background-color: $bg--color;
+  // height: 50vh;
+  a {
+    text-decoration: none;
+    color: #fff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  > h2 {
+    margin-top: 20px;
+  }
+  .row {
+    table.cart-item-list {
+      width: 100%;
+      tr {
+        border-bottom: 1px solid #747474;
+        &:nth-child(1) {
+          border-radius: 15px 15px 0 0;
+        }
+        &:nth-last-child(1) {
+          border-radius: 0 0 15px 15px;
+        }
+      }
+    }
+  }
+
+  .total-price {
+    background-color: $card--color;
+    padding: 20px 30px;
+    border-radius: 10px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    .left-side {
+      p {
+        font-size: 20px;
+        &.total {
+          span {
+            font-size: 25px;
+            color: #fff;
+            font-weight: 800;
+            margin-left: 5px;
+          }
+        }
+        &.adding,
+        &.minimum {
+          color: #fff;
+          span {
+            color: $green--lightcolor;
+          }
+        }
+      }
+    }
+    .right-side {
+        button {
+          padding: 10px 20px;
+          color: #fff;
+          background-color: $green--color;
+        }
+    }
+  }
+  .empty-cart-modal {
+    background: $card--color;
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    width: 300px;
+    height: 270px;
+    top: -200%;
+    left: 50%;
+    margin-left: -150px; 
+    margin-top: -135px; 
+    transition: all 0.2s linear;
+    z-index: 444;
+    &.show{
+      top: 50%;
+    }    
+    .modal-card {
+      span {
+        color: #fff;
+        cursor: pointer;
+        svg {
+          transform: rotate(45deg);
+          font-size: 30px;
+          position: absolute;
+          right: 5%;
+          top: 5%;
+        }
+      }
+      img {
+        display: block;
+        margin: 20px auto;
+      }
+      h3 {
+        color: #fff;
+        text-align: center;
+      }
+     a{
+       text-decoration: none;
+       button {
+        margin: 20px auto;
+        background-color: $green--color;
+        color: #fff;
+        width: 75%;
+        display: block;
+      }
+     }
+    }
+  }
+  .fade-m{
+    transition: all 0.3s linear;      
+    position: fixed;
+    &.active{
+      background-color: #000;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.5;
+      z-index: 323;
+    }
+  }
+}

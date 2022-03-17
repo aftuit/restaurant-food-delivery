@@ -1,0 +1,87 @@
+@import "../../mainStyle.scss";
+
+.item-content {
+  background-color: $bg--color;
+  padding-top: 1.2rem;
+  .item-container{
+    padding-bottom: 2.5rem;
+    .back-link{
+      color: #fff;
+      cursor: pointer;
+      width: fit-content;
+      &:hover{
+        span{
+          text-decoration: underline;
+        }
+      }
+      svg{
+        width: 30px;
+        height: 30x;
+        background-color: $green--color;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      
+    }
+    .grid-container{
+      background-color: $card--color;
+      display: flex;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 1.5rem;
+      .grid-item{
+        width: 50%;
+        &.info{
+          padding: 1.3rem 2.4rem;
+          display: flex;
+          flex-direction: column;
+          align-content: space-between;
+        }
+        >img{
+          height: 500px;
+        }
+        .grid-item-content{
+          display: grid;
+          height: 100%;
+          p{
+            margin-top: 10px;
+          }
+          .info-part{
+            margin-top: auto;
+            .buttons{
+              margin-top: 22px;
+              button{
+                background: $green--color;
+                padding: 0.8rem 1.3rem;
+                color: #fff;
+                svg{
+                  margin-left: 10px;
+                }
+              }
+              >span{
+                margin-left: 20px;
+                font-size: 25px;
+              }
+            }
+            .item-table{
+              margin-top: 24px;
+              width: 75%;
+              th, td{
+                text-align: start;
+                font-weight: normal;
+                svg{
+                  background-color: transparent;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .line-hr{
+    width: 100%;
+    height: 1px;
+    background-color: rgba(180, 179, 179, 0.4);
+  }
+}

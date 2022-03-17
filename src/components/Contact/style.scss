@@ -1,0 +1,98 @@
+@import "../../mainStyle.scss";
+
+.contact-content {
+  background: {
+    image: url("../../assets/location.png");
+    size: 100% 100%;
+    repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  padding: 50px 0;
+
+  .contact-card {
+    border-radius: 10px;
+    background: #2e2b2c;
+    padding: 30px 40px;
+    width: 45%;
+    h2 {
+      font-size: 25px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: rgba(138, 137, 137, 0.5);
+      margin: 25px 0;
+    }
+    .mail {
+      margin-top: 18px;
+    }
+    .address,
+    .mail {
+      font-size: 14px;
+      color: #fff;
+      span {
+        color: #cfcfcf;
+      }
+      p {
+        margin-top: 10px;
+        &.mail {
+          cursor: pointer;
+        }
+      }
+      svg {
+        width: 25px;
+        height: 25px;
+        color: $green--color;
+        margin-right: 15px;
+      }
+    }
+
+    .booking__ {
+      padding: 10px 15px;
+      width: 100%;
+      a{
+          width: 50%;
+          text-decoration: none;
+          button {
+            background-color: $green--color;
+            color: #fff;
+            padding: 20px 10px;
+            font-size: 12px;
+          }
+      }
+      .tel-number {
+        color: #fff;
+        margin-left: 10px;
+        text-align: center;
+        h3{
+            font-size: 22px;
+        }
+        p {
+          font-size: 14px;
+          color: #cfcfcf;
+        }
+      }
+    }
+    .social{
+        margin-top: 20px;
+        >span{
+            color: #fff;
+        }
+        .social-net{
+            margin-left: 10px;
+            a{
+                color: #2e2b2c;
+                text-decoration: none;
+                svg{
+                    margin-left: 10px;
+                    
+                background-color: #fff;
+                }
+            }
+        }
+    }
+  }
+}

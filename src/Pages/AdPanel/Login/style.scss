@@ -1,0 +1,57 @@
+@import "../../../mainStyle.scss";
+$main-light: #287bff;
+.login-wrap {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $main-light;
+  .login-card {
+    padding: 20px 40px;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 450px;
+    height: 500px;
+    form {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-around;
+      > h2 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 30px;
+      }
+      .form-body {
+        margin-top: 20px;
+        label {
+          font-size: 20px;
+          display: inline-block;
+          margin-top: 40px;
+        }
+        .input-wrap {
+          padding: 5px 0;
+          border-bottom: 1px solid gray;
+        //   border-radius: 5px;
+          input{
+              border: none;
+              outline: none;
+
+          }
+          svg {
+            color: rgb(88, 88, 88);
+            margin-right: 6px;
+          }
+        }
+      }
+      button{
+          // background-color: #056613;
+          color: #fff;
+          background-color: $main-light;
+          margin-top: 1rem;
+        }
+    }
+  }
+}

@@ -1,0 +1,122 @@
+@import "../../mainStyle.scss";
+.order-content {
+  background-color: $bg--color;
+  padding: 2rem 0 4rem;
+  .back-link {
+    color: #fff;
+    width: fit-content;
+  }
+
+  .order-card {
+    background-color: $card--color;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 30px;
+    margin-top: 22px;
+    .css-88nv5c-MuiInputBase-root-MuiInput-root-MuiSelect-root:hover:not(.Mui-disabled):before{
+      border-bottom: 2px solid $green--color;
+    }
+    
+    .address-select{
+        width: 50%;
+        font-size: 20px;
+      border-radius: 10px;
+      svg{
+          color: #fff;
+      }
+      input{
+          border: 0;
+          outline: 0;
+          color: #fff;
+
+      }
+      select{
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        outline: none;
+        color: #fff;
+      }
+      .select{
+        color: #fff;
+      }
+    }
+    p {
+        color: #fff;
+        margin-left: 10px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        svg {
+          margin-right: 5px;
+        }
+        a{
+            margin-left: 7px;
+            font-size: 20px;
+            color: $green--color;
+            text-decoration: underline;
+        }
+      }
+    label{
+        font-size: 16px;
+        color: #fff;
+
+    }
+    input,
+    textarea {
+      padding: 20px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 0 8px;
+      background-color: $card--color;
+      &[type*="text"],  &[type*="number"] {
+        width: 50%;
+        &::-webkit-inner-spin-button, 
+        &::-webkit-outer-spin-button{
+          -webkit-appearance: none;
+        }
+      }
+      outline: none;
+      color: #fff;
+      &::placeholder {
+        color: rgb(221, 218, 218);
+      }
+    }
+    textarea {
+      resize: none;
+      width: 100%;
+    }
+
+    .title {
+      color: #fff;
+      margin-bottom: 30px;
+    }
+    .order-buttons {
+      button {
+        color: #fff;
+        padding: 20px 50px;
+        border: 1px solid $green--color;
+        &.active {
+          background: $green--color;
+        }
+        &:nth-child(1) {
+          border-radius: 10px 0 0 10px;
+          overflow: hidden;
+        }
+        &:nth-child(2) {
+          border-radius: 0 10px 10px 0;
+          overflow: hidden;
+        }
+      }
+      
+    }
+    button{
+        &[type*=submit]{
+            margin-left: auto;
+            background-color: $green--color;
+            color: #fff;
+            // padding: 20px 30px;
+        }
+    }
+  }
+}
+

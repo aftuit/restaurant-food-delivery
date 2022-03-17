@@ -1,0 +1,60 @@
+@import "../../mainStyle.scss";
+
+.cafe-content {
+  background: {
+    image: linear-gradient(90deg, #211f20 30%, rgba(68, 64, 63, 0) 100%),
+      url("../../assets/cafe-img.png");
+    repeat: no-repeat;
+    size: 100% 100%;
+  }
+  padding: 100px 70px;
+  .grid-container {
+    h2 {
+      font-size: 27px;
+      line-height: 39px;
+      color: #fff;
+    }
+    p {
+        font-size: 18px;
+        line-height: 25px;
+        &.info{
+          color: $text--color;
+          margin-top: 20px;
+      }
+    }
+    button {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-sizing: border-box;
+      backdrop-filter: blur(5px);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 13px;
+      padding: 10px 15px;
+      text-transform: capitalize !important;
+      margin-top: 45px;
+    }
+    .grid-card {
+      padding: 60px 18px 35px;
+      background: rgba(80, 75, 74, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 0px;
+      svg{          
+          transition-duration: 0.1s;
+          color: #fff;
+          font-size: 3.5rem;
+      }
+      svg+p{
+          transition: 0.1s linear;
+          color: #fff;
+          margin-top: 16px;
+      }
+      &:hover{
+        svg, svg+p{          
+            color: $green--hov-clr;
+        }
+      }
+
+    }
+  }
+}

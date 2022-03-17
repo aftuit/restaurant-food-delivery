@@ -1,0 +1,23 @@
+@import "../../mainStyle.scss";
+
+.title-wrap {
+  padding: 2rem 0;
+  border-bottom: 1px solid #413f3f;
+  border-top: 1px solid #413f3f;
+  h2 {
+    font-size: 32px;
+    line-height: 39px;
+    color: #fff;
+    margin-left: 20px;
+    position: relative;
+    text-transform: uppercase;
+    &::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      width: 4px;
+      height: 100%;
+      background-color: $green--lightcolor;
+    }
+  }
+}

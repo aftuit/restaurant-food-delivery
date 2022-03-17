@@ -1,0 +1,55 @@
+@import "../../mainStyle.scss";
+.delivery-content {
+  background-color: $bg--color;
+
+  .content-title {
+    font-size: 32px;
+    line-height: 39px;
+    color: #fff;
+    margin: 50px 0 50px 20px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      width: 4px;
+      height: 100%;
+      background-color: $green--lightcolor;
+    }
+  }
+  .delivery-content-wrap {
+    display: flex;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgb(100, 99, 99);
+    .left-side-col {
+        padding: 0 20px;
+      width: 50%;
+      .accordion-item-title {
+        background-color: $green--color;
+        margin: 10px 0;
+        border-radius: 16px;
+        overflow: hidden;
+        background-color: #618967;
+        color: #fff;
+        svg {
+          color: #fff;
+        }
+      }
+      .accordion-item-text {
+        background-color: $card--color;
+      }
+    }
+    .right-side-col{
+        padding: 0 20px;
+        width: 50%;
+        // img{
+        //     width: 100%;
+        // }
+    }
+  }
+  .time-table-wrap{
+    width: 50%;
+    padding-bottom: 3rem;
+   
+  }
+}
