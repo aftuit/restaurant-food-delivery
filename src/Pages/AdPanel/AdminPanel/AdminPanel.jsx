@@ -12,6 +12,7 @@ import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded';
 import PaletteRoundedIcon from '@mui/icons-material/PaletteRounded';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import HomeIcon from '@mui/icons-material/Home';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { IconButton } from '@mui/material';
 import { useToken } from '../../../Context/loginContext';
@@ -27,12 +28,16 @@ const AdminPanel = () => {
   const [stateOrders, setStateOrders] = React.useState([])
   const [foodDatas, setFoodDatas] = React.useState();
   const [countFoods, setCountFoods] = React.useState('')
-  const [shares, setShares] = React.useState('')
+  const [shares, setShares] = React.useState([])
 
   const getFoods = () => {
     axios.get(API_URL)
       .then(res => {
         setFoodDatas([...res.data])
+        setCountFoods(
+          res?.data?.filter((item, index) => index !== 0)
+          .reduce((a,b) => +a + +b?.data?.length, 0)
+          )
       })
       .catch(err => console.log(err))
   }
@@ -55,11 +60,9 @@ const AdminPanel = () => {
     getOrders();
     getFoods();
     getShares();
-    setCountFoods(
-      foodDatas?.filter((item, index) => index !== 0)
-      .reduce((a,b) => +a + +b?.data?.length, 0)
-      )
-  }, [getOrders, getFoods, getShares])
+  }, [])
+
+//getOrders, getFoods, getShares
 
   const [tabPane, setTabPane] = React.useState(false);
 
@@ -97,6 +100,11 @@ const AdminPanel = () => {
               <AddTaskRoundedIcon />
 
               {!tabPane && <span>Share</span>}
+            </NavLink></li>
+            <li><NavLink to="/" className="d-flex a-center">
+              <HomeIcon />
+
+              {!tabPane && <span>Home</span>}
             </NavLink></li>
             <li className="nav-item" onClick={() => signOut()}>
               <Link to="/admin-panel" className={"nav-link"}>
@@ -144,7 +152,7 @@ const AdminPanel = () => {
         <Routes>
           <Route exact={true} path='/dashboard' element={<Dashboard orders={stateOrders} foods={countFoods} getFoods={getFoods} />} />
           <Route exact={true} path='/order' element={<ADOrder state={stateOrders} setState={setStateOrders} getOrders={getOrders} />} />
-          <Route exact={true} path='/share' element={<ADShare state={shares} getShares={getShares} />} />
+          <Route exact={true} path='/share' element={<ADShare shares={shares} getShares={getShares} />} />
           <Route exact={true} path='/foods' element={<ADFoods state={foodDatas} setState={setFoodDatas} getFoods={getFoods} />} />
         </Routes>
       </div>

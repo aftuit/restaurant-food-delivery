@@ -3,13 +3,14 @@ import PersonIcon from '@mui/icons-material/Person';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyIcon from '@mui/icons-material/Key';
 import { useToken } from '../../../Context/loginContext';
 import axios from "axios";
 import * as Swal from "sweetalert2";
 import { API_URL } from "../../../util/const";
 import LoadingButton from '@mui/lab/LoadingButton';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./style.scss";
 const Login = () => {
@@ -49,7 +50,7 @@ const Login = () => {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: "Something went wrong !!!",
+          title: "Check username or password !!!",
           showConfirmButton: true
         })
       })
@@ -82,7 +83,6 @@ const Login = () => {
               </div>
               {
                 passValue.length > 0 &&
-
                 <>
                   {
                     !visible ?
@@ -104,7 +104,9 @@ const Login = () => {
           >
             Submit
           </LoadingButton>
+        <Link to="/" className='d-flex a-center'><KeyboardArrowLeftIcon/> Back to home</Link>
         </form>
+
       </div>
     </div>
   )

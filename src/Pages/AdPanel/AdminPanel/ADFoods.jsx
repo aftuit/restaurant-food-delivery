@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from "@mui/material";
+import { Button, TextField, InputLabel, MenuItem, Select } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { API_URL } from '../../../util/const';
 import ReactReadMoreReadLess from "react-read-more-read-less";
@@ -9,20 +9,18 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-const ADFoods = ({state, setState, getFoods}) => {
+
+
+
+const ADFoods = ({ state, setState, getFoods }) => {
 
   const [show, setShow] = useState(false);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState("baliqlitaom");
   const [img, setImg] = useState(null);
   const [imageItem, setImageItem] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const showModal = () => setShow(!show);
-
-
-  React.useEffect(() => {
-    getFoods();
-  }, [getFoods])
 
 
   const addProduct = (evt) => {
@@ -31,40 +29,38 @@ const ADFoods = ({state, setState, getFoods}) => {
     const { name, description, weight, price } = evt.target.elements;
 
     const fd = new FormData();
-
     fd.append("image", imageItem)
     fd.append("name", name.value)
     fd.append("description", description.value)
-    fd.append("image", imageItem)
     fd.append("weight", weight.value)
     fd.append("price", price.value)
     fd.append("is_added", false)
+    
+        axios.post(`${API_URL}/taomlar/${category}/`, fd)
+          .then(res => {
+            setShow(false);
+            setLoading(false)
+            getFoods();
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: "Product added successfully !!!",
+              showConfirmButton: false,
+              timer: "1000"
+            })
 
-    axios.post(`${API_URL}/taomlar/${category}/`, fd)
-      .then(res => {
-        console.log(res)
-        setShow(false);
-        setLoading(false)
-        axios.get(API_URL).then(res => setState(res.data))
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: "Product added successfully !!!",
-          showConfirmButton: false,
-          timer: "1000"
-        })
-
-      })
-      .catch(err => {
-        setLoading(false)
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: "Something wrong !",
-          showConfirmButton: false,
-          timer: "1000"
-        })
-      })
+          })
+          .catch(err => {
+            setLoading(false)
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: "Something wrong !",
+              showConfirmButton: false,
+              timer: "1000"
+            })
+          })
+        
   }
 
   const saveFile = (evt) => {
@@ -75,7 +71,7 @@ const ADFoods = ({state, setState, getFoods}) => {
   const deleteItem = (category, id, name) => {
     axios.delete(`${API_URL}/taomlar/${category}/${id}/`)
       .then(res => {
-        axios.get(API_URL).then(res => setState(res.data))
+        getFoods();
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -108,77 +104,81 @@ const ADFoods = ({state, setState, getFoods}) => {
 
       </Button>
 
-      <div className={`modal-card ${show && 'show'}`}>
-        <form onSubmit={addProduct}>
+      <div className={`modal-card ${show && 'show'}`}
+        // style={{display: `${show? "": "none"}`}}
+      >
+          <form onSubmit={addProduct}>
 
-          <div>
-            <label htmlFor="name">Category</label>
-            <select onChange={(evt) => setCategory(evt.target.value)}>
-              <option value="baliqlitaom">Baliqli Taom</option>
-              <option value="goshtli">Go'shtli Taom</option>
-              <option value="ichimliklar">Ichimlik</option>
-              <option value="pizza">Pizza</option>
-              <option value="qaynoqtaom">Qaynoq Taom</option>
-              <option value="suyuqtaom">Suyuq Taom</option>
-              <option value="yaxnataom">Yaxna Taom</option>
-            </select>
+          <div className="w-100">
+            <InputLabel id="demo-" className='w-100'>Category</InputLabel>
+            <Select
+            className='w-100'
+              labelId="demo-"
+              value={category}
+              onChange={(evt) => setCategory(evt.target.value)}
+            >
+              <MenuItem value="baliqlitaom">Baliqli Taom</MenuItem>
+              <MenuItem value="goshtli">Go'shtli Taom</MenuItem>
+              <MenuItem value="ichimliklar">Ichimlik</MenuItem>
+              <MenuItem value="pizza">Pizza</MenuItem>
+              <MenuItem value="qaynoqtaom">Qaynoq Taom</MenuItem>
+              <MenuItem value="suyuqtaom">Suyuq Taom</MenuItem>
+              <MenuItem value="yaxnataom">Yaxna Taom</MenuItem>
+            </Select>
           </div>
 
-          <div>
+          <div className='w-100 mt-2'>
             {
               img &&
               <span className="remove-img"
                 onClick={() => setImg(null)}
-              >
-                <ClearOutlinedIcon />
-              </span>
+              ><ClearOutlinedIcon /></span>
             }
             <img
               className={`${img && 'show'}`}
               src={img}
               alt=""
-
             />
-            <label htmlFor="image">Image</label>
-            <input
+            <TextField
               type="file"
-              id="image"
               name="image"
-              onChange={saveFile}
-            />
+              helperText="Please enter product picture"
+              onChange={saveFile} />
           </div>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" placeholder='name' name="name" />
+          <div className='w-100 mt-2'>
+            <TextField label="Name" color="primary" type="text" name="name" />
           </div>
 
-          <div>
-            <label htmlFor="description">Description</label>
-            <textarea type="text" id="description" placeholder='description' name="description" />
+          <div className='w-100 mt-2'>
+            <TextField label="Description" color="primary" type="text" name="description" />
           </div>
           {
             category === "ichimliklar" ?
-              <div>
-                <label htmlFor="size">Size (L)</label>
-                <select name="weight" id='size'>
-                  <option value="0.5L">0.5L</option>
-                  <option value="1L">1L</option>
-                  <option value="1.5L">1.5L</option>
-                </select>
+              <div className='w-100 mt-2'>
+                <InputLabel id="demo-simple-select-label">Weight</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  name="weight"
+                  className='w-100'
+                >
+                  <MenuItem value={'0.5L'}>0.5 L</MenuItem>
+                  <MenuItem value={'1L'}>1 L</MenuItem>
+                  <MenuItem value={'1.5L'}>1.5 L</MenuItem>
+                  <MenuItem value={'2L'}>2 L</MenuItem>
+                </Select>
               </div> :
-              <div>
-                <label htmlFor="weight">Weight (г)</label>
-                <input type="number" id="weight" placeholder='weight' name="weight" />
+              <div className='w-100 mt-2'>
+                <TextField label="Weight (г)" color="primary" type="number" name="weight" />
               </div>
           }
 
 
-          <div>
-            <label htmlFor="price">Price (₽)</label>
-            <input type="number" id="price" placeholder='price' name="price" />
+          <div className='w-100 mt-2'>
+            <TextField label="Price (₽)" color="primary" type="number" name="price" />
           </div>
 
-          <div className='d-flex j-between'>
+          <div className='d-flex j-between mt-1'>
             <LoadingButton
               type="submit"
               loading={loading}
@@ -205,7 +205,7 @@ const ADFoods = ({state, setState, getFoods}) => {
           <Loader /> :
           state?.map((parentData, index) => {
             return index !== 0 ? (
-              <div className="table-content mt-3" key={parentData.code}>
+              <div className="table-content mt-3" key={parentData.url}>
                 <h2>{parentData.name}</h2>
                 <table className='foods-table w-100 mt-2'>
                   <thead>

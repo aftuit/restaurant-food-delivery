@@ -14,7 +14,7 @@ function Navbar() {
     return (
         <div className="navbar-content">
             <Container className="container">
-                <Link to="/" className="navbar-brand">
+                <Link to="/admin-panel" className="navbar-brand">
                     <img src="/assets/icn/logo.svg" alt="logo" />
                 </Link>
 

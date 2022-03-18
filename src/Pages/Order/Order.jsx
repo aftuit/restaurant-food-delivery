@@ -73,7 +73,6 @@ const Order = () => {
 
         axios.post(`${API_URL}/buyurtma/buyurtma/`, FD)
             .then(res => {
-                console.log(res)
                 setLoading(false);
                 Swal.fire({
                     position: 'center',

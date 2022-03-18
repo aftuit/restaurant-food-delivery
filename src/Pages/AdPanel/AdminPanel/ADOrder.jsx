@@ -6,20 +6,14 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 
 const ADOrder = ({getOrders, state}) => {
 
-
-  React.useEffect(() => {
-    getOrders();
-  }, [getOrders])
-
   
   const removeItem = (id) => {
 
     const ID = new FormData();
     ID.append("id", id)
 
-    axios.post(`${API_URL}/buyurtma/buyurtma`, ID)
+    axios.delete(`${API_URL}/buyurtma/buyurtma/`, ID)
       .then(res => {
-        console.log(res)
         getOrders();
       })
       .catch(err => {
@@ -37,9 +31,9 @@ const ADOrder = ({getOrders, state}) => {
                 <h3>Comment:</h3> {item.descriptions !== ""
                   ? <ReactReadMoreReadLess
                     charLimit={80}
-                    ellipsis="..."
-                    readMoreText={<span style={{color: "#cddc39"}}>more ▼</span>}
-                    readLessText={<span style={{color: "#cddc39"}}>less ▲</span>}
+                    ellipsis="..."                    
+                    readMoreText="more ▼"
+                    readLessText="less ▲"
                   >
                     {item.descriptions}
                   </ReactReadMoreReadLess>

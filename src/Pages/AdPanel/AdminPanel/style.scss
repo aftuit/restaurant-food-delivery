@@ -171,14 +171,13 @@ $shadow: 0px 4px 11px #8080805e;
       button.add-btn {
         display: block;
         margin-left: auto;
-        background: $main-color;
+        background: $main-light;
         color: #fff;
-        border: 1px solid #fff;
         padding: 10px 20px;
       }
       .modal-card {
         position: fixed;
-        top: -100%;
+        top: -1000%;
         left: 35%;
         border: 1px solid gray;
         padding: 10px;
@@ -195,9 +194,8 @@ $shadow: 0px 4px 11px #8080805e;
         button {
           margin-top: 10px;
         }
-        label {
-          display: block;
-          margin-top: 15px;
+        .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+          width: 100%;
         }
         input,
         select,
@@ -376,6 +374,14 @@ $shadow: 0px 4px 11px #8080805e;
             font-size: 3rem;
           }
         }
+      }
+    }
+    .advert{
+      >button{
+        margin-left: auto;
+        display: block;
+        background-color: $main-light;
+        color: #fff;
       }
     }
   }
