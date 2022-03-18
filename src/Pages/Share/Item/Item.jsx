@@ -10,6 +10,7 @@ const Item = ({
     title,
     finish_date,
     deleteAdvertItem,
+    editItem,
     type
 }) => {
 
@@ -35,7 +36,7 @@ const Item = ({
 
     React.useEffect(() => {
         getDate(finish_date)
-    }, [])
+    }, [finish_date])
 
 
     return (
@@ -46,6 +47,7 @@ const Item = ({
 
                 </div>
                 <div className="card--body text-wh">
+                    <span style={{color: "#000"}}>{id}</span>
                     <h3 className="font-semibold">{title ?? "title"}</h3>
                     <p className="font-regular">
                         {descriptions}
@@ -61,7 +63,9 @@ const Item = ({
                         <Button 
                         color="secondary" 
                         type="button" 
-                        variant="contained">
+                        variant="contained"
+                        onClick={()=>editItem(id)}
+                        >
                             <EditIcon size="small" /> Edit
                         </Button>
                         

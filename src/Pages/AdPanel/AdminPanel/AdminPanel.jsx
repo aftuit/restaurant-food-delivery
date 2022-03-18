@@ -16,7 +16,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { IconButton } from '@mui/material';
 import { useToken } from '../../../Context/loginContext';
-// import { useFood } from "../../../Context/foodsContext";
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import { Button } from "@mui/material";
 import { API_URL } from '../../../util/const';
@@ -99,7 +98,7 @@ const AdminPanel = () => {
             <li><NavLink to="/admin-panel/share" className="d-flex a-center">
               <AddTaskRoundedIcon />
 
-              {!tabPane && <span>Share</span>}
+              {!tabPane && <span>Advertice</span>}
             </NavLink></li>
             <li><NavLink to="/" className="d-flex a-center">
               <HomeIcon />
@@ -150,7 +149,7 @@ const AdminPanel = () => {
           </div>
         </div>
         <Routes>
-          <Route exact={true} path='/dashboard' element={<Dashboard orders={stateOrders} foods={countFoods} getFoods={getFoods} />} />
+          <Route exact={true} path='/dashboard' element={<Dashboard orders={stateOrders} foods={countFoods} shares={shares} />} />
           <Route exact={true} path='/order' element={<ADOrder state={stateOrders} setState={setStateOrders} getOrders={getOrders} />} />
           <Route exact={true} path='/share' element={<ADShare shares={shares} getShares={getShares} />} />
           <Route exact={true} path='/foods' element={<ADFoods state={foodDatas} setState={setFoodDatas} getFoods={getFoods} />} />

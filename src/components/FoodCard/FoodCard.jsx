@@ -10,7 +10,6 @@ import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import "./style.scss";
 const FoodCard = ({
     food,
-    addItem,
     path,
     foodDataFromParent }) => {
 

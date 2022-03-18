@@ -9,10 +9,7 @@ const ADOrder = ({getOrders, state}) => {
   
   const removeItem = (id) => {
 
-    const ID = new FormData();
-    ID.append("id", id)
-
-    axios.delete(`${API_URL}/buyurtma/buyurtma/`, ID)
+    axios.delete(`${API_URL}/buyurtma/buyurtma/${id}/`)
       .then(res => {
         getOrders();
       })
@@ -109,7 +106,7 @@ const ADOrder = ({getOrders, state}) => {
                   variant="contained"
                   onClick={() => removeItem(item.id)}
                 >
-                  Delete
+                  Done
                 </Button>
               </div>
             </div>

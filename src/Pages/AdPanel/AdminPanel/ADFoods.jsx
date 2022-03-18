@@ -7,6 +7,7 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import Loader from "../../../components/Loader/Loader";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
+import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -19,48 +20,71 @@ const ADFoods = ({ state, setState, getFoods }) => {
   const [img, setImg] = useState(null);
   const [imageItem, setImageItem] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isEdting, setIsEditing] = useState(false);
+  const [idItem, setIdItem] = useState(null);
 
   const showModal = () => setShow(!show);
 
+  const fd = new FormData();
+  const formEl = React.useRef(null);
+
+  function getValues(){
+    showModal();
+    setIsEditing(false)
+    setIdItem(null)
+    setLoading(false)
+    setImageItem("");
+    setImg("");
+    formEl.current.reset();
+    setCategory("baliqlitaom")
+   }
 
   const addProduct = (evt) => {
+  
     evt.preventDefault();
     setLoading(true);
     const { name, description, weight, price } = evt.target.elements;
 
-    const fd = new FormData();
     fd.append("image", imageItem)
     fd.append("name", name.value)
     fd.append("description", description.value)
     fd.append("weight", weight.value)
     fd.append("price", price.value)
     fd.append("is_added", false)
-    
-        axios.post(`${API_URL}/taomlar/${category}/`, fd)
-          .then(res => {
-            setShow(false);
-            setLoading(false)
-            getFoods();
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: "Product added successfully !!!",
-              showConfirmButton: false,
-              timer: "1000"
-            })
 
-          })
-          .catch(err => {
-            setLoading(false)
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: "Something wrong !",
-              showConfirmButton: false,
-              timer: "1000"
-            })
-          })
-        
+    axios.post(`${API_URL}/taomlar/${category}/`, fd)
+      .then(res => {
+        getFoods();
+        getValues();
+        formEl.current.reset();
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: "Product added successfully !!!",
+          showConfirmButton: false,
+          timer: "1000"
+        })
+
+      })
+      .catch(err => {
+        setLoading(false)
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: "Something wrong !",
+          showConfirmButton: false,
+          timer: "1000"
+        })
+      })
+
+  }
+
+  function editItem(id, category) {
+   showModal();
+   setIsEditing(true)
+   setIdItem(id)
+   setCategory(category)
+
   }
 
   const saveFile = (evt) => {
@@ -95,6 +119,45 @@ const ADFoods = ({ state, setState, getFoods }) => {
 
 
 
+   const editProduct = (evt) => {
+  
+    evt.preventDefault();
+    setLoading(true);
+    const { name, description, weight, price } = evt.target.elements;
+
+    fd.append("image", imageItem)
+    fd.append("name", name.value)
+    fd.append("description", description.value)
+    fd.append("weight", weight.value)
+    fd.append("price", price.value)
+    fd.append("is_added", false)
+
+    axios.put(`${API_URL}/taomlar/${category}/${idItem}/`, fd)
+      .then(res => {
+        getFoods();   
+        getValues(); 
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: "Product added successfully !!!",
+          showConfirmButton: false,
+          timer: "1000"
+        })
+
+      })
+      .catch(err => {
+        setLoading(false)
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: "Something wrong !",
+          showConfirmButton: false,
+          timer: "1000"
+        })
+      })
+
+  }
+
   return (
     <div className='admin-foods'>
       <Button className='text-wh mt-2 add-btn'
@@ -105,14 +168,15 @@ const ADFoods = ({ state, setState, getFoods }) => {
       </Button>
 
       <div className={`modal-card ${show && 'show'}`}
-        // style={{display: `${show? "": "none"}`}}
+
       >
-          <form onSubmit={addProduct}>
+        <form onSubmit={isEdting? editProduct: addProduct} ref={formEl}>
 
           <div className="w-100">
             <InputLabel id="demo-" className='w-100'>Category</InputLabel>
             <Select
-            className='w-100'
+            disabled={isEdting}
+              className='w-100'
               labelId="demo-"
               value={category}
               onChange={(evt) => setCategory(evt.target.value)}
@@ -190,7 +254,7 @@ const ADFoods = ({ state, setState, getFoods }) => {
             </LoadingButton>
             <Button
               type="button"
-              onClick={showModal}
+              onClick={getValues}
               variant="contained"
               color="error">Cancel</Button>
           </div>
@@ -242,7 +306,10 @@ const ADFoods = ({ state, setState, getFoods }) => {
                             <td>{item.weight ? `${item.weight} г` : item.size}</td>
                             <td>{item.price}₽</td>
                             <td>
-                              <Button type="button" onClick={() => deleteItem(parentData.url, item.id, item.name)}>
+                              <Button color="secondary" variant="outlined" onClick={()=>editItem(item.id, parentData.url)}>
+                                <EditIcon type="button" />
+                              </Button>
+                              <Button type="button" className="delete" onClick={() => deleteItem(parentData.url, item.id, item.name)}>
                                 <DeleteForeverIcon />
                               </Button></td>
                           </tr>

@@ -7,7 +7,9 @@
     margin: auto;
   .food-content {
     width: 100%;
-
+    .slick-slide{
+      max-width: 341px;
+    }
     button{
       &.slick-next{
         top: 105%;

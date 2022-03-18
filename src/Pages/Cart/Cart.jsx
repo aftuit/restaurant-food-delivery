@@ -37,11 +37,11 @@ const Cart = () => {
             <span onClick={() => setShowModal(false)}><AddIcon /></span>
             <img src="/assets/icn/empty_cart.svg" alt="" />
 
-            <h3>korsina pustaya</h3>
+            <h3>Корзина пустая</h3>
 
             <Link to="/">
               <Button type="button">
-                got to list
+              Посмотреть меню
               </Button>
             </Link>
           </div>

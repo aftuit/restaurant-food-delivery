@@ -30,7 +30,7 @@ const ItemPage = () => {
         window.localStorage.setItem("foodList", JSON.stringify(route.foodData))
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [id, route.foodData, route.routePath])
 
 
   return (

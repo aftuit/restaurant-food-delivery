@@ -3,7 +3,7 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-const Dashboard = ({orders, foods, getFoods}) => {
+const Dashboard = ({orders, foods, shares}) => {
 
 
   return (
@@ -25,8 +25,8 @@ const Dashboard = ({orders, foods, getFoods}) => {
             </div>
             <div className="item">
               <div className="counts">
-                <h2>23</h2>
-                <p>Share</p>
+                <h2>{shares.length}</h2>
+                <p>Advertice</p>
               </div>
               <AddTaskRoundedIcon />   
             </div>
