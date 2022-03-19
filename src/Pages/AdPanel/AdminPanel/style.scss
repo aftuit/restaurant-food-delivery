@@ -14,20 +14,20 @@ $shadow: 0px 4px 11px #8080805e;
     &.tab {
       width: 6%;
       .links-content {
-        li{
+        li {
           padding: 0;
-            a {
-              justify-content: center;
-              margin-left: 0;
-              border-radius: 0;
-              &:hover, &.active {
-                &::after,
-                &::before {
-                  right: -1px;
-                }
+          a {
+            justify-content: center;
+            margin-left: 0;
+            border-radius: 0;
+            &:hover,
+            &.active {
+              &::after,
+              &::before {
+                right: -1px;
               }
             }
-          
+          }
         }
       }
     }
@@ -135,6 +135,22 @@ $shadow: 0px 4px 11px #8080805e;
       padding: 8px 15px;
       box-shadow: $shadow;
       border-radius: 30px;
+      select {
+        height: 100%;
+        border-radius: 9px;
+        padding: 5px;
+        color: #727070;
+        font-size: 16px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid gray;
+      }
+      .del{
+        svg{
+          color: #808080;
+        }
+        margin-right: 10px;
+      }
       svg {
         color: #808080;
       }
@@ -194,7 +210,7 @@ $shadow: 0px 4px 11px #8080805e;
         button {
           margin-top: 10px;
         }
-        .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+        .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
           width: 100%;
         }
         input,
@@ -262,7 +278,7 @@ $shadow: 0px 4px 11px #8080805e;
             button {
               width: fit-content;
               margin: 0 2px;
-              &.delete{
+              &.delete {
                 border: 1px solid #ff000096;
                 color: #ff000070;
                 svg {
@@ -350,13 +366,13 @@ $shadow: 0px 4px 11px #8080805e;
       }
     }
 
-    .dashboard{
-      .main{
+    .dashboard {
+      .main {
         margin-top: 3rem;
         display: flex;
         justify-content: space-around;
         color: #000;
-        .item{
+        .item {
           box-shadow: $shadow;
           border-radius: 10px;
           padding: 20px;
@@ -364,24 +380,24 @@ $shadow: 0px 4px 11px #8080805e;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          h2{
+          h2 {
             font-size: 3rem;
             color: rgb(53, 52, 52);
           }
-          p{
+          p {
             font-size: 1.3rem;
             color: rgb(122, 121, 121);
           }
-          svg{
+          svg {
             color: $main-light;
             font-size: 3rem;
           }
         }
       }
     }
-    .advert{
+    .advert {
       position: relative;
-      .add-modal{
+      .add-modal {
         position: fixed;
         width: 500px;
         max-height: 600px;
@@ -395,18 +411,18 @@ $shadow: 0px 4px 11px #8080805e;
         left: 50%;
         z-index: 23213;
         transition: all 0.5s linear;
-        img.show{
+        img.show {
           width: 200px;
           height: 200px;
           display: block;
           margin: auto;
         }
-        &.active{
+        &.active {
           top: 40%;
         }
       }
 
-      >button{
+      > button {
         margin-left: auto;
         display: block;
         background-color: $main-light;

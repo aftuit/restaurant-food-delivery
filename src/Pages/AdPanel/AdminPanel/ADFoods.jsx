@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Button, TextField, InputLabel, MenuItem, Select } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { API_URL } from '../../../util/const';
-import ReactReadMoreReadLess from "react-read-more-read-less";
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import Loader from "../../../components/Loader/Loader";
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -13,7 +12,7 @@ import Swal from 'sweetalert2';
 
 
 
-const ADFoods = ({ state, setState, getFoods }) => {
+const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
 
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState("baliqlitaom");
@@ -22,13 +21,26 @@ const ADFoods = ({ state, setState, getFoods }) => {
   const [loading, setLoading] = useState(false);
   const [isEdting, setIsEditing] = useState(false);
   const [idItem, setIdItem] = useState(null);
+  const [filteredState, setFilteredState] = React.useState([]);
+
+
+  React.useEffect(() => {
+    console.log(search)
+    console.log(state)
+    if (filtered !== "all") {
+      setFilteredState(state?.filter(item => item.code === filtered))
+    } else {
+      setFilteredState(state?.filter((item, index) => index > 0))
+    }
+  }, [search, filtered, state])
+
 
   const showModal = () => setShow(!show);
 
   const fd = new FormData();
   const formEl = React.useRef(null);
 
-  function getValues(){
+  function getValues() {
     showModal();
     setIsEditing(false)
     setIdItem(null)
@@ -37,10 +49,10 @@ const ADFoods = ({ state, setState, getFoods }) => {
     setImg("");
     formEl.current.reset();
     setCategory("baliqlitaom")
-   }
+  }
 
   const addProduct = (evt) => {
-  
+
     evt.preventDefault();
     setLoading(true);
     const { name, description, weight, price } = evt.target.elements;
@@ -80,10 +92,10 @@ const ADFoods = ({ state, setState, getFoods }) => {
   }
 
   function editItem(id, category) {
-   showModal();
-   setIsEditing(true)
-   setIdItem(id)
-   setCategory(category)
+    showModal();
+    setIsEditing(true)
+    setIdItem(id)
+    setCategory(category)
 
   }
 
@@ -117,10 +129,8 @@ const ADFoods = ({ state, setState, getFoods }) => {
       })
   }
 
+  const editProduct = (evt) => {
 
-
-   const editProduct = (evt) => {
-  
     evt.preventDefault();
     setLoading(true);
     const { name, description, weight, price } = evt.target.elements;
@@ -134,8 +144,8 @@ const ADFoods = ({ state, setState, getFoods }) => {
 
     axios.put(`${API_URL}/taomlar/${category}/${idItem}/`, fd)
       .then(res => {
-        getFoods();   
-        getValues(); 
+        getFoods();
+        getValues();
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -160,22 +170,18 @@ const ADFoods = ({ state, setState, getFoods }) => {
 
   return (
     <div className='admin-foods'>
+
       <Button className='text-wh mt-2 add-btn'
         onClick={showModal}
       >
         Add Product
-
       </Button>
-
-      <div className={`modal-card ${show && 'show'}`}
-
-      >
-        <form onSubmit={isEdting? editProduct: addProduct} ref={formEl}>
-
+      <div className={`modal-card ${show && 'show'}`}>
+        <form onSubmit={isEdting ? editProduct : addProduct} ref={formEl}>
           <div className="w-100">
             <InputLabel id="demo-" className='w-100'>Category</InputLabel>
             <Select
-            disabled={isEdting}
+              disabled={isEdting}
               className='w-100'
               labelId="demo-"
               value={category}
@@ -262,13 +268,11 @@ const ADFoods = ({ state, setState, getFoods }) => {
 
       </div>
       <div className={` ${show && "opacity"}`}></div>
-
-
       {
         !state ?
           <Loader /> :
-          state?.map((parentData, index) => {
-            return index !== 0 ? (
+          filteredState?.map((parentData) => {
+            return (
               <div className="table-content mt-3" key={parentData.url}>
                 <h2>{parentData.name}</h2>
                 <table className='foods-table w-100 mt-2'>
@@ -286,7 +290,8 @@ const ADFoods = ({ state, setState, getFoods }) => {
                   <tbody>
                     {
                       parentData?.data.map((item, index) => {
-                        return (
+                        return item.name.toLowerCase().includes(search.toLowerCase()) ? (
+
                           <tr key={item.id}>
                             <td><b>{index + 1}</b></td>
                             <td>
@@ -294,36 +299,30 @@ const ADFoods = ({ state, setState, getFoods }) => {
                             </td>
                             <td>{item.name}</td>
                             <td>
-                              <ReactReadMoreReadLess
-                                charLimit={20}
-                                ellipsis="..."
-                                readMoreText=""
-                                readLessText=""
-                              >
-                                {item.description}
-                              </ReactReadMoreReadLess>
+                              <span>
+                                {`${item.description.substr(0, 8)}...`}
+                              </span>
                             </td>
                             <td>{item.weight ? `${item.weight} г` : item.size}</td>
                             <td>{item.price}₽</td>
                             <td>
-                              <Button color="secondary" variant="outlined" onClick={()=>editItem(item.id, parentData.url)}>
+                              <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, parentData.url)}>
                                 <EditIcon type="button" />
                               </Button>
                               <Button type="button" className="delete" onClick={() => deleteItem(parentData.url, item.id, item.name)}>
                                 <DeleteForeverIcon />
                               </Button></td>
                           </tr>
-                        )
+                        ) : (<tr></tr>)
                       })
                     }
 
                   </tbody>
                 </table>
               </div>
-            ) : (<></>)
+            )
           })
       }
-
 
     </div>
   )
