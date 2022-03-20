@@ -23,6 +23,7 @@ const Footer = () => {
                          <li><Link to="/delivery-term" className='font-regular'>Условия доставки</Link></li>
                          <li><Link to="/cart" className='font-regular'>Корзина</Link></li>
                          <li><Link to="/share">Акции</Link></li>
+                         <li><Link to="/admin-panel/dashboard">ADMIN PANEL</Link></li>
                      </ul>
                  </Grid>
              </Grid>

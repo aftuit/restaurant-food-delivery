@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from "axios";
 import { Button } from '@mui/material';
+import Loader from "../../../components/Loader/Loader";
 import { API_URL } from '../../../util/const';
 import ReactReadMoreReadLess from "react-read-more-read-less";
 
-const ADOrder = ({getOrders, state}) => {
+const ADOrder = ({ getOrders, state}) => {
 
-  
   const removeItem = (id) => {
 
     axios.delete(`${API_URL}/buyurtma/buyurtma/${id}/`)
@@ -21,6 +21,8 @@ const ADOrder = ({getOrders, state}) => {
   return (
     <div>
       {
+        !state?
+        <Loader/>:
         state?.map(item => {
           return (item.id > 27) ? (
             <div className="ad-order-card" key={item.id}>
@@ -28,7 +30,7 @@ const ADOrder = ({getOrders, state}) => {
                 <h3>Comment:</h3> {item.descriptions !== ""
                   ? <ReactReadMoreReadLess
                     charLimit={80}
-                    ellipsis="..."                    
+                    ellipsis="..."
                     readMoreText="more ▼"
                     readLessText="less ▲"
                   >

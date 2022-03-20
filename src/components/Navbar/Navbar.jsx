@@ -14,8 +14,8 @@ function Navbar() {
     return (
         <div className="navbar-content">
             <Container className="container">
-                <Link to="/admin-panel" className="navbar-brand">
-                    <img src="/assets/icn/logo.svg" alt="logo" />
+                <Link to="/" className="navbar-brand text-wh">
+                    LOGO
                 </Link>
 
                 <div className="search-location">

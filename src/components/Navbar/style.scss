@@ -8,9 +8,8 @@
         justify-content: space-between;
         align-items: center;
         .navbar-brand{
-            img{
-                width: 150px;
-            }
+            text-decoration: none;
+            font-size: 23px;
         }
         .search-location{
             background: $card--color;

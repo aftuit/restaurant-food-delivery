@@ -9,6 +9,9 @@
         align-items: center;
         .grid-item{
             margin: 0;
+            h1{
+                color: #fff;
+            }
             p{
                 margin-top: 7px;
                 color: $text--color;

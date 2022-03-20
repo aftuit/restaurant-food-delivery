@@ -22,6 +22,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
   const [isEdting, setIsEditing] = useState(false);
   const [idItem, setIdItem] = useState(null);
   const [filteredState, setFilteredState] = React.useState([]);
+  const [isResult, setIsResult] = React.useState(true);
 
 
   React.useEffect(() => {
@@ -33,6 +34,10 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
       setFilteredState(state?.filter((item, index) => index > 0))
     }
   }, [search, filtered, state])
+
+  const getIDItem=(id)=>{
+    setIsResult(id)
+  }
 
 
   const showModal = () => setShow(!show);
@@ -273,7 +278,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
           <Loader /> :
           filteredState?.map((parentData) => {
             return (
-              <div className="table-content mt-3" key={parentData.url}>
+              <div className={`table-content mt-3 ${isResult === parentData && 'd-none'}`} key={parentData.url}>
                 <h2>{parentData.name}</h2>
                 <table className='foods-table w-100 mt-2'>
                   <thead>
@@ -290,30 +295,34 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
                   <tbody>
                     {
                       parentData?.data.map((item, index) => {
-                        return item.name.toLowerCase().includes(search.toLowerCase()) ? (
+                        if (item.name.toLowerCase().includes(search.toLowerCase())) {                          
+                          return (
 
-                          <tr key={item.id}>
-                            <td><b>{index + 1}</b></td>
-                            <td>
-                              <img src={API_URL + item.image} alt="error" />
-                            </td>
-                            <td>{item.name}</td>
-                            <td>
-                              <span>
-                                {`${item.description.substr(0, 8)}...`}
-                              </span>
-                            </td>
-                            <td>{item.weight ? `${item.weight} г` : item.size}</td>
-                            <td>{item.price}₽</td>
-                            <td>
-                              <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, parentData.url)}>
-                                <EditIcon type="button" />
-                              </Button>
-                              <Button type="button" className="delete" onClick={() => deleteItem(parentData.url, item.id, item.name)}>
-                                <DeleteForeverIcon />
-                              </Button></td>
-                          </tr>
-                        ) : (<tr></tr>)
+                            <tr key={item.id}>
+                              <td><b>{index + 1}</b></td>
+                              <td>
+                                <img src={API_URL + item.image} alt="error" />
+                              </td>
+                              <td>{item.name}</td>
+                              <td>
+                                <span>
+                                  {`${item.description.substr(0, 8)}...`}
+                                </span>
+                              </td>
+                              <td>{item.weight ? `${item.weight} г` : item.size}</td>
+                              <td>{item.price}₽</td>
+                              <td>
+                                <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, parentData.url)}>
+                                  <EditIcon type="button" />
+                                </Button>
+                                <Button type="button" className="delete" onClick={() => deleteItem(parentData.url, item.id, item.name)}>
+                                  <DeleteForeverIcon />
+                                </Button></td>
+                            </tr>
+                          )
+                        } else {                                                   
+                          return (<></>)
+                        }
                       })
                     }
 
