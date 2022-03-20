@@ -21,10 +21,10 @@ const ADOrder = ({ getOrders, state}) => {
   return (
     <div>
       {
-        !state?
+        state.length === 0?
         <Loader/>:
         state?.map(item => {
-          return (item.id > 27) ? (
+          return  (
             <div className="ad-order-card" key={item.id}>
               <div className="ad-order-card-header">
                 <h3>Comment:</h3> {item.descriptions !== ""
@@ -32,7 +32,7 @@ const ADOrder = ({ getOrders, state}) => {
                     charLimit={80}
                     ellipsis="..."
                     readMoreText="more ▼"
-                    readLessText="less ▲"
+                    readLessText=" less ▲"
                   >
                     {item.descriptions}
                   </ReactReadMoreReadLess>
@@ -112,7 +112,7 @@ const ADOrder = ({ getOrders, state}) => {
                 </Button>
               </div>
             </div>
-          ) : (<></>)
+          ) 
         })
       }
 

@@ -47,13 +47,12 @@ const Item = ({
 
                 </div>
                 <div className="card--body text-wh">
-                    <span style={{color: "#000"}}>{id}</span>
                     <h3 className="font-semibold">{title ?? "title"}</h3>
                     <p className="font-regular">
                         {descriptions}
                     </p>
                     <p className='deadline'>
-                        До {finish_date.substr(0, 4)} {month} {finish_date.substr(8, 2)}
+                       <b>До {finish_date.substr(0, 4)} {month} {finish_date.substr(8, 2)}</b>
                     </p>
                 </div>
 

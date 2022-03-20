@@ -32,7 +32,7 @@ const Dashboard = ({orders, foods, shares}) => {
             </div>
             <div className="item">
               <div className="counts">
-                <h2>23 $</h2>
+                <h2>{`${'20003 545'.substr(0,4)}.00`}$</h2>
                 <p>Earnings</p>
               </div>
               <MonetizationOnIcon />   

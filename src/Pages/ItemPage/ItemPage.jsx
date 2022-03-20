@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// import { useFood } from "../../Context/foodsContext";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Container, Button } from '@mui/material';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
@@ -58,7 +57,7 @@ const ItemPage = () => {
                 <span className='text-wh font-regular'>
                   {
                     state?.weight ?
-                      `Вес: ${state?.weight}` :
+                      `Вес: ${state?.weight} г` :
                       state?.size
                   }
                 </span>
@@ -85,7 +84,7 @@ const ItemPage = () => {
                       <td className='text-wh font-regular'>7.63</td>
                       <td className='text-wh font-regular'>22.35</td>
                       <td className='text-wh font-regular'>234</td>
-                      <td className='text-wh font-regular'>{state?.weight ?? state?.size}</td>
+                      <td className='text-wh font-regular'>{`${state?.weight} г` ?? state?.size}</td>
                     </tr>
                   </tbody>
                 </table>

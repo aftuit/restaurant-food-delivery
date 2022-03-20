@@ -41,9 +41,12 @@ const Login = () => {
           showConfirmButton: false,
           timer: "1000"
         })
+        console.log(res)
         setToken(res.data.token)
-        navigate("/admin-panel/dashboard")
+     
         window.localStorage.setItem("token", JSON.stringify(res.data.token));
+        navigate("/admin-panel/dashboard")
+      
       })
       .catch(err => {
         setLoading(false)

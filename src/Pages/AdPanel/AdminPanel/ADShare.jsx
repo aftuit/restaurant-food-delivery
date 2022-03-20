@@ -8,7 +8,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Swal from 'sweetalert2';
 import "../../Share/style.scss";
 
-const ADShare = ({ shares, getShares }) => {
+const ADShare = ({ shares, setShares, search, getShares }) => {
 
   const [img, setImg] = React.useState(null)
   const [imgItem, setImgItem] = React.useState(null)
@@ -16,6 +16,14 @@ const ADShare = ({ shares, getShares }) => {
   const [loading, setLoading] = React.useState(false);
   const [isEditing, setIsEditing] = React.useState(false);
   const [idItem, setIdItem] = React.useState(null);
+  // const [filteredAd, setFilteredAd] = React.useState(shares);
+
+  // React.useEffect(() => {
+  //   setFilteredAd(shares??[])
+  //   setShares(filteredAd.filter(e=>e.title.toLowerCase().includes(search.toLowerCase())))
+  // }, [filteredAd, search, setShares, shares])
+
+  console.log('search:', search)
 
   const formElement = React.useRef(null);
 
@@ -157,12 +165,11 @@ const ADShare = ({ shares, getShares }) => {
 
       <Container>
         <Grid container spacing={3}>
-          {
-            shares?.map(share => {
+          { 
+            shares?.filter(e => e.title.toLowerCase().includes(search.toLowerCase())).map(share => {
               return (
                 <Grid item xs={4} key={share?.id}>
                   <Item
-                    
                     id={share.id}
                     descriptions={share?.descriptions}
                     image={share?.image}

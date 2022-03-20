@@ -101,6 +101,7 @@ $shadow: 0px 4px 11px #8080805e;
     overflow-y: auto;
     background: #dad6d6;
     background-color: $main-color;
+    
     &.tab {
       width: 94%;
     }
@@ -115,6 +116,20 @@ $shadow: 0px 4px 11px #8080805e;
         }
       }
       .administrator {
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 36px;
+          border-radius: 50%;
+          margin-right: 20px;
+          svg {
+            display: block;
+            color: $main-light;
+            margin: 0;
+          }
+        }
         h4,
         p {
           margin: 0;
@@ -181,33 +196,46 @@ $shadow: 0px 4px 11px #8080805e;
           margin-left: auto;
         }
       }
-      &.ord{
-      width: 20%;
-      align-items: center;
-      display: flex;
-      padding: 8px 15px;
-      box-shadow: 0px 4px 11px #8080805e;
-      border-radius: 10px;
+      &.ord {
+        display: none;
       }
     }
-    .select-group {
-      div{
+    .filter-div {
+      width: 65%;
+      padding: 10px 15px;
+      box-shadow: 0px 4px 11px #8080805e;
+      .select-group {
+        div {
           margin: 0 5px;
           display: inline-block;
-        p{
-          color: rgb(82, 80, 80);
-          font-size: 12px;
+          p {
+            color: rgb(82, 80, 80);
+            font-size: 15px;
+            color:$main-light;
+          }
+          select {
+            border-radius: 10px;
+            font-size: 16px;
+            padding: 5px 10px;
+            border: none;
+            color: #525050;
+            border-radius: 0;
+            outline: none;
+            width: 130px;
+            border: 1px solid #8080805e;
+            border-radius: 4px;
+            width: 150px;
+          }
         }
-        select {
-          box-shadow: 0px 4px 11px #8080805e;
-          border-radius: 10px;
-          font-size: 16px;
-          padding:5px 10px;
-          border: none;
-          color: rgb(82, 80, 80);
-          border-radius: 0;
-          outline: none;
-          width: 130px;
+      }
+      button {
+        color: #fff;
+        background-color: $main-light;
+        svg {
+          color: #fff;
+        }
+        &.del {
+          background-color: transparent;
         }
       }
     }
@@ -326,6 +354,7 @@ $shadow: 0px 4px 11px #8080805e;
       padding: 20px;
       color: #fff;
       border-radius: 10px;
+      
       .ad-order-card-header {
         padding: 10px 0;
       }
@@ -338,9 +367,6 @@ $shadow: 0px 4px 11px #8080805e;
           background-color: #fff;
           padding: 10px;
           border-radius: 10px;
-          // &::-webkit-scrollbar{
-          //   color: red;
-          // }
           &::-webkit-scrollbar-thumb {
             // color: ;
             width: 5px;
@@ -378,6 +404,15 @@ $shadow: 0px 4px 11px #8080805e;
           td {
             color: #fff;
             text-align: start;
+            &::-moz-selection { /* Code for Firefox */
+              color: red;
+              background: yellow;
+            }
+            
+            &::selection {
+              color: red;
+              background: yellow;
+            }
           }
         }
       }
@@ -410,7 +445,7 @@ $shadow: 0px 4px 11px #8080805e;
           justify-content: space-between;
           align-items: center;
           h2 {
-            font-size: 3rem;
+            font-size: 2rem;
             color: rgb(53, 52, 52);
           }
           p {

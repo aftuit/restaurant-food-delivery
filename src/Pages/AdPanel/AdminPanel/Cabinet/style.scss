@@ -1,0 +1,90 @@
+$shadow: 0px 4px 11px #8080805e;
+$main-light: #287bff;
+.account-content {
+  padding: 3rem 0;
+  width: 100%;
+  .container {
+    color: #000;
+    .item-left {
+      width: 30%;
+      box-shadow: $shadow;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      .img-wrap {
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+      .name {
+        margin-top: 20px;
+        font-size: 25px;
+      }
+      .status {
+        margin-top: 6px;
+      }
+      .additionals {
+        margin-top: 2rem;
+        p {
+          font-size: 20px;
+          margin-top: 5px;
+        }
+      }
+      .edit-btn {
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+    .item-right {
+      width: 50%;
+      .auth-form{
+          display: flex;
+          flex-direction: column;
+            button{
+                margin-top: 1rem;
+            }
+      }
+      .form-infos{
+          width: 100%;
+        div{
+            display: flex;
+            justify-content: space-between;
+            .text-input{
+                width: 50%;
+                margin: 0 5px;
+            }
+            &.pass{
+                flex-direction: column;
+                .text-input{
+                    width: 100%;
+                    margin: 10px 5px;
+                }
+            }
+        }
+        button{
+            width: 100%;
+            margin: 2rem 5px 0;
+            display: block;            
+        }
+      }
+      &.desc{
+          h2{
+              font-size: 28px;
+          }
+          p{
+              font-size: 20px;
+          }
+      }
+    }
+  }
+}

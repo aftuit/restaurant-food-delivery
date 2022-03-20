@@ -5,7 +5,6 @@ import Filter from "../../components/Filter/Filter";
 import Contact from "../../components/Contact/Contact";
 import FoodContainer from '../../components/FoodContainer/FoodContainer';
 import { useFood } from "../../Context/foodsContext";
-import { useSearch } from "../../Context/searchContext";
 import axios from "axios";
 import Loader from '../../components/Loader/Loader';
 import { API_URL } from "../../util/const";
@@ -25,7 +24,7 @@ const Home = () => {
                 setFoodDatas(res.data)
             })
             .catch(err => console.log(err))
-    }, [filterItem])
+    }, [filterItem, setFoodDatas])
 
 
     return (
@@ -49,12 +48,12 @@ const Home = () => {
                                         />
                                     )
                                 }) :
-                                <FoodContainer
-                                    title={filterItem.title}
-                                    parentData={foodDatas}
-                                    data={foodDatas.results}
-                                    path={filterItem.path}
-                                />
+                                    <FoodContainer
+                                        title={filterItem.title}
+                                        parentData={foodDatas}
+                                        data={foodDatas.results}
+                                        path={filterItem.path}
+                                    />
                     }
                 </div>
 

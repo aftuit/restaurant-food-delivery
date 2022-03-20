@@ -4,6 +4,7 @@ import ADOrder from "./ADOrder";
 import ADShare from "./ADShare";
 import ADFoods from "./ADFoods";
 import Dashboard from "./Dashboard";
+import Cabinet from "./Cabinet/Cabinet";
 import { Routes, Route, NavLink, Link, useLocation } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuSharpIcon from '@mui/icons-material/MenuSharp';
@@ -12,6 +13,8 @@ import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded';
 import PaletteRoundedIcon from '@mui/icons-material/PaletteRounded';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import HomeIcon from '@mui/icons-material/Home';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { IconButton } from '@mui/material';
@@ -36,13 +39,27 @@ const AdminPanel = () => {
   const [address, setAddress] = React.useState('');
   const [delivery_type, setDelivery] = React.useState('');
   const [payment, setPayment] = React.useState('');
-  const [call, setCall] = React.useState('');
+  const [isFiltering, setIsFiltering] = React.useState(false);
 
   const inputEl = React.useRef(null);
 
   const [setToken] = useToken(true);
 
   const location = useLocation();
+
+  // const getAdminInfos = () => {
+    // const token = JSON.parse(window.localStorage.getItem('token'));
+
+    // fetch(`/auth/user/`, {
+    //   method: 'GET',
+    //   headers: {'Authorization': 'Bearer ' + token,
+    //             'Content-Type': 'Application/JSON',
+    // },
+    // },)
+    // .then(res => console.log(res))
+    // .catch(err => console.log(err))
+
+  // }
 
   const getFoods = () => {
     axios.get(API_URL)
@@ -61,7 +78,6 @@ const AdminPanel = () => {
       .then(res => {
         setStateOrders(res.data)
         setFilteredOrder(res.data)
-        console.log(res.data)
       })
       .catch(err => console.log(err))
   }
@@ -81,26 +97,21 @@ const AdminPanel = () => {
     getOrders();
     getFoods();
     getShares();
+    // getAdminInfos();
+    // axios.get(`${API_URL}/auth/user/`)
+    //       .then(res => console.log(res))
+    //       .catch(err => console.error(err))
   }, [])
 
+  const filterOrders = () => {
 
-  // function filterOrders(filterItem){
-  //   setStateOrders(filteredOrder.filter(e => e[filterItem] === filterItem))
-  // }
-
-  React.useEffect(() => {
-    // if (address !== '' || delivery_type !== '' || payment !== '' || call !== '') {
-    //   setStateOrders(filteredOrder.filter(e => e.address === address))
-    //   setStateOrders(filteredOrder.filter(e => e.delivery_type === delivery_type))
-    //   setStateOrders(filteredOrder.filter(e => e.payment === payment))
-    //   setStateOrders(filteredOrder.filter(e => e.call === call))
-    // } else {
-    //   setStateOrders(filteredOrder)
-    // }
-  }, [address, delivery_type, payment, call, filteredOrder])
-
-
-
+    setStateOrders(filteredOrder.filter(e => e.address.toLowerCase().includes(address.toLowerCase()))
+      .filter(k => k.delivery_type.toLowerCase().includes(delivery_type.toLowerCase()))
+      .filter(g => g.payment.toLowerCase().includes(payment.toLowerCase()))
+    )
+    console.log('stateOrders', stateOrders)
+    console.log('filteredOrder', filteredOrder)
+  }
 
   return (
     <div className='admin-panel-content d-flex'>
@@ -132,6 +143,11 @@ const AdminPanel = () => {
 
               {!tabPane && <span>Home</span>}
             </NavLink></li>
+            <li><NavLink to="/admin-panel/account" className="d-flex a-center">
+              <AccountCircleIcon />
+
+              {!tabPane && <span>Account</span>}
+            </NavLink></li>
             <li className="nav-item" onClick={() => signOut()}>
               <Link to="/admin-panel" className={"nav-link"}>
                 <ExitToAppIcon /> {!tabPane && <span>Log out</span>}
@@ -144,6 +160,8 @@ const AdminPanel = () => {
       </div>
 
       <div className={`right-side ${tabPane && "tab"}`}>
+        {
+          !location.pathname.includes('account')&&        
         <div className="admin-panel-navbar d-flex j-between">
           <Button type="button" onClick={() => setTabPane(!tabPane)}><MenuSharpIcon /> </Button>
 
@@ -183,72 +201,86 @@ const AdminPanel = () => {
           </div>
           {
             location.pathname.includes("order") &&
-
-            <div className="select-group">
-              <div>
-                <p>Address</p>
-                <select
-                  value={address}
-                  onChange={(evt) => setAddress(evt.target.value)}
-                >
-                  <option value={""}>Hammasi</option>
-                  <option value={"BEKTEMIR"}>BEKTEMIR</option>
-                  <option value={"MIROBOD"}>MIROBOD</option>
-                  <option value={"MIRZO ULUGBEK"}>MIRZO ULUG'BEK</option>
-                  <option value={"CHILONZOR"}>CHILONZOR</option>
-                  <option value={"OLMAZOR"}>OLMAZOR</option>
-                  <option value={"SERGELI"}>SERGELI</option>
-                  <option value={"SHAYHONTOHUR"}>SHAYHONTOHUR</option>
-                  <option value={"UCHTEPA"}>UCHTEPA</option>
-                  <option value={"YAKKASAROY"}>YAKKASAROY</option>
-                  <option value={"YASHNAOBOD"}>YASHNAOBOD</option>
-                  <option value={"YUNUSOBOD"}>YUNUSOBOD</option>
-                </select>
+            isFiltering &&
+            <div className="filter-div d-flex a-center j-between">
+              <div className="select-group">
+                <div>
+                  <p>Address</p>
+                  <select
+                    value={address}
+                    onChange={(evt) => setAddress(evt.target.value)}
+                  >
+                    <option value="">Hammasi</option>
+                    <option value="BEKTEMIR">BEKTEMIR</option>
+                    <option value="MIROBOD">MIROBOD</option>
+                    <option value="MIRZO">MIRZO ULUG'BEK</option>
+                    <option value="CHILONZOR">CHILONZOR</option>
+                    <option value="OLMAZOR">OLMAZOR</option>
+                    <option value="SERGELI">SERGELI</option>
+                    <option value="SHAYHONTOHUR">SHAYHONTOHUR</option>
+                    <option value="UCHTEPA">UCHTEPA</option>
+                    <option value="YAKKASAROY">YAKKASAROY</option>
+                    <option value="YASHNAOBOD">YASHNAOBOD</option>
+                    <option value="YUNUSOBOD">YUNUSOBOD</option>
+                  </select>
+                </div>
+                <div>
+                  <p>Delivery</p>
+                  <select
+                    value={delivery_type}
+                    onChange={(evt) => setDelivery(evt.target.value)}
+                  >
+                    <option value="">Hammasi</option>
+                    <option value="BORIB OLISH">Borib olish</option>
+                    <option value="YETKAZIB BERISH">Yetkazib berish</option>
+                  </select>
+                </div>
+                <div>
+                  <p>Payment</p>
+                  <select
+                    value={payment}
+                    onChange={(evt) => setPayment(evt.target.value)}
+                  >
+                    <option value="">Hammasi</option>
+                    <option value="KARTA ORQALI">Karta orqali</option>
+                    <option value="NAQD PUL">Naqd pul</option>
+                  </select>
+                </div>
               </div>
-              <div>
-                <p>Delivery</p>
-                <select
-                  value={delivery_type}
-                  onChange={(evt) => setDelivery(evt.target.value)}
-                >
-                  <option value="">Hammasi</option>
-                  <option value="BORIB OLISH">Borib olish</option>
-                  <option value="YETKAZIBBERISH">Yetkazib berish</option>
-                </select>
-              </div>
-              <div>
-                <p>Payment</p>
-                <select
-                  value={payment}
-                  onChange={(evt) => setPayment(evt.target.value)}
-                >
-                  <option value="">Hammasi</option>
-                  <option value="KARTA ORQALI">Karta orqali</option>
-                  <option value="NAQD PUL">Naqd pul</option>
-                </select>
-              </div>
-              <div>
-                <p>Call</p>
-                <select
-                  value={call}
-                  onChange={(evt) => setCall(evt.target.value)}
-                >
-                  <option value="">Hammasi</option>
-                  <option value="true">Ha</option>
-                  <option value="false">Yo'q</option>
-                </select>
-              </div>
+              <Button type="button" onClick={() => filterOrders()}><TrendingFlatIcon /> </Button>
             </div>
+
           }
 
           <div className="administrator d-flex a-center">
-            <AccountCircleIcon />
-            <div className="admin-info">
-              <h4>Administrator</h4>
-              <p>Main admin</p>
+            {
+              location.pathname.includes("order") &&
+              <IconButton
+                type="button"
+                variant="outlined"
+                aria-label="delete"
+                className="me-1 filter"
+                onClick={() => setIsFiltering(!isFiltering)}
+              >
+                {
+                  isFiltering ?
+                    <ClearOutlinedIcon /> :
+                    <div title="filter">
+                      <FilterListIcon />
+                    </div>
+                }
+              </IconButton>
+            }
+            <div className='d-flex a-center'>
+              <AccountCircleIcon />
+              <div className="admin-info">
+                <h4>Administrator</h4>
+                <p>Main admin</p>
+              </div>
             </div>
           </div>
         </div>
+        }
         <Routes>
           <Route exact={true} path='/dashboard' element={<Dashboard
             orders={stateOrders}
@@ -263,6 +295,8 @@ const AdminPanel = () => {
           />
           <Route exact={true} path='/advertice' element={<ADShare
             shares={shares}
+            setShares={setShares}
+            search={search}
             getShares={getShares} />}
           />
           <Route exact={true} path='/foods' element={<ADFoods
@@ -272,6 +306,7 @@ const AdminPanel = () => {
             setState={setFoodDatas}
             getFoods={getFoods}
           />} />
+          <Route exact={true} path='/account' element={<Cabinet />} />
         </Routes>
       </div>
     </div>
