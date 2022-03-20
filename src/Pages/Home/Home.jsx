@@ -39,21 +39,21 @@ const Home = () => {
                             <Loader /> :
                             filterItem.path === "" ?
                                 foodDatas?.map((foodData, index) => {
-                                    if (index !== 0) return (
+                                    return (index !== 0) && (
                                         <FoodContainer
                                             key={foodData.code}
                                             title={foodData.name}
                                             parentData={foodData}
                                             data={foodData.data}
                                         />
-                                    )
+                                    ) 
                                 }) :
-                                    <FoodContainer
-                                        title={filterItem.title}
-                                        parentData={foodDatas}
-                                        data={foodDatas.results}
-                                        path={filterItem.path}
-                                    />
+                                <FoodContainer
+                                    title={filterItem.title}
+                                    parentData={foodDatas}
+                                    data={foodDatas.results}
+                                    path={filterItem.path}
+                                />                              
                     }
                 </div>
 
