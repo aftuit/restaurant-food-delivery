@@ -47,17 +47,17 @@ const AdminPanel = () => {
 
   const location = useLocation();
 
-  const getAdminInfos = () => {
+  // const getAdminInfos = () => {
 
-    const token = JSON.parse(window.localStorage.getItem('Token'));
+  //   const token = JSON.parse(window.localStorage.getItem('Token'));
 
-    axios.get(`${API_URL}/auth/user/`, {
-      headers: {Authorization: 'Bearer ' + token}
-    })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+  //   axios.get(`${API_URL}/auth/user/`, {
+  //     headers: {Authorization: 'Bearer ' + token}
+  //   })
+  //   .then(res => console.log(res))
+  //   .catch(err => console.log(err))
 
-  }
+  // }
 
   const getFoods = () => {
     axios.get(API_URL)
@@ -95,10 +95,7 @@ const AdminPanel = () => {
     getOrders();
     getFoods();
     getShares();
-    getAdminInfos();
-    // axios.get(`${API_URL}/auth/user/`)
-    //       .then(res => console.log(res))
-    //       .catch(err => console.error(err))
+    // getAdminInfos();
   }, [])
 
   const filterOrders = () => {
@@ -152,134 +149,138 @@ const AdminPanel = () => {
               </Link>
             </li>
           </ul>
-
-          <button type="button" onClick={()=>getAdminInfos()}>click</button>
-
         </div>
 
       </div>
 
       <div className={`right-side ${tabPane && "tab"}`}>
         {
-          !location.pathname.includes('account')&&        
-        <div className="admin-panel-navbar d-flex j-between">
-          <Button type="button" onClick={() => setTabPane(!tabPane)}><MenuSharpIcon /> </Button>
+          !location.pathname.includes('account') &&
+          <div className="admin-panel-navbar d-flex j-between">
+            <Button type="button" onClick={() => setTabPane(!tabPane)}><MenuSharpIcon /> </Button>
 
-          <div className={`searching search-filter d-flex a-center ${location.pathname.includes("order") && "ord"}`}>
-            <div className='w-100 d-flex a-center'>
-              <SearchOutlinedIcon className="search" />
-              <input
-                ref={inputEl}
-                onChange={(e) => setSearch(e.target.value)}
-                value={search}
-                type="text"
-                placeholder={"search..."}
-              />
+            <div className={`searching search-filter d-flex a-center ${location.pathname.includes("order") && "ord"}`}>
+              <div className='w-100 d-flex a-center'>
+                <SearchOutlinedIcon className="search" />
+                <input
+                  ref={inputEl}
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                  type="text"
+                  placeholder={"search..."}
+                />
+                {
+                  search.length > 0 &&
+                  <IconButton aria-label="delete"
+                    className='del'
+                    onClick={() => setSearch('')}
+                  >
+                    <ClearOutlinedIcon className="cancel" />
+                  </IconButton>
+                }
+              </div>
               {
-                search.length > 0 &&
-                <IconButton aria-label="delete"
-                  className='del'
-                  onClick={() => setSearch('')}
-                >
-                  <ClearOutlinedIcon className="cancel" />
-                </IconButton>
+                location.pathname.includes("food") &&
+                <select value={filtered} onChange={(evt) => setFiltered(evt.target.value)}>
+                  <option value="all">Hammasi</option>
+                  <option value="yaxnataomlar">Yaxna taomlar</option>
+                  <option value="suyuqtaomlar">Suyuq taomlar</option>
+                  <option value="qaynoqtaomlar">Qaynoq taomlar</option>
+                  <option value="baliqlitaomlar">Baliqli taomlar</option>
+                  <option value="pizza">Pitsa</option>
+                  <option value="goshtlitaomlar">Go'shtli taomlar</option>
+                  <option value="ichimliklar">Ichimliklar</option>
+                </select>
               }
             </div>
             {
-              location.pathname.includes("food") &&
-              <select value={filtered} onChange={(evt) => setFiltered(evt.target.value)}>
-                <option value="all">Hammasi</option>
-                <option value="yaxnataomlar">Yaxna taomlar</option>
-                <option value="suyuqtaomlar">Suyuq taomlar</option>
-                <option value="qaynoqtaomlar">Qaynoq taomlar</option>
-                <option value="baliqlitaomlar">Baliqli taomlar</option>
-                <option value="pizza">Pitsa</option>
-                <option value="goshtlitaomlar">Go'shtli taomlar</option>
-                <option value="ichimliklar">Ichimliklar</option>
-              </select>
-            }
-          </div>
-          {
-            location.pathname.includes("order") &&
-            isFiltering &&
-            <div className="filter-div d-flex a-center j-between">
-              <div className="select-group">
-                <div>
-                  <p>Address</p>
-                  <select
-                    value={address}
-                    onChange={(evt) => setAddress(evt.target.value)}
-                  >
-                    <option value="">Hammasi</option>
-                    <option value="BEKTEMIR">BEKTEMIR</option>
-                    <option value="MIROBOD">MIROBOD</option>
-                    <option value="MIRZO">MIRZO ULUG'BEK</option>
-                    <option value="CHILONZOR">CHILONZOR</option>
-                    <option value="OLMAZOR">OLMAZOR</option>
-                    <option value="SERGELI">SERGELI</option>
-                    <option value="SHAYHONTOHUR">SHAYHONTOHUR</option>
-                    <option value="UCHTEPA">UCHTEPA</option>
-                    <option value="YAKKASAROY">YAKKASAROY</option>
-                    <option value="YASHNAOBOD">YASHNAOBOD</option>
-                    <option value="YUNUSOBOD">YUNUSOBOD</option>
-                  </select>
-                </div>
-                <div>
-                  <p>Delivery</p>
-                  <select
-                    value={delivery_type}
-                    onChange={(evt) => setDelivery(evt.target.value)}
-                  >
-                    <option value="">Hammasi</option>
-                    <option value="BORIB OLISH">Borib olish</option>
-                    <option value="YETKAZIB BERISH">Yetkazib berish</option>
-                  </select>
-                </div>
-                <div>
-                  <p>Payment</p>
-                  <select
-                    value={payment}
-                    onChange={(evt) => setPayment(evt.target.value)}
-                  >
-                    <option value="">Hammasi</option>
-                    <option value="KARTA ORQALI">Karta orqali</option>
-                    <option value="NAQD PUL">Naqd pul</option>
-                  </select>
-                </div>
-              </div>
-              <Button type="button" onClick={() => filterOrders()}><TrendingFlatIcon /> </Button>
-            </div>
-
-          }
-
-          <div className="administrator d-flex a-center">
-            {
               location.pathname.includes("order") &&
-              <IconButton
-                type="button"
-                variant="outlined"
-                aria-label="delete"
-                className="me-1 filter"
-                onClick={() => setIsFiltering(!isFiltering)}
-              >
-                {
-                  isFiltering ?
-                    <ClearOutlinedIcon /> :
-                    <div title="filter">
-                      <FilterListIcon />
-                    </div>
-                }
-              </IconButton>
+              isFiltering &&
+              <div className="filter-div d-flex a-center j-between">
+                <div className="select-group">
+                  <div>
+                    <p>Address</p>
+                    <select
+                      value={address}
+                      onChange={(evt) => setAddress(evt.target.value)}
+                    >
+                      <option value="">Hammasi</option>
+                      <option value="BEKTEMIR">BEKTEMIR</option>
+                      <option value="MIROBOD">MIROBOD</option>
+                      <option value="MIRZO">MIRZO ULUG'BEK</option>
+                      <option value="CHILONZOR">CHILONZOR</option>
+                      <option value="OLMAZOR">OLMAZOR</option>
+                      <option value="SERGELI">SERGELI</option>
+                      <option value="SHAYHONTOHUR">SHAYHONTOHUR</option>
+                      <option value="UCHTEPA">UCHTEPA</option>
+                      <option value="YAKKASAROY">YAKKASAROY</option>
+                      <option value="YASHNAOBOD">YASHNAOBOD</option>
+                      <option value="YUNUSOBOD">YUNUSOBOD</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p>Delivery</p>
+                    <select
+                      value={delivery_type}
+                      onChange={(evt) => setDelivery(evt.target.value)}
+                    >
+                      <option value="">Hammasi</option>
+                      <option value="BORIB OLISH">Borib olish</option>
+                      <option value="YETKAZIB BERISH">Yetkazib berish</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p>Payment</p>
+                    <select
+                      value={payment}
+                      onChange={(evt) => setPayment(evt.target.value)}
+                    >
+                      <option value="">Hammasi</option>
+                      <option value="KARTA ORQALI">Karta orqali</option>
+                      <option value="NAQD PUL">Naqd pul</option>
+                    </select>
+                  </div>
+                </div>
+                <Button type="button" onClick={() => filterOrders()}><TrendingFlatIcon /> </Button>
+              </div>
+
             }
-            <div className='d-flex a-center'>
-              <AccountCircleIcon />
-              <div className="admin-info">
-                <h4>Administrator</h4>
-                <p>Main admin</p>
+
+            <div className="administrator d-flex a-center">
+              {
+
+                location.pathname.includes("order") &&
+                <>
+                  {isFiltering ?
+                  <IconButton
+                    type="button"
+                    variant="outlined"
+                    aria-label="delete"
+                    className="me-1 filter"
+                    onClick={() => setIsFiltering(!isFiltering)}
+                  >
+                    <ClearOutlinedIcon />
+                  </IconButton> :
+                  <Button 
+                    onClick={() => setIsFiltering(!isFiltering)} 
+                    title="filter" 
+                    variant="outlined" 
+                    color="secondary">
+                    <FilterListIcon />
+                    Filter
+                  </Button>}
+                  </>
+
+              }
+              <div className='d-flex a-center'>
+                <AccountCircleIcon />
+                <div className="admin-info">
+                  <h4>Administrator</h4>
+                  <p>Main admin</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         }
         <Routes>
           <Route exact={true} path='/dashboard' element={<Dashboard
@@ -309,7 +310,7 @@ const AdminPanel = () => {
           <Route exact={true} path='/account' element={<Cabinet />} />
         </Routes>
       </div>
-    </div>
+    </div >
   )
 }
 

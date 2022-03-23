@@ -10,7 +10,7 @@ const FoodContainer = ({ parentData, title, data, path }) => {
         dots: false,
         infinite: true,
         speed: 700,
-        slidesToShow: data.length>4? 4: data.length,
+        slidesToShow: data.length > 4 ? 4 : data.length,
         slidesToScroll: 1,
         autoplay: false,
     };
@@ -21,20 +21,20 @@ const FoodContainer = ({ parentData, title, data, path }) => {
             <Title title={title} />
 
             <div className="food-content">
-                <Slider {...settings}>
-                    {
+                    <Slider {...settings}>
+                        {
 
-                        data?.map((food) => {
-                            return <FoodCard
-                                key={food.id}
-                                path={parentData.url??path}
-                                food={food}
-                                foodDataFromParent={parentData}
-                                data={data}
-                            />
-                        })
-                    }
-                </Slider>
+                            data?.map((food) => {
+                                return <FoodCard
+                                    key={food.id}
+                                    path={parentData.url ?? path}
+                                    food={food}
+                                    foodDataFromParent={parentData}
+                                    data={data}
+                                />
+                            })
+                        }
+                    </Slider>
             </div>
         </div>
     )

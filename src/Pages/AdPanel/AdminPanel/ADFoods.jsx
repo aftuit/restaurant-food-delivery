@@ -266,66 +266,66 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
 
       </div>
       <div className={` ${show && "opacity"}`}></div>
-      {
-        !state ?
-          <Loader /> :
-          filteredState?.map((parentData) => {
-            return (
-              <div className={`table-content mt-3`} key={parentData.url}>
-                <h2>{parentData.name}</h2>
-                <table className='foods-table w-100 mt-2'>
-                  <thead>
-                    <tr>
-                      <th>№</th>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Weight</th>
-                      <th>Price</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      parentData?.data.map((item, index) => {
-                        if (item.name.toLowerCase().includes(search.toLowerCase())) {
-                          return (
 
-                            <tr key={item.id}>
-                              <td><b>{index + 1}</b></td>
-                              <td>
-                                <img src={API_URL + item.image} alt="error" />
-                              </td>
-                              <td>{item.name}</td>
-                              <td>
-                                <span>
-                                  {`${item.description.substr(0, 8)}...`}
-                                </span>
-                              </td>
-                              <td>{item.weight ? `${item.weight} г` : item.size}</td>
-                              <td>{item.price}₽</td>
-                              <td>
-                                <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, parentData.url)}>
-                                  <EditIcon type="button" />
-                                </Button>
-                                <Button type="button" className="delete" onClick={() => deleteItem(parentData.url, item.id, item.name)}>
-                                  <DeleteForeverIcon />
-                                </Button></td>
-                            </tr>
-                          )
-                        } else {
-                          return (<></>)
-                        }
-                      })
-                    }
+        {
+          !state ?
+            <Loader /> :
+            filteredState?.map((parentData) => {
+              return (
+                <div className={`table-content mt-3`} key={parentData.url}>
 
-                  </tbody>
-                </table>
-              </div>
-            )
-          })
-      }
+                  <h2>{parentData.name}</h2>
+                  <table className='foods-table w-100 mt-2'>
+                    <thead>
+                      <tr>
+                        <th>№</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Weight</th>
+                        <th>Price</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        parentData?.data.map((item, index) => {
+                          if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                            return (
+                              <tr>
+                                <td><b>{index + 1}</b></td>
+                                <td>
+                                  <img src={API_URL + item.image} alt="error" />
+                                </td>
+                                <td>{item.name}</td>
+                                <td>
+                                  <span>
+                                    {`${item.description.substr(0, 8)}...`}
+                                  </span>
+                                </td>
+                                <td>{item.weight ? `${item.weight} г` : item.size}</td>
+                                <td>{item.price}₽</td>
+                                <td>
+                                  <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, parentData.url)}>
+                                    <EditIcon type="button" />
+                                  </Button>
+                                  <Button type="button" className="delete" onClick={() => deleteItem(parentData.url, item.id, item.name)}>
+                                    <DeleteForeverIcon />
+                                  </Button></td>
+                              </tr>
+                            )
+                          } else {
+                            return (<></>)
+                          }
+                        })
+                      }
 
+                    </tbody>
+                  </table>
+                </div>
+              )
+            })
+        }
     </div>
   )
 }

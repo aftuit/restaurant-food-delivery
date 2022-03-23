@@ -32,7 +32,7 @@ const Login = () => {
       username: username.value.trim(),
       password: password.value.trim()
     })
-      .then(res => {
+      .then((res) => {
         setLoading(false)
         Swal.fire({
           position: 'center',
@@ -41,7 +41,6 @@ const Login = () => {
           showConfirmButton: false,
           timer: "1000"
         })
-        console.log(res)
         setToken(res.data.token)
      
         window.localStorage.setItem("Token", JSON.stringify(res.data.token));

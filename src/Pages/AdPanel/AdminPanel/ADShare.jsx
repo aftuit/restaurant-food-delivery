@@ -5,6 +5,7 @@ import axios from "axios";
 import { API_URL } from '../../../util/const';
 import SaveIcon from '@mui/icons-material/Save';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { AnimatePresence } from "framer-motion";
 import Swal from 'sweetalert2';
 import "../../Share/style.scss";
 
@@ -165,25 +166,27 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
 
       <Container>
         <Grid container spacing={3}>
-          { 
-            shares?.filter(e => e.title.toLowerCase().includes(search.toLowerCase())).map(share => {
-              return (
-                <Grid item xs={4} key={share?.id}>
-                  <Item
-                    id={share.id}
-                    descriptions={share?.descriptions}
-                    image={share?.image}
-                    start={share?.start}
-                    title={share?.title}
-                    finish_date={share?.finish_date}
-                    deleteAdvertItem={deleteAdvertItem}
-                    editItem={editItem}
-                    type={true}
-                  />
-                </Grid>
-              )
-            })
-          }
+          <AnimatePresence>
+            {
+              shares?.filter(e => e.title.toLowerCase().includes(search.toLowerCase())).map(share => {
+                return (
+                  <Grid item xs={4} key={share?.id}>
+                    <Item
+                      id={share.id}
+                      descriptions={share?.descriptions}
+                      image={share?.image}
+                      start={share?.start}
+                      title={share?.title}
+                      finish_date={share?.finish_date}
+                      deleteAdvertItem={deleteAdvertItem}
+                      editItem={editItem}
+                      type={true}
+                    />
+                  </Grid>
+                )
+              })
+            }
+          </AnimatePresence>
         </Grid>
       </Container>
     </div>

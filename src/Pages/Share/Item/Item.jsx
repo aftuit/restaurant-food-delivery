@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { motion } from "framer-motion";
 
 const Item = ({
     id,
@@ -40,46 +41,53 @@ const Item = ({
 
 
     return (
-        <div className={`${type ? "ad" : "sha"} share-item-card mt-2`}>
-            <div className="div">
-                <div className="img-wrap">
-                    <img src={image} alt="" />
+        <motion.div
+            layout
+            animate={{opacity: 1}}
+            initial={{opacity: 0}}
+            exit={{opacity: 0}}
+        >
+            <div className={`${type ? "ad" : "sha"} share-item-card mt-2`}>
+                <div className="div">
+                    <div className="img-wrap">
+                        <img src={image} alt="" />
 
-                </div>
-                <div className="card--body text-wh">
-                    <h3 className="font-semibold">{title ?? "title"}</h3>
-                    <p className="font-regular">
-                        {descriptions}
-                    </p>
-                    <p className='deadline'>
-                       <b>До {finish_date.substr(0, 4)} {month} {finish_date.substr(8, 2)}</b>
-                    </p>
-                </div>
-
-                {
-                    type &&
-                    <div className="card--footer d-flex j-between">
-                        <Button 
-                        color="secondary" 
-                        type="button" 
-                        variant="contained"
-                        onClick={()=>editItem(id)}
-                        >
-                            <EditIcon size="small" /> Edit
-                        </Button>
-                        
-                        <Button 
-                        color="error" 
-                        type="button" 
-                        variant="contained"
-                        onClick={()=>deleteAdvertItem(id, title)}
-                        >
-                            <DeleteIcon size="small" /> Delete
-                        </Button>
                     </div>
-                }
+                    <div className="card--body text-wh">
+                        <h3 className="font-semibold">{title ?? "title"}</h3>
+                        <p className="font-regular">
+                            {descriptions}
+                        </p>
+                        <p className='deadline'>
+                            <b>До {finish_date.substr(0, 4)} {month} {finish_date.substr(8, 2)}</b>
+                        </p>
+                    </div>
+
+                    {
+                        type &&
+                        <div className="card--footer d-flex j-between">
+                            <Button
+                                color="secondary"
+                                type="button"
+                                variant="contained"
+                                onClick={() => editItem(id)}
+                            >
+                                <EditIcon size="small" /> Edit
+                            </Button>
+
+                            <Button
+                                color="error"
+                                type="button"
+                                variant="contained"
+                                onClick={() => deleteAdvertItem(id, title)}
+                            >
+                                <DeleteIcon size="small" /> Delete
+                            </Button>
+                        </div>
+                    }
+                </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 export default Item
