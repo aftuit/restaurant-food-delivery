@@ -5,7 +5,10 @@ import { Container, Button } from '@mui/material';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import FoodContainer from "../../components/FoodContainer/FoodContainer";
 import { useNavigate, useParams } from 'react-router-dom';
+import { useCartState } from "../../Context/cartContext";
 import { routeContext } from "../../Context/routeContext";
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import { CartIdsContext } from "../../Context/cartIds";
 import axios from "axios";
 import "./style.scss";
 import { API_URL } from '../../util/const';
@@ -19,6 +22,27 @@ const ItemPage = () => {
 
   const [state, setState] = useState(JSON.parse(window.localStorage.getItem("product")) || null)
   const [foodList, setFoodList] = useState(JSON.parse(window.localStorage.getItem("foodList")) || null)
+
+
+  const [cartStateList, setCartStateList] = useCartState();
+  const { cartIdList, setCartIdList } = React.useContext(CartIdsContext)
+
+  React.useEffect(() => {
+    setCartIdList([...cartStateList?.map(item => item.id)])
+  }, [cartStateList, setCartIdList])
+
+  const saveToCart = (item) => {
+    setCartStateList((e) => [...e, { ...item }])
+    setCartIdList((e) => [...e, item.id])
+  }
+
+  const removeFromCart = (param) => {
+    const newFilteredList = cartStateList.filter(list => list.id !== param);
+    setCartStateList(newFilteredList);
+    const newFilteredIDs = cartIdList.filter(item => item !== param)
+    setCartIdList(newFilteredIDs)
+  }
+
 
   React.useEffect(() => {
     axios.get(`${API_URL}/taomlar/${route.routePath}/${id}/`)
@@ -62,10 +86,23 @@ const ItemPage = () => {
                   }
                 </span>
                 <div className="buttons">
-                  <Button className='text-wh'>
-                    <span>Корзина</span>
-                    <LocalMallOutlinedIcon />
-                  </Button>
+                  {
+                    cartIdList?.every(id => id !== state.id) ?
+                      <Button className='text-wh'
+                        onClick={() => saveToCart(state)}
+                      >
+                        <span>Корзина</span>
+                        <LocalMallOutlinedIcon />
+                      </Button> :
+
+                      <Button className='text-wh'
+                        onClick={() => removeFromCart(state.id)}
+                      >
+                        <span>удалить из корзины</span>
+                        <RemoveShoppingCartIcon />
+                      </Button>
+
+                  }
                   <span className='text-wh font-semibold'>{state?.price} ₽ </span>
                 </div>
                 <table className='item-table'>
@@ -103,7 +140,7 @@ const ItemPage = () => {
           <FoodContainer
             title={"с этим товаром покупают"}
             parentData={foodList}
-            data={foodList.data??foodList.results}
+            data={foodList.data ?? foodList.results}
           />
         }
 

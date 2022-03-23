@@ -44,7 +44,7 @@ const Login = () => {
         console.log(res)
         setToken(res.data.token)
      
-        window.localStorage.setItem("token", JSON.stringify(res.data.token));
+        window.localStorage.setItem("Token", JSON.stringify(res.data.token));
         navigate("/admin-panel/dashboard")
       
       })

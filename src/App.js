@@ -15,6 +15,8 @@ import { LoginProvider } from "./Context/loginContext";
 import { RouteProvider } from "./Context/routeContext";
 import { CartProvider } from "./Context/cartContext";
 import { SearchProvider } from "./Context/searchContext";
+import { CartIdProvider } from "./Context/cartIds";
+
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import { useLocation, Navigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
@@ -27,6 +29,8 @@ function App() {
     const scrolled = document.documentElement.scrollTop;
     scrolled > 300 ? setVisible(true) : setVisible(false);
   };
+
+
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -59,24 +63,46 @@ function App() {
           <RouteProvider>
             <CartProvider>
               <SearchProvider>
+                <CartIdProvider>
                 {!window.location.href.includes("admin") && <Navbar />}
                 <div className="routes-wrap bg-dark">
-                <Routes>
-                  <Route exact path="/" element={<Home />} />
-                  <Route exact path="/cart" element={<Cart />} />
-                  <Route exact path="/share" element={<Share />} />
-                  <Route exact path="*" element={<NotFound />} />
-                  <Route exact path="/order" element={
-                    JSON.parse(window.localStorage.getItem('saved__cart__items'))?.length > 0
-                    ? <Order />
-                    : <Navigate to="/cart" />
-                  } />
-                  <Route exact path="/delivery-term" element={<DeliveryTerm />} />
-                  <Route exact path="/food/:path/:id" element={<ItemPage />} />
-                  <Route exact path="/admin-panel/*" element={<AuthAdminPanel />} />
-                </Routes>
+                  <Routes>
+                    <Route exact path="/" element={<Home />} />
+                    <Route exact path="/cart" element={<Cart />} />
+                    <Route exact path="/share" element={<Share />} />
+                    <Route exact path="*" element={<NotFound />} />
+                    <Route
+                      exact
+                      path="/order"
+                      element={
+                        JSON.parse(
+                          window.localStorage.getItem("saved__cart__items")
+                        )?.length > 0 ? (
+                          <Order />
+                        ) : (
+                          <Navigate to="/cart" />
+                        )
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/delivery-term"
+                      element={<DeliveryTerm />}
+                    />
+                    <Route
+                      exact
+                      path="/food/:path/:id"
+                      element={<ItemPage />}
+                    />
+                    <Route
+                      exact
+                      path="/admin-panel/*"
+                      element={<AuthAdminPanel />}
+                    />
+                  </Routes>
                 </div>
                 {!window.location.href.includes("admin") && <Footer />}
+                </CartIdProvider>
               </SearchProvider>
             </CartProvider>
           </RouteProvider>

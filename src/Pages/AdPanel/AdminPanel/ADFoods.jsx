@@ -22,22 +22,15 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
   const [isEdting, setIsEditing] = useState(false);
   const [idItem, setIdItem] = useState(null);
   const [filteredState, setFilteredState] = React.useState([]);
-  const [isResult, setIsResult] = React.useState(true);
 
 
   React.useEffect(() => {
-    console.log(search)
-    console.log(state)
     if (filtered !== "all") {
       setFilteredState(state?.filter(item => item.code === filtered))
     } else {
       setFilteredState(state?.filter((item, index) => index > 0))
     }
   }, [search, filtered, state])
-
-  const getIDItem=(id)=>{
-    setIsResult(id)
-  }
 
 
   const showModal = () => setShow(!show);
@@ -278,7 +271,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
           <Loader /> :
           filteredState?.map((parentData) => {
             return (
-              <div className={`table-content mt-3 ${isResult === parentData && 'd-none'}`} key={parentData.url}>
+              <div className={`table-content mt-3`} key={parentData.url}>
                 <h2>{parentData.name}</h2>
                 <table className='foods-table w-100 mt-2'>
                   <thead>
@@ -295,7 +288,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
                   <tbody>
                     {
                       parentData?.data.map((item, index) => {
-                        if (item.name.toLowerCase().includes(search.toLowerCase())) {                          
+                        if (item.name.toLowerCase().includes(search.toLowerCase())) {
                           return (
 
                             <tr key={item.id}>
@@ -320,7 +313,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
                                 </Button></td>
                             </tr>
                           )
-                        } else {                                                   
+                        } else {
                           return (<></>)
                         }
                       })

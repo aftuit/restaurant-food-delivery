@@ -6,6 +6,7 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 import { routeContext } from '../../Context/routeContext';
 import { useNavigate } from "react-router-dom";
 import { useCartState } from '../../Context/cartContext';
+import {CartIdsContext} from "../../Context/cartIds"
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import "./style.scss";
 const FoodCard = ({
@@ -15,8 +16,8 @@ const FoodCard = ({
 
     const { setRoute } = React.useContext(routeContext);
     const [cartStateList, setCartStateList] = useCartState();
+    const {cartIdList, setCartIdList} = React.useContext(CartIdsContext)
 
-    const [cartItemsId, setCartItemsId] = React.useState([...cartStateList?.map(item => item.id)]);
     const navigate = useNavigate();
 
     const moveItemPage = (path, id, data) => {
@@ -26,16 +27,20 @@ const FoodCard = ({
         }
     }
 
+    React.useEffect(() => {
+        setCartIdList([...cartStateList?.map(item => item.id)])
+    }, [cartStateList, setCartIdList])
+
     const saveToCart = (item) => {
         setCartStateList((e) => [...e, { ...item }])
-        setCartItemsId((e) => [...e, item.id])
+        setCartIdList((e) => [...e, item.id])
     }
 
     const removeFromCart = (param) => {
         const newFilteredList = cartStateList.filter(list => list.id !== param);
         setCartStateList(newFilteredList);
-        const newFilteredIDs = cartItemsId.filter(item => item !== param)
-        setCartItemsId(newFilteredIDs)
+        const newFilteredIDs = cartIdList.filter(item => item !== param)
+        setCartIdList(newFilteredIDs)
     }
 
     return (
@@ -74,7 +79,7 @@ const FoodCard = ({
                         <div className="price d-flex j-between a-center mt-1 font-bold">
                             <h4>{food.price} ₽</h4>
                             {
-                                cartItemsId?.every(id => id !== food.id) ?
+                                cartIdList?.every(id => id !== food.id) ?
                                     <Button
                                         variant="contained"
                                         className="korzinka"

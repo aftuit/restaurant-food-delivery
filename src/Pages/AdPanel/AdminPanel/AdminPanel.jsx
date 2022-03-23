@@ -47,19 +47,17 @@ const AdminPanel = () => {
 
   const location = useLocation();
 
-  // const getAdminInfos = () => {
-    // const token = JSON.parse(window.localStorage.getItem('token'));
+  const getAdminInfos = () => {
 
-    // fetch(`/auth/user/`, {
-    //   method: 'GET',
-    //   headers: {'Authorization': 'Bearer ' + token,
-    //             'Content-Type': 'Application/JSON',
-    // },
-    // },)
-    // .then(res => console.log(res))
-    // .catch(err => console.log(err))
+    const token = JSON.parse(window.localStorage.getItem('Token'));
 
-  // }
+    axios.get(`${API_URL}/auth/user/`, {
+      headers: {Authorization: 'Bearer ' + token}
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+
+  }
 
   const getFoods = () => {
     axios.get(API_URL)
@@ -97,7 +95,7 @@ const AdminPanel = () => {
     getOrders();
     getFoods();
     getShares();
-    // getAdminInfos();
+    getAdminInfos();
     // axios.get(`${API_URL}/auth/user/`)
     //       .then(res => console.log(res))
     //       .catch(err => console.error(err))
@@ -154,6 +152,8 @@ const AdminPanel = () => {
               </Link>
             </li>
           </ul>
+
+          <button type="button" onClick={()=>getAdminInfos()}>click</button>
 
         </div>
 

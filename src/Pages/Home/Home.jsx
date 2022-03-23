@@ -16,7 +16,7 @@ const Home = () => {
     )
 
     const [foodDatas, setFoodDatas] = useFood();
-    // const [search, setSearch] = useSearch();
+
 
     React.useEffect(() => {
         axios.get(`${API_URL}${filterItem.path ? "/taomlar/" : ""}${filterItem.path}/`)
@@ -46,14 +46,14 @@ const Home = () => {
                                             parentData={foodData}
                                             data={foodData.data}
                                         />
-                                    ) 
+                                    )
                                 }) :
                                 <FoodContainer
                                     title={filterItem.title}
                                     parentData={foodDatas}
                                     data={foodDatas.results}
                                     path={filterItem.path}
-                                />                              
+                                />
                     }
                 </div>
 
