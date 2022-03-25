@@ -41,16 +41,11 @@
     margin-top: 20px;
   }
   .row {
-    table.cart-item-list {
+    .cart-item-list {
       width: 100%;
-      tr {
-        border-bottom: 1px solid #747474;
-        &:nth-child(1) {
-          border-radius: 15px 15px 0 0;
-        }
-        &:nth-last-child(1) {
-          border-radius: 0 0 15px 15px;
-        }
+      border-radius: 20px;
+      overflow: hidden;
+      
       }
     }
   }
@@ -151,4 +146,4 @@
       z-index: 323;
     }
   }
-}
+

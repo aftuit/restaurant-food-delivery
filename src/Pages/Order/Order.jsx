@@ -20,10 +20,11 @@ const Order = () => {
 
     const [deliveryId, setDeliveryId] = React.useState(1);
     const [deliveryType, setDeliveryType] = React.useState("YETKAZIB BERISH");
-    const [address, setAddress] = React.useState('');    
+    const [address, setAddress] = React.useState('');
     const [paymentId, setPaymentId] = React.useState(1);
     const [paymentType, setPaymentType] = React.useState("KARTA ORQALI");
     const [loading, setLoading] = React.useState(false);
+    const [tel, setTel] = React.useState('+998 ');
 
     const [cartStateList, setCartStateList] = useCartState();
 
@@ -42,6 +43,7 @@ const Order = () => {
             setPaymentType("NAQD PUL")
     }
 
+    console.log('tel: ', tel)
 
     const sendDeliveryRequest = (evt) => {
         evt.preventDefault();
@@ -96,6 +98,12 @@ const Order = () => {
                 })
             })
     }
+
+    const typeTelNUmber = (evt) => {
+        
+
+    }
+
     return (
         <div className="order-content">
             <Container>
@@ -114,7 +122,7 @@ const Order = () => {
                         <h3 className="title">1. Контактная информация</h3>
                         <div className="d-flex">
                             <input autoComplete="off" required type="text" placeholder='Имя*' name="user_name" />
-                            <input autoComplete="off" required type="number" placeholder='Телефон*' name="phone" />
+                            <input value={tel} onChange={(evt) => typeTelNUmber(evt)} autoComplete="off" required type="tel" placeholder='Телефон*' name="phone" />
                         </div>
                     </div>
 
@@ -138,7 +146,7 @@ const Order = () => {
                                 value={address}
                                 label="Адрес"
                                 className="select"
-                                onChange={(evt) => setAddress(evt.target.value)}
+                                onChange={(evt) => setAddress(e => e.append(evt.target.value))}
                                 variant={"standard"}
                             >
                                 <MenuItem value={"BEKTEMIR"}>BEKTEMIR</MenuItem>
@@ -179,7 +187,7 @@ const Order = () => {
 
                         <h4 className="title mt-3">Хотите мы позвоним?</h4>
                         <div>
-                            <input required type="radio" id="want" name="call" value={true} />
+                            <input required type="radio" id="want" name="call" value={true} checked />
                             <label htmlFor="want">Потребуется звонок оператора</label>
                         </div>
 
@@ -193,7 +201,7 @@ const Order = () => {
                         <div className="d-flex a-center">
                             <input type="checkbox" />
                             <p className='text-wh'>Я согласен на обработку моих перс. данных в соответствии
-                                <Link to="/delivery-term">с Условиями</Link> 
+                                <Link to="/delivery-term">с Условиями</Link>
                             </p>
                             <LoadingButton
                                 type="submit"

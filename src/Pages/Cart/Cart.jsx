@@ -6,6 +6,7 @@ import CartItem from '../../components/CartItem/CartItem';
 import { useCartState } from '../../Context/cartContext';
 import AddIcon from '@mui/icons-material/Add';
 import Title from "../../components/Title/Title";
+import { AnimatePresence } from 'framer-motion';
 import "./style.scss";
 const Cart = () => {
 
@@ -41,7 +42,7 @@ const Cart = () => {
 
             <Link to="/">
               <Button type="button">
-              Посмотреть меню
+                Посмотреть меню
               </Button>
             </Link>
           </div>
@@ -58,17 +59,17 @@ const Cart = () => {
                   <p>Go to <Link to="/">Products list</Link></p>
                 </div>
               </div> :
-              <table className="cart-item-list">
-                <tbody>
-                  {
-                    cartStateList?.map(item => {
-                      return (
-                        <CartItem key={item.image} item={item} />
-                      )
-                    })
-                  }
-                </tbody>
-              </table>
+              <div className="cart-item-list">
+                <AnimatePresence>
+                {
+                  cartStateList?.map(item => {
+                    return (
+                      <CartItem key={item.image} item={item} />
+                    )
+                  })
+                }
+                </AnimatePresence>
+              </div>
           }
         </div>
 
