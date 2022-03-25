@@ -94,10 +94,10 @@ $btn-shadow: 0px 5px 10px rgba(114, 163, 121, 0.7);
 }
 
 .ms-1 {
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 .me-1 {
-  margin-right: 1rem;
+  margin-right: 1rem !important;
 }
 .mt-1 {
   margin-top: 1rem;
@@ -133,6 +133,13 @@ $btn-shadow: 0px 5px 10px rgba(114, 163, 121, 0.7);
 }
 .w-100{
   width: 100%!important;
+}
+.w-50{
+  width: 50%!important;
+}
+.border{
+  outline: 1px solid rgb(131, 129, 129) !important;
+  border-radius: 4px;
 }
 
 .d-flex {

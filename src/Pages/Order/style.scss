@@ -5,6 +5,7 @@
   .back-link {
     color: #fff;
     width: fit-content;
+    font-size: 20px;
   }
 
   .order-card {
@@ -17,18 +18,17 @@
       border-bottom: 2px solid $green--color;
     }
     
+    input{
+        border: 0;
+        outline: 0;
+        color: #fff;
+    }
     .address-select{
         width: 50%;
         font-size: 20px;
       border-radius: 10px;
       svg{
           color: #fff;
-      }
-      input{
-          border: 0;
-          outline: 0;
-          color: #fff;
-
       }
       select{
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -60,14 +60,7 @@
         color: #fff;
 
     }
-    input,
-    textarea {
-      padding: 20px 30px;
-      font-size: 20px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      margin: 0 8px;
-      background-color: $card--color;
+    input{
       &[type*="text"],  &[type*="number"] {
         width: 50%;
         &::-webkit-inner-spin-button, 
@@ -75,6 +68,13 @@
           -webkit-appearance: none;
         }
       }
+    }
+    
+    textarea {
+      padding: 20px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      background-color: $card--color;
       outline: none;
       color: #fff;
       &::placeholder {

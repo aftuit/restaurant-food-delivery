@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Button } from '@mui/material';
+import { Container, Button, TextField } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import SendIcon from '@mui/icons-material/Send';
@@ -15,6 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { API_URL } from '../../util/const';
+import ReactPhoneInput from 'react-phone-input-material-ui';
 import "./style.scss";
 const Order = () => {
 
@@ -43,7 +44,6 @@ const Order = () => {
             setPaymentType("NAQD PUL")
     }
 
-    console.log('tel: ', tel)
 
     const sendDeliveryRequest = (evt) => {
         evt.preventDefault();
@@ -51,7 +51,6 @@ const Order = () => {
 
         const {
             user_name,
-            phone,
             street,
             descriptions,
             flat,
@@ -63,7 +62,7 @@ const Order = () => {
         const FD = new FormData();
         FD.append("id", ID.getTime())
         FD.append("user_name", user_name.value)
-        FD.append("phone", phone.value)
+        FD.append("phone", tel)
         FD.append("delivery_type", deliveryType)
         FD.append("address", address)
         FD.append("street", street.value)
@@ -99,9 +98,11 @@ const Order = () => {
             })
     }
 
-    const typeTelNUmber = (evt) => {
-        
-
+    const getPhoneNumber = (value) => {
+        if(tel.length > 4){
+            setTel(value)
+            console.log({value: value, tel: tel})
+        }
     }
 
     return (
@@ -121,8 +122,35 @@ const Order = () => {
                     <div className="order-card">
                         <h3 className="title">1. Контактная информация</h3>
                         <div className="d-flex">
-                            <input autoComplete="off" required type="text" placeholder='Имя*' name="user_name" />
-                            <input value={tel} onChange={(evt) => typeTelNUmber(evt)} autoComplete="off" required type="tel" placeholder='Телефон*' name="phone" />
+                            <TextField
+                                label="Имя"
+                                autoComplete="off"
+                                required
+                                type="text"
+                                name="user_name"
+                                className='me-1 w-50 border' />
+                            {/* <ReactPhoneInput
+                                country={"uz"}
+                                autoComplete="off"
+                                required
+                                value={tel}
+                                type="number"
+                                component={TextField}
+                                placeholder='Телефон*'
+                                onChange={val => setTel(val)}
+                                className="ms-1 w-50 border"
+
+                            /> */}
+
+                            <TextField
+                               autoComplete="off"
+                               required
+                               type="text"
+                               value={tel} 
+                               placeholder='Телефон*'
+                               onChange={evt => getPhoneNumber(evt.target.value)}
+                               className="ms-1 w-50 border" />
+
                         </div>
                     </div>
 
@@ -137,7 +165,7 @@ const Order = () => {
                         </div>
 
                         <h4 className="title mt-3">Адрес доставки</h4>
-                        <FormControl className="address-select">
+                        <FormControl className="address-select ">
                             <InputLabel id="demo-simple-select-label">Адрес</InputLabel>
                             <Select
                                 required
@@ -145,9 +173,9 @@ const Order = () => {
                                 id="demo-simple-select"
                                 value={address}
                                 label="Адрес"
-                                className="select"
-                                onChange={(evt) => setAddress(e => e.append(evt.target.value))}
-                                variant={"standard"}
+                                className="select me-1 border"
+                                onChange={(evt) => setAddress(evt.target.value)}
+                                variant={"outlined"}
                             >
                                 <MenuItem value={"BEKTEMIR"}>BEKTEMIR</MenuItem>
                                 <MenuItem value={"MIROBOD"}>MIROBOD</MenuItem>
@@ -163,11 +191,29 @@ const Order = () => {
                             </Select>
                         </FormControl>
                         <div className="d-flex address mt-2">
-                            <input autoComplete="off" required type="text" placeholder='Укажите улицу*' name="street" />
-                            <input autoComplete="off" required type="number" placeholder='Номер дома*' name="flat" />
+                            <TextField
+                                className="me-1 w-50 border"
+                                autoComplete="off"
+                                required
+                                type="text"
+                                label='Укажите улицу'
+                                name="street" />
+
+                            <TextField
+                                className="ms-1 w-50 border"
+                                autoComplete="off"
+                                required
+                                type="number"
+                                label='Номер дома'
+                                name="flat" />
                         </div>
                         <div className="mt-2">
-                            <textarea placeholder="Комментарий" name="descriptions" cols={"100"} rows={"5"}></textarea>
+                            <textarea
+                                placeholder="Комментарий"
+                                name="descriptions"
+                                cols={"100"}
+                                rows={"5"}
+                            ></textarea>
                         </div>
                     </div>
                     <div className="order-card">
@@ -187,12 +233,23 @@ const Order = () => {
 
                         <h4 className="title mt-3">Хотите мы позвоним?</h4>
                         <div>
-                            <input required type="radio" id="want" name="call" value={true} checked />
+                            <input
+                                required
+                                type="radio"
+                                id="want"
+                                name="call"
+                                value={true}
+                                defaultChecked={true} />
                             <label htmlFor="want">Потребуется звонок оператора</label>
                         </div>
 
                         <div className='mt-1'>
-                            <input required type="radio" id="dontwant" name="call" value={false} />
+                            <input
+                                required
+                                type="radio"
+                                id="dontwant"
+                                name="call"
+                                value={false} />
                             <label htmlFor="dontwant">Не перезванивать</label>
                         </div>
                     </div>
