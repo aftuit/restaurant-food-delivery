@@ -57,9 +57,9 @@ const FoodCard = ({
                     alt=""
                 />
                 <CardContent className="card-content text-wh font-regular">
-                    <div className="card-title-w d-flex j-between a-center">
+                    <div className="card-title-w d-flex j-between a-center text-dk">
                         <h3>{food.name}</h3>
-                        <p className="text-wh-50">
+                        <p className="text-dk">
                             {
                                 food.weight ?
                                     `Вес: ${food.weight} г` :
@@ -77,8 +77,8 @@ const FoodCard = ({
                             {food.description}
                         </ReactReadMoreReadLess>
                     </p>
-                    <div className="price d-flex j-between a-center mt-1 font-bold">
-                        <h4>{food.price} ₽</h4>
+                    <div className="price d-flex j-between a-center mt-1 font-bold text-dk">
+                        <h4>{food.price} So'm</h4>
                         {
                             cartIdList?.every(id => id !== food.id) ?
                                 <Button
@@ -86,7 +86,7 @@ const FoodCard = ({
                                     className="korzinka"
                                     onClick={() => saveToCart(food)}
                                 >
-                                    В корзину
+                                    Saqlash
                                     <ShoppingCartOutlinedIcon />
                                 </Button> :
                                 <Button

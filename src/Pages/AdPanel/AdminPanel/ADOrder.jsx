@@ -35,7 +35,7 @@ const ADOrder = ({ getOrders, state }) => {
                     exit={{ opacity: 0 }}
                   >
                     <div className="ad-order-card-header">
-                      <h3>Comment:</h3> {item.descriptions !== ""
+                      <h3>Izoh:</h3> {item.descriptions !== ""
                         ? <ReactReadMoreReadLess
                           charLimit={80}
                           ellipsis="..."
@@ -44,7 +44,7 @@ const ADOrder = ({ getOrders, state }) => {
                         >
                           {item.descriptions}
                         </ReactReadMoreReadLess>
-                        : <i>No Comment!</i>}
+                        : <i>Izoh yo'q!</i>}
                     </div>
                     <div className="ad-order-card-body">
                       <div className="food-row d-flex">
@@ -58,18 +58,18 @@ const ADOrder = ({ getOrders, state }) => {
                                   alt="" />
                                 <div className="food-card-body">
                                   <div className="d-flex j-between">
-                                    <h4>Name:</h4>
+                                    <h4>Ismi:</h4>
                                     <p>{list.name}</p>
                                   </div>
                                   <div className="d-flex j-between">
-                                    <h4>Price:</h4>
-                                    <p>{list.price} ₽</p>
+                                    <h4>Narxi:</h4>
+                                    <p>{list.price} so'm</p>
                                   </div>
                                   <div className="d-flex j-between">
-                                    <h4>Weight:</h4>
+                                    <h4>Og'irligi:</h4>
                                     <p>{
                                       list.weight ?
-                                        `${list.weight} г` :
+                                        `${list.weight} gr` :
                                         list.size
                                     }</p>
                                   </div>
@@ -83,14 +83,14 @@ const ADOrder = ({ getOrders, state }) => {
                       <table>
                         <thead>
                           <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Street</th>
-                            <th>Flat</th>
-                            <th>Delivery Type</th>
-                            <th>Payment</th>
-                            <th>Call</th>
+                            <th>Ismi</th>
+                            <th>Tel</th>
+                            <th>Manzil</th>
+                            <th>Ko'cha</th>
+                            <th>Xonadon</th>
+                            <th>Yetkazish turi</th>
+                            <th>To'lov turi</th>
+                            <th>Qo'ng'iroq</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -102,21 +102,21 @@ const ADOrder = ({ getOrders, state }) => {
                             <td>{item.flat}</td>
                             <td>{item.delivery_type}</td>
                             <td>{item.payment}</td>
-                            <td>{item.call ? "Yes" : "No"}</td>
+                            <td>{item.call ? "Ha" : "Yo'q"}</td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                     <div className="ad-order-card-footer d-flex j-between">
                       <Button variant="contained" disabled>
-                        Total: {JSON.parse(item.product_list)?.reduce((a, b) => +a + +b.price, 0)} ₽
+                        Jami summa: {JSON.parse(item.product_list)?.reduce((a, b) => +a + +b.price, 0)} So'm
                       </Button>
 
                       <Button
                         variant="contained"
                         onClick={() => removeItem(item.id)}
                       >
-                        Done
+                        Bajarildi
                       </Button>
                     </div>
                   </motion.div>

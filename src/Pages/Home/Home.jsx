@@ -56,9 +56,11 @@ const Home = () => {
                                 />
                     }
                 </div>
-
-                <Cafe />
+                    <Cafe />
+                <div className="mt-h">
                 <Contact />
+                </div>
+
             </main>
         </div>
     )

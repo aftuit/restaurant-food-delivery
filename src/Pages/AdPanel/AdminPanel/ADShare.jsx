@@ -17,12 +17,6 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
   const [loading, setLoading] = React.useState(false);
   const [isEditing, setIsEditing] = React.useState(false);
   const [idItem, setIdItem] = React.useState(null);
-  // const [filteredAd, setFilteredAd] = React.useState(shares);
-
-  // React.useEffect(() => {
-  //   setFilteredAd(shares??[])
-  //   setShares(filteredAd.filter(e=>e.title.toLowerCase().includes(search.toLowerCase())))
-  // }, [filteredAd, search, setShares, shares])
 
   console.log('search:', search)
 
@@ -125,7 +119,7 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
   return (
     <div className="advert">
 
-      <Button onClick={() => setShowModal(true)}>Add Advertisement</Button>
+      <Button onClick={() => setShowModal(true)}>Reklama qo'shish</Button>
 
       <div className={`add-modal ${showModal ? "active" : ""}`}>
         <form onSubmit={isEditing ? editAdvert : addAdverts} id="form_" ref={formElement}>
@@ -142,7 +136,7 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
             <TextField required className="mt-2 w-100" color="primary" type="file" onChange={saveFile} />
           </div>
           <div className="mt-2 w-100">
-            <span style={{ color: "#000" }}>Finish time</span>
+            <span style={{ color: "#000" }}>Tugash vaqti</span>
             <TextField required className="mt-2 w-100" color="primary" type="date" name="finish_date" />
           </div>
 
@@ -154,10 +148,10 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
               endIcon={<SaveIcon />}
               variant="contained"
             >
-              Save
+              Saqlash
             </LoadingButton>
 
-            <Button type="button" variant="contained" color="error" onClick={getNewValues}>CANCEL</Button>
+            <Button type="button" variant="contained" color="error" onClick={getNewValues}>Bekor qilish</Button>
           </div>
         </form>
       </div>

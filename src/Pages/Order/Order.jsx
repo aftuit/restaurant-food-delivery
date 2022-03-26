@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Button, TextField } from '@mui/material';
+import { Container, Button, TextField, IconButton } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import SendIcon from '@mui/icons-material/Send';
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import { Link } from "react-router-dom";
 import Title from "../../components/Title/Title";
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ import FormControl from '@mui/material/FormControl';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { API_URL } from '../../util/const';
-import ReactPhoneInput from 'react-phone-input-material-ui';
+import InputValidMask from '../../components/InputValidMask/InputValidMask';
 import "./style.scss";
 const Order = () => {
 
@@ -26,6 +27,11 @@ const Order = () => {
     const [paymentType, setPaymentType] = React.useState("KARTA ORQALI");
     const [loading, setLoading] = React.useState(false);
     const [tel, setTel] = React.useState('+998 ');
+    const [cardCode, setCardCode] = React.useState('');
+    const [isTrueCode, setIsTrueCode] = React.useState(true);
+    const [showModal, setShowModal] = React.useState(false);
+    const [selectedPay, setSelectedPay] = React.useState(1);
+    const [isPaymentDone, setIsPaymentDone] = React.useState(true);
 
     const [cartStateList, setCartStateList] = useCartState();
 
@@ -47,6 +53,9 @@ const Order = () => {
 
     const sendDeliveryRequest = (evt) => {
         evt.preventDefault();
+
+        // if(isPaymentDone){
+
         setLoading(true);
 
         const {
@@ -57,12 +66,10 @@ const Order = () => {
             call,
         } = evt.target.elements
 
-        const ID = new Date();
-
         const FD = new FormData();
-        FD.append("id", ID.getTime())
+        
         FD.append("user_name", user_name.value)
-        FD.append("phone", tel)
+        FD.append("phone", tel.split("").filter(e => e !== " " && e !== "(" && e !== ")" && e !== "+").join(""))
         FD.append("delivery_type", deliveryType)
         FD.append("address", address)
         FD.append("street", street.value)
@@ -71,6 +78,19 @@ const Order = () => {
         FD.append("payment", paymentType)
         FD.append("call", call.value)
         FD.append("product_list", JSON.stringify(cartStateList))
+
+        console.log({
+            user_name: user_name.value,
+            tel: tel.split("").filter(e => e !== " " && e !== "(" && e !== ")" && e !== "+").join(""),
+            deliveryType: deliveryType,
+            address: address,
+            street: street.value,
+            flat: flat.value,
+            descriptions: descriptions.value,
+            paymentType: paymentType,
+            call: call.value,
+            cartStateList: cartStateList,
+        })
 
         axios.post(`${API_URL}/buyurtma/buyurtma/`, FD)
             .then(res => {
@@ -82,9 +102,11 @@ const Order = () => {
                     showConfirmButton: false,
                     timer: "3000"
                 })
-                window.localStorage.removeItem("saved__cart__items");
-                setCartStateList([])
-                navigate("/");
+                setTimeout(() => {
+                    window.localStorage.removeItem("saved__cart__items");
+                    setCartStateList([])
+                    navigate("/");
+                }, 3000)
             })
             .catch(err => {
                 console.log(err)
@@ -96,14 +118,18 @@ const Order = () => {
                     showConfirmButton: true
                 })
             })
+
+        // } else{
+        //     setShowModal(true)
+        // }
     }
 
-    const getPhoneNumber = (value) => {
-        if(tel.length > 4){
-            setTel(value)
-            console.log({value: value, tel: tel})
+    const getCardCode = (value) => {
+        if (value.length <= 16) {
+            setCardCode(value)
         }
     }
+
 
     return (
         <div className="order-content">
@@ -113,125 +139,163 @@ const Order = () => {
                     className='back-link d-flex a-center'
                 >
                     <KeyboardArrowLeftIcon />
-                    <span>в корзину</span>
+                    <span>Orqaga qaytish</span>
                 </Link>
 
-                <Title title="Оформление заказа" />
+                <Title title="Buyurtma" />
+
+
+                <div className={`payment-modal ${showModal && 'show'}`}>
+                    <IconButton className="shut-btn" onClick={() => setShowModal(false)}>
+                        <ClearOutlinedIcon />
+                    </IconButton>
+                    <div className="modal-card w-100">
+                        <div className="d-flex j-between a-center w-100 mt-2">
+                            <p className={'title'}>To'lov</p>
+
+                            <div className={'card-price'}>120 000 so'm</div>
+                        </div>
+
+                        <div className="modal-body">
+                            <div className="d-flex j-between a-center mt-3 w-100">
+                                <div onClick={() => setSelectedPay(1)} className={`pay ${selectedPay === 1 && 'select'}`}>
+                                    <img src="/assets/img/payme.jpg" alt="payme" />
+                                </div>
+                                <div onClick={() => setSelectedPay(2)} className={`pay ${selectedPay === 2 && 'select'}`}>
+                                    <img src="/assets/img/uzcard.jpg" alt="click" />
+                                </div>
+                                <div onClick={() => setSelectedPay(3)} className={`pay ${selectedPay === 3 && 'select'}`}>
+                                    <img src="/assets/img/click.jpg" alt="payme" />
+                                </div>
+                                <div onClick={() => setSelectedPay(4)} className={`pay ${selectedPay === 4 && 'select'}`}>
+                                    <img src="/assets/img/humo.jpg" alt="click" />
+                                </div>
+                            </div>
+
+                            <div className="card-input mt-3">
+                                <span className={'error-code'}>{!isTrueCode && 'Kod 16 xonadan oshib ketdi!!!'}</span>
+                                <TextField
+                                    autoComplete={false}
+                                    type="text"
+                                    value={cardCode}
+                                    onChange={(e) => getCardCode(e.target.value)}
+                                    placeholder={'8600000000000000'}
+                                    label={"Karta raqami"}
+                                    helperText={'16 xonali karta raqamingizni kiriting!'}
+                                    className={'w-50 w-100-in mt-3 text-wh '}>
+                                </TextField>
+                            </div>
+                        </div>
+                        <Button type={"button"} className={'confirm-btn w-100'} variant={'contained'} color={'success'}>OK</Button>
+                    </div>
+                </div>
+
+                <div className={`fade-m ${showModal && 'active'}`}></div>
+
+                {/* sendDeliveryRequest */}
 
                 <form onSubmit={sendDeliveryRequest}>
                     <div className="order-card">
-                        <h3 className="title">1. Контактная информация</h3>
-                        <div className="d-flex">
+                        <h3 className="title">1. Kontakt ma'lumotlari</h3>
+                        <div className="d-flex inp">
                             <TextField
-                                label="Имя"
+                                label="Ismingiz"
                                 autoComplete="off"
                                 required
                                 type="text"
                                 name="user_name"
-                                className='me-1 w-50 border' />
-                            {/* <ReactPhoneInput
-                                country={"uz"}
-                                autoComplete="off"
-                                required
+                                className='me-1 w-50 border w-100-in' />
+                            <InputValidMask
+                                mask="+998 \(99) 999 99 99"
+                                maskChar=" "
+                                label='Telefon raqam*'
                                 value={tel}
-                                type="number"
-                                component={TextField}
-                                placeholder='Телефон*'
-                                onChange={val => setTel(val)}
-                                className="ms-1 w-50 border"
-
-                            /> */}
-
-                            <TextField
-                               autoComplete="off"
-                               required
-                               type="text"
-                               value={tel} 
-                               placeholder='Телефон*'
-                               onChange={evt => getPhoneNumber(evt.target.value)}
-                               className="ms-1 w-50 border" />
+                                onChange={evt => setTel(evt.target.value)}
+                                className="w-50 border tel-number w-100-in"
+                            />
 
                         </div>
                     </div>
 
                     <div className="order-card">
-                        <h3 className="title">2. Доставка</h3>
-                        <div className="order-buttons d-flex a-center">
+                        <h3 className="title">2. Yetkazish:</h3>
+                        <div className="order-buttons ss d-flex a-center">
                             <div className="d-flex">
-                                <Button type="button" className={`${deliveryId === 1 && "active"}`} onClick={() => getDeliveryType(1)}>Доставка</Button>
-                                <Button type="button" className={`${deliveryId === 2 && "active"}`} onClick={() => getDeliveryType(2)}>Самовывоз</Button>
+                                <Button type="button" className={`${deliveryId === 1 && "active"}`} onClick={() => getDeliveryType(1)}>Yetkazib berish</Button>
+                                <Button type="button" className={`${deliveryId === 2 && "active"}`} onClick={() => getDeliveryType(2)}>Borib olish</Button>
                             </div>
-                            <p> <AlarmOnIcon /> Доставим через  1 час 30 минут</p>
+                            {/* <p> <AlarmOnIcon /> Доставим через  1 час 30 минут</p> */}
                         </div>
 
-                        <h4 className="title mt-3">Адрес доставки</h4>
+                        <h3 className="title mt-3">3. Manzilingiz:</h3>
                         <FormControl className="address-select ">
-                            <InputLabel id="demo-simple-select-label">Адрес</InputLabel>
+                            <InputLabel id="demo-simple-select-label">Tuman</InputLabel>
                             <Select
                                 required
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={address}
                                 label="Адрес"
-                                className="select me-1 border"
+                                className="select me-1 border "
                                 onChange={(evt) => setAddress(evt.target.value)}
                                 variant={"outlined"}
                             >
-                                <MenuItem value={"BEKTEMIR"}>BEKTEMIR</MenuItem>
-                                <MenuItem value={"MIROBOD"}>MIROBOD</MenuItem>
-                                <MenuItem value={"MIRZO ULUGBEK"}>MIRZO ULUG'BEK</MenuItem>
-                                <MenuItem value={"CHILONZOR"}>CHILONZOR</MenuItem>
-                                <MenuItem value={"OLMAZOR"}>OLMAZOR</MenuItem>
-                                <MenuItem value={"SERGELI"}>SERGELI</MenuItem>
-                                <MenuItem value={"SHAYHONTOHUR"}>SHAYHONTOHUR</MenuItem>
-                                <MenuItem value={"UCHTEPA"}>UCHTEPA</MenuItem>
-                                <MenuItem value={"YAKKASAROY"}>YAKKASAROY</MenuItem>
-                                <MenuItem value={"YASHNAOBOD"}>YASHNAOBOD</MenuItem>
-                                <MenuItem value={"YUNUSOBOD"}>YUNUSOBOD</MenuItem>
+                                <MenuItem value={"BEKTEMIR"}>Bektemir</MenuItem>
+                                <MenuItem value={"MIROBOD"}>Mirobod</MenuItem>
+                                <MenuItem value={"MIRZO ULUGBEK"}>Mirzo Ulug'bek</MenuItem>
+                                <MenuItem value={"CHILONZOR"}>Chilonzor</MenuItem>
+                                <MenuItem value={"OLMAZOR"}>Olmazor</MenuItem>
+                                <MenuItem value={"SERGELI"}>Sergeli</MenuItem>
+                                <MenuItem value={"SHAYHONTOHUR"}>Shayhontohur</MenuItem>
+                                <MenuItem value={"UCHTEPA"}>Uchtepa</MenuItem>
+                                <MenuItem value={"YAKKASAROY"}>Yakkasaroy</MenuItem>
+                                <MenuItem value={"YASHNAOBOD"}>Yashnabod</MenuItem>
+                                <MenuItem value={"YUNUSOBOD"}>Yunusobod</MenuItem>
                             </Select>
                         </FormControl>
-                        <div className="d-flex address mt-2">
+                        <div className="d-flex address mt-2 inp">
                             <TextField
-                                className="me-1 w-50 border"
+                                className="me-1 w-50 border w-100-in "
                                 autoComplete="off"
                                 required
                                 type="text"
-                                label='Укажите улицу'
+                                label="Ko'cha nomi"
                                 name="street" />
 
                             <TextField
-                                className="ms-1 w-50 border"
+                                className="ms-1 w-50 border w-100-in"
                                 autoComplete="off"
                                 required
                                 type="number"
-                                label='Номер дома'
+                                label="Xonadon raqami"
                                 name="flat" />
                         </div>
                         <div className="mt-2">
                             <textarea
-                                placeholder="Комментарий"
+                                placeholder="Izoh qoldiring"
                                 name="descriptions"
                                 cols={"100"}
                                 rows={"5"}
+                                className="border"
                             ></textarea>
                         </div>
                     </div>
                     <div className="order-card">
-                        <h3 className="title">3. Оплатить</h3>
+                        <h3 className="title">3. To'lov</h3>
                         <div className="order-buttons d-flex">
                             <Button type="button"
                                 className={`${paymentId === 1 && "active"}`} onClick={() => getPaymentType(1)}
                             >
-                                Курьеру картой
+                                Karta orqali
                             </Button>
                             <Button type="button"
                                 className={`${paymentId === 2 && "active"}`} onClick={() => getPaymentType(2)}
                             >
-                                Наличными
+                                Naqd pulda
                             </Button>
                         </div>
 
-                        <h4 className="title mt-3">Хотите мы позвоним?</h4>
+                        <h4 className="title mt-3">Qo'ng'rioq qilishimmizni xohlaysizmi?</h4>
                         <div>
                             <input
                                 required
@@ -240,7 +304,7 @@ const Order = () => {
                                 name="call"
                                 value={true}
                                 defaultChecked={true} />
-                            <label htmlFor="want">Потребуется звонок оператора</label>
+                            <label htmlFor="want" className="ms-1">Hodim qo'ng'irog'i talab qilinadi</label>
                         </div>
 
                         <div className='mt-1'>
@@ -250,24 +314,23 @@ const Order = () => {
                                 id="dontwant"
                                 name="call"
                                 value={false} />
-                            <label htmlFor="dontwant">Не перезванивать</label>
+                            <label htmlFor="dontwant" className="ms-1">Yo'q shart emas</label>
                         </div>
                     </div>
 
                     <div className="order-card">
                         <div className="d-flex a-center">
-                            <input type="checkbox" />
-                            <p className='text-wh'>Я согласен на обработку моих перс. данных в соответствии
-                                <Link to="/delivery-term">с Условиями</Link>
-                            </p>
+
                             <LoadingButton
                                 type="submit"
+                                // onClick={() => setShowModal(true)}
                                 loading={loading}
                                 loadingPosition="end"
                                 endIcon={<SendIcon />}
                                 variant="contained"
+                                className="confirm"
                             >
-                                Оформить заказ
+                                Yuborish
                             </LoadingButton>
                         </div>
                     </div>

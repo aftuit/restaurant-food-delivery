@@ -172,7 +172,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
       <Button className='text-wh mt-2 add-btn'
         onClick={showModal}
       >
-        Add Product
+        Xomashiyo qo'shish
       </Button>
       <div className={`modal-card ${show && 'show'}`}>
         <form onSubmit={isEdting ? editProduct : addProduct} ref={formEl}>
@@ -254,13 +254,13 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
               endIcon={<SaveIcon />}
               variant="contained"
             >
-              Save
+              Saqlash
             </LoadingButton>
             <Button
               type="button"
               onClick={getValues}
               variant="contained"
-              color="error">Cancel</Button>
+              color="error">Bekor qilish</Button>
           </div>
         </form>
 
@@ -279,12 +279,12 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
                     <thead>
                       <tr>
                         <th>№</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Weight</th>
-                        <th>Price</th>
-                        <th>Delete</th>
+                        <th>Rasm</th>
+                        <th>Nomi</th>
+                        <th>Ma'lumot</th>
+                        <th>Og'irligi</th>
+                        <th>Narxi</th>
+                        <th>Tahrir</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -304,7 +304,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
                                   </span>
                                 </td>
                                 <td>{item.weight ? `${item.weight} г` : item.size}</td>
-                                <td>{item.price}₽</td>
+                                <td>{item.price} so'm</td>
                                 <td>
                                   <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, parentData.url)}>
                                     <EditIcon type="button" />

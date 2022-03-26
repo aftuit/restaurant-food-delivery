@@ -12,31 +12,31 @@ const Dashboard = ({orders, foods, shares}) => {
             <div className="item">
               <div className="counts">
                 <h2>{foods}</h2>
-                <p>Foods</p>
+                <p>Xomashiyolar</p>
               </div>
               <FastfoodIcon />   
             </div>
             <div className="item">
               <div className="counts">
                 <h2>{orders?.length}</h2>
-                <p>Orders</p>
+                <p>Buyurtmalar</p>
               </div>
               <BusinessCenterIcon />   
             </div>
             <div className="item">
               <div className="counts">
                 <h2>{shares.length}</h2>
-                <p>Advertice</p>
+                <p>Reklamalar</p>
               </div>
               <AddTaskRoundedIcon />   
             </div>
-            <div className="item">
+            {/* <div className="item">
               <div className="counts">
                 <h2>{`${'20003 545'.substr(0,4)}.00`}$</h2>
                 <p>Earnings</p>
               </div>
               <MonetizationOnIcon />   
-            </div>
+            </div> */}
         </div>
 
     </div>

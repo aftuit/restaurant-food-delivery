@@ -1,84 +1,72 @@
 @import "../../mainStyle.scss";
 
-.filter-form{
-  padding: 20px;
-  border-bottom: 1px solid #4f4c4c;
-  border-top: 1px solid #4f4c4c;
-  
-  .filter-content {
-    .search-filter {
-  
-      background: #434141;
-      border-radius: 4px;
+.filter-form {
+  .item-filter {
+    ul {
+      padding: 20px;
+      overflow-x: auto;
       width: 100%;
-      align-items: center;
-      display: flex;
-      padding: 8px 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      transition: all 0.5s ease-in-out;
-        &.searching{
-          width: fit-content;
-          background-color: transparent;
-          border: none;
-        }
-      svg {
-          color: #fff;
-      }
-      input {
-        outline: none;
-        border: none;
-        background-color: transparent;
-        font-size: 16px;
-        padding: 7px 9px;
-        color: #fff;
-        width: 95%;
-        &::placeholder {
-          color: $text--color;
-        }
-      }
-      button {
-        outline: none;
-        border: none;
-        background-color: transparent;
+      height: 80px;
+      white-space: nowrap;
+
+      li {
+        margin: 0 20px;
+        flex-shrink: 0;
+        list-style-type: none;
+        color: #000;
+        font-size: 20px;
+        position: relative;
         display: flex;
         justify-content: center;
-        align-items: center;
         cursor: pointer;
-        &[class*="search"] {
-          margin-right: auto;
+        &::before {
+          content: "";
+          height: 2px;
+          width: 0;
+          position: absolute;
+          bottom: -4px;
+          background-color: $green--lightcolor;
+          transition: all 0.2s ease;
         }
-        &[class*="filter"] {
-          margin-left: auto;
+        &:hover,
+        &.active {
+          &::before {
+            width: 100%;
+          }
         }
       }
+
+      &::-webkit-scrollbar {
+        height: 5px;
+        overflow: hidden;
+      }
+
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 10px #b7d6d6;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #0fe6e6b9;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: $green--lightcolor;
+      }
     }
-  
-    .item-filter{
-        ul{
-            li{
-                list-style-type: none;
-                color: #fff;    
-                font-size: 20px;   
-                position: relative;
-                display: flex;
-                justify-content: center;
-                cursor: pointer;
-                &::before{
-                  content: "";
-                  height: 2px;
-                  width: 0;
-                  position: absolute;
-                  bottom: -10px;
-                  background-color: $green--lightcolor;
-                  transition: all .2s ease;
-                }
-                &:hover, &.active{
-                  &::before{
-                    width: 100%;
-                  }
-                }         
-            }
+  }
+}
+
+@media (max-width: 576px) {
+  .filter-form {
+    .item-filter {
+      ul {
+        li {
+          font-size: 16px;
+          &::before {
+            bottom: 0;
+          }
         }
+      }
     }
   }
 }

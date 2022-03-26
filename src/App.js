@@ -48,10 +48,10 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="App bg--dark">
+    <div className="App ">
       {!window.location.href.includes("admin") && (
         <div
-          className="up-arrow"
+          className="up-arrow border-color text-green"
           onClick={scrollToTop}
           style={{ display: visible ? "flex" : "none" }}
         >

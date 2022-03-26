@@ -59,7 +59,7 @@ const Item = ({
                             {descriptions}
                         </p>
                         <p className='deadline'>
-                            <b>До {finish_date.substr(0, 4)} {month} {finish_date.substr(8, 2)}</b>
+                            <b>{finish_date.substr(0, 4)} {month} {finish_date.substr(8, 2)} gacha</b>
                         </p>
                     </div>
 
@@ -72,7 +72,7 @@ const Item = ({
                                 variant="contained"
                                 onClick={() => editItem(id)}
                             >
-                                <EditIcon size="small" /> Edit
+                                <EditIcon size="small" /> 
                             </Button>
 
                             <Button
@@ -81,7 +81,7 @@ const Item = ({
                                 variant="contained"
                                 onClick={() => deleteAdvertItem(id, title)}
                             >
-                                <DeleteIcon size="small" /> Delete
+                                <DeleteIcon size="small" /> 
                             </Button>
                         </div>
                     }

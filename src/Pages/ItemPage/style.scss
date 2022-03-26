@@ -6,7 +6,7 @@
   .item-container{
     padding-bottom: 2.5rem;
     .back-link{
-      color: #fff;
+      color: #000;
       cursor: pointer;
       width: fit-content;
       &:hover{
@@ -26,9 +26,9 @@
     .grid-container{
       background-color: $card--color;
       display: flex;
-      border-radius: 20px;
       overflow: hidden;
       margin-top: 1.5rem;
+      border: 1px solid $green--color--op;
       .grid-item{
         width: 50%;
         &.info{
@@ -38,7 +38,8 @@
           align-content: space-between;
         }
         >img{
-          height: 500px;
+          // width: 300px;
+          height: 400px;
         }
         .grid-item-content{
           display: grid;
@@ -83,5 +84,59 @@
     width: 100%;
     height: 1px;
     background-color: rgba(180, 179, 179, 0.4);
+  }
+}
+
+
+@media(max-width: 776px){
+  .item-content{
+    .item-container{
+      .grid-container{
+        flex-direction: column;
+        width: 70%;
+        .grid-item{
+          width: 100%;
+          img{
+            width: 300px;
+            // height: 100%;
+          }
+          .grid-item-content{
+            .info-part{
+              .item-table{
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 600px){
+  .sold-with-content{
+    display: none;
+  }
+  .item-content{
+    .item-container{
+      .grid-container{
+        flex-direction: column;
+        width: 100%;
+        .grid-item{
+          width: 100%;
+          img{
+            width: 300px;
+            height: 300px;
+          }
+          .grid-item-content{
+            .info-part{
+              .item-table{
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

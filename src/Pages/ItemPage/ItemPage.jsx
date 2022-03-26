@@ -45,12 +45,12 @@ const ItemPage = () => {
 
 
   React.useEffect(() => {
-    axios.get(`${API_URL}/taomlar/${route.routePath}/${id}/`)
+    axios.get(`${API_URL}/taomlar/${route?.routePath}/${id}/`)
       .then(res => {
         setState(res?.data)
-        setFoodList(route.foodData)
-        window.localStorage.setItem("product", JSON.stringify(res.data))
-        window.localStorage.setItem("foodList", JSON.stringify(route.foodData))
+        setFoodList(route?.foodData)
+        window.localStorage.setItem("product", JSON.stringify(res?.data))
+        window.localStorage.setItem("foodList", JSON.stringify(route?.foodData))
       })
       .catch(err => console.log(err))
   }, [id, route.foodData, route.routePath])
@@ -61,10 +61,13 @@ const ItemPage = () => {
 
       <Container className='item-container'>
         <div
-          className='back-link d-flex a-center'
+          className='back-link d-flex a-center '
           onClick={() => navigate(-1)}
         >
+          <span className="text-wh">
           <KeyboardArrowLeftIcon />
+
+          </span>
           <span>Вернуться назад</span>
         </div>
         <div className="grid-container">
@@ -74,11 +77,11 @@ const ItemPage = () => {
           <div className="grid-item info">
             <div className="grid-item-content">
               <div>
-                <h2 className='text-wh'>{state?.name}</h2>
-                <p className='text-wh-50'>{state?.description}</p>
+                <h2 className='text-dk'>{state?.name}</h2>
+                <p className='text-dk'>{state?.description}</p>
               </div>
               <div className="info-part">
-                <span className='text-wh font-regular'>
+                <span className='text-dk font-regular'>
                   {
                     state?.weight ?
                       `Вес: ${state?.weight} г` :
@@ -88,14 +91,14 @@ const ItemPage = () => {
                 <div className="buttons">
                   {
                     cartIdList?.every(id => id !== state.id) ?
-                      <Button className='text-wh'
+                      <Button className='text-dk'
                         onClick={() => saveToCart(state)}
                       >
                         <span>Корзина</span>
                         <LocalMallOutlinedIcon />
                       </Button> :
 
-                      <Button className='text-wh'
+                      <Button className='text-dk'
                         onClick={() => removeFromCart(state.id)}
                       >
                         <span>удалить из корзины</span>
@@ -105,26 +108,26 @@ const ItemPage = () => {
                   }
                   <span className='text-wh font-semibold'>{state?.price} ₽ </span>
                 </div>
-                <table className='item-table'>
+                {/* <table className='item-table'>
                   <thead>
                     <tr className='table-tr'>
-                      <th className='text-wh-50 font-regular'>Белки</th>
-                      <th className='text-wh-50 font-regular'>Жиры</th>
-                      <th className='text-wh-50 font-regular'>Углеводы</th>
-                      <th className='text-wh-50 font-regular'>Ккал</th>
-                      <th className='text-wh-50 font-regular'>Вес</th>
+                      <th className='text-dk font-regular'>Белки</th>
+                      <th className='text-dk font-regular'>Жиры</th>
+                      <th className='text-dk font-regular'>Углеводы</th>
+                      <th className='text-dk font-regular'>Ккал</th>
+                      <th className='text-dk font-regular'>Вес</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className='text-wh font-regular'>17.23</td>
-                      <td className='text-wh font-regular'>7.63</td>
-                      <td className='text-wh font-regular'>22.35</td>
-                      <td className='text-wh font-regular'>234</td>
-                      <td className='text-wh font-regular'>{`${state?.weight} г` ?? state?.size}</td>
+                      <td className='text-dk font-regular'>17.23</td>
+                      <td className='text-dk font-regular'>7.63</td>
+                      <td className='text-dk font-regular'>22.35</td>
+                      <td className='text-dk font-regular'>234</td>
+                      <td className='text-dk font-regular'>{`${state?.weight} г` ?? state?.size}</td>
                     </tr>
                   </tbody>
-                </table>
+                </table> */}
               </div>
             </div>
           </div>
@@ -138,7 +141,7 @@ const ItemPage = () => {
         {
           foodList &&
           <FoodContainer
-            title={"с этим товаром покупают"}
+            title={"Qo'shimcha mahsulotlar"}
             parentData={foodList}
             data={foodList.data ?? foodList.results}
           />

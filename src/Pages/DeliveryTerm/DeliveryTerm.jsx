@@ -5,6 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Container } from '@mui/material';
+import SimpleMap from "../../components/Location/Location"
 import Title from '../../components/Title/Title';
 import "./style.scss";
 
@@ -68,8 +69,8 @@ const DeliveryTerm = () => {
     ]
 
     return (
-        <div className='delivery-content'>  
-                <Title title={'Условия доставки'}/>
+        <div className='delivery-content'>
+            <Title title={'Условия доставки'} />
             <Container>
                 <div className="delivery-content-wrap">
 
@@ -79,7 +80,7 @@ const DeliveryTerm = () => {
                             terms.map(term => {
                                 return (
                                     <Accordion
-                                    key={term.id}
+                                        key={term.id}
                                         expanded={expanded === term.expanded}
                                         onChange={handleChange(term.expanded)}
                                         className="accordion-item-title"
@@ -89,7 +90,7 @@ const DeliveryTerm = () => {
                                             aria-controls={`panel${term.id}bh-content`}
                                             id={`panel${term.id}bh-header`}
                                         >
-                                            <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                                            <Typography sx={{ width: '80%', flexShrink: 0 }}>
                                                 {term.title}
                                             </Typography>
                                         </AccordionSummary>
@@ -106,24 +107,25 @@ const DeliveryTerm = () => {
                         }
                     </div>
                     <div className="right-side-col">
-                        <img src="/assets/img/location.png" className="w-100" alt="" />
+                        {/* <img src="/assets/img/location.png" className="w-100" alt="" /> */}
+                        <SimpleMap />
                     </div>
                 </div>
 
                 <div className="time-table-wrap mt-3">
                     <div className="wrapper d-flex a-center j-between">
-                    <div className="left">
-                        <h3 className='font-semibold text-wh'>График работы доставки:</h3>
-                        <p className="font-regular text-wh-50 mt-1">с 10:00-21:00</p>
-                    </div>
-                    <div className="right">
-                        <h3 className='font-semibold text-wh'>График работы кафе:</h3>
-                        <p className="font-regular text-wh-50 mt-1">с 08:00-21:00</p>
-                    </div>
+                        <div className="left">
+                            <h3 className='font-semibold text-dk'>График работы доставки:</h3>
+                            <p className="font-regular text-dk mt-1">с 10:00-21:00</p>
+                        </div>
+                        <div className="right">
+                            <h3 className='font-semibold text-dk'>График работы кафе:</h3>
+                            <p className="font-regular text-dk mt-1">с 08:00-21:00</p>
+                        </div>
                     </div>
 
-                    <h3 className='font-semibold text-wh mt-2'>Минимальный заказ:</h3>
-                    <p className="font-regular text-wh-50 mt-1">Бесплатная доставка пешим курьером при сумме заказа от 400 ₽
+                    <h3 className='font-semibold text-dk mt-2'>Минимальный заказ:</h3>
+                    <p className="font-regular text-dk mt-1">Бесплатная доставка пешим курьером при сумме заказа от 400 ₽
                         Доставка оператором такси от любой суммы заказа - по тарифам
                         перевозчика.</p>
                 </div>

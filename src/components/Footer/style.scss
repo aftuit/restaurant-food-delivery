@@ -1,7 +1,7 @@
 @import "../../mainStyle.scss";
 
 .footer-content{
-    background-color: #242122;
+    background-color: $green--color;
     padding-bottom: 2rem;
     .grid-container{
         margin: 0;
@@ -10,23 +10,11 @@
         .grid-item{
             margin: 0;
             h1{
-                color: #fff;
+                color: #000;
             }
             p{
                 margin-top: 7px;
-                color: $text--color;
-            }
-            ul{
-                margin-top: 7px;
-                display: flex;
-                flex-direction: column;
-                li{
-                    list-style-type: none;
-                    margin-top: 15px;
-                    a{
-                        color: #fff;
-                    }
-                }
+                color: #fff;
             }
         }
         .grid-item-links{
@@ -35,7 +23,7 @@
                 li{
                     list-style-type: none;
                     a{
-                        color: $text--color;
+                        color: #fff;
                         margin-left: 2rem;
                         font-size: 20px;
                         line-height: 24px;
@@ -47,6 +35,34 @@
                             color: #fff;
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 900px){
+    .grid-item-links{
+        ul{
+            flex-direction: column;
+            li{
+                margin-top: 15px;
+            }
+        }
+    }
+}
+@media(max-width: 600px){
+    .footer-content{
+        .grid-container{
+            .grid-item-links{
+                ul{
+                    li{
+                        margin-top: 20px;
+                        a{
+                            margin-left: 0;
+                        }
+                    }
+        
                 }
             }
         }

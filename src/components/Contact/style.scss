@@ -12,12 +12,12 @@
 
   .contact-card {
     border-radius: 10px;
-    background: #2e2b2c;
+    background: #fff;
     padding: 30px 40px;
     width: 45%;
     h2 {
       font-size: 25px;
-      color: #fff;
+      color: #000;
       text-transform: uppercase;
     }
     .line {
@@ -32,9 +32,9 @@
     .address,
     .mail {
       font-size: 14px;
-      color: #fff;
+      color: #000;
       span {
-        color: #cfcfcf;
+        color: #000;
       }
       p {
         margin-top: 10px;
@@ -61,10 +61,11 @@
             color: #fff;
             padding: 20px 10px;
             font-size: 12px;
+            width: 100%;
           }
       }
       .tel-number {
-        color: #fff;
+        color: #000;
         margin-left: 10px;
         text-align: center;
         h3{
@@ -72,26 +73,64 @@
         }
         p {
           font-size: 14px;
-          color: #cfcfcf;
+          color: #000;
         }
       }
     }
     .social{
         margin-top: 20px;
         >span{
-            color: #fff;
+            color: #000;
         }
         .social-net{
             margin-left: 10px;
             a{
-                color: #2e2b2c;
+                color: #000;
                 text-decoration: none;
                 svg{
                     margin-left: 10px;
                     
                 background-color: #fff;
+                border: 1px solid gray;
                 }
             }
+        }
+    }
+  }
+}
+
+@media(max-width: 1100px){
+  .contact-content{
+    .contact-card{
+      width: 65%;
+    }
+  }
+}
+@media(max-width: 800px){
+  .contact-content{
+    .contact-card{
+      margin: 0 auto;
+      width: 85%;
+    }
+  }
+}
+@media(max-width: 576px){
+  .contact-content{
+    .contact-card{
+      padding: 20px;
+      width: 100%;
+        .booking__{
+          width: 100%;
+          flex-direction: column;
+          a{
+            width: 100%;
+          }
+          .tel-number{
+            margin-top: 15px;
+            h3{
+              font-size: 16px;
+            }
+          }
         }
     }
   }

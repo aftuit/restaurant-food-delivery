@@ -1,107 +1,105 @@
 @import "../../mainStyle.scss";
 
-.navbar-content{
-    background-color: $bg--color;
-    padding: 20px 0;
-    .container{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .navbar-brand{
-            text-decoration: none;
-            font-size: 23px;
-        }
-        .search-location{
-            background: $card--color;
-            border-radius: 10px;
-            width: 45%;
-            align-items: center;
-            display: flex;
-            padding: 10px 18px;
-            svg{
-               &[class*="location"]{
-                   color: $text--color;
-               }
-               &[class*="search"]{
-                color: #fff;
-            }
-            }
-            input{
-                outline: none;
-                border: none;
-                background-color: transparent;
-                font-size: 16px;
-                padding: 7px 9px;
-                color: #fff;
-                width: 80%;
-                &::placeholder{
-                    color: $text--color;
-                }
-            }
-            button{
-                outline: none;
-                border: none;
-                background-color: transparent;
-                display: block;
-                margin-left: auto;
-                cursor: pointer;
-                
-            }
-        }
-
-        .contact{
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            .phone-icn{
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background: $green--color;
-                svg{
-                    color: #fff;
-                    width: 16px;
-                }
-            }
-            p{
-                font-size: 12px;
-                color: $text--color;
-            }
-            h5{
-                color: #fff;
-                font-size: 14px;
-            }
-        }
-        .korzinka-box{
-            border-radius: 10px;
-            background: $green--color;
-            padding: 12px 15px;
-            cursor: pointer;
-            transition: 0.2s linear;
-            .badge{
-                font-size: 20px;
-                position: relative;
-                color: $green--color;
-                background-color: #fff;
-                border-radius: 50%;
-                width: 25px;
-                height: 25px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                &::before{
-                    content: "";
-                    position: absolute;
-                    color: #fff;
-                    left: -50%;
-                    width: 1px;
-                    height: 100%;
-                    background-color: #fff;
-                }
-            }
-        }
+.navbar-content {
+  background-color: $bg--color;
+  padding: 20px 0;
+  border-bottom: 1px solid gray;
+  border-radius: 0 0 10px 10px;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .navbar-brand {
+      text-decoration: none;
+      font-size: 23px;
+      
     }
-}   
+    .contact {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      .phone-icn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $green--color;
+        svg {
+          color: #fff;
+          width: 16px;
+        }
+      }
+      p {
+        font-size: 12px;
+        color: $text--color;
+      }
+      h5 {
+        color: #000;
+        font-size: 14px;
+      }
+    }
+    .korzinka-box {
+      border-radius: 10px;
+      background: $green--color;
+      padding: 12px 15px;
+      cursor: pointer;
+      transition: 0.2s linear;
+      .badge {
+        font-size: 20px;
+        position: relative;
+        color: $green--color;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &::before {
+          content: "";
+          position: absolute;
+          color: #fff;
+          left: -50%;
+          width: 1px;
+          height: 100%;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar-content {
+    .container {
+      .contact {
+          margin-right: 10px;
+          flex-direction: column;
+          text-align: center;
+        .phone-icn {
+          margin: 5px auto!important;
+        }
+        p{
+            display: none;
+        }
+      }
+      .korzinka-box {
+        padding: 10px;
+        font-size: 13px;
+        flex-direction: column;
+        .badge{
+            font-size: 13px;
+            margin: 2px 0 !important;
+            &::before{
+                display: none;
+            }
+        }
+        svg{
+            font-size: 20px;
+        }
+      }
+    }
+  }
+}

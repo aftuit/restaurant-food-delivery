@@ -1,6 +1,6 @@
 .head-content {
   background: {
-    image: linear-gradient(90deg, #211f20 10%, rgba(68, 64, 63, 0) 100%),
+    image: linear-gradient(90deg, rgba(0, 0, 0, 0.603) 0%, rgba(68, 64, 63, 0) 100%),
       url("../../assets/header-img.png");
     repeat: no-repeat;
     size: 100% 100%;
@@ -10,12 +10,7 @@
   .container-item {
     position: relative;
     margin-top: 3rem;
-    h3 {
-      font-size: 3rem;
-      color: #fff;
-      width: 80%;
-      text-align: center;
-    }
+    user-select: none;
     button {
       color: #fff;
       padding: 7px 1rem;
@@ -32,12 +27,52 @@
       &[class*="text1"] {
         position: absolute;
         left: -3px;
+        width: 100%;
       }
       &[class*="head-btn"] {
         position: absolute;
         left: 30%;
         bottom: 0;
+        
       }
     }
   }
 }
+
+@media(max-width: 900px){
+  .head-content {
+    padding: 60px 0 100px 0;
+  }
+  
+}
+
+@media(max-width: 776px){
+  .head-content {
+    padding: 40px 0 60px 0;
+  }
+}
+@media(max-width: 576px){
+  .head-content {
+    padding: 20px 0;
+
+    }
+  }
+
+  @media(max-width: 420px){
+       .head-content{
+          .container-item{
+      button{
+        margin-left: auto;
+        font-size: 15px;
+        padding: 9px 30px;
+      }
+      img{
+        &[class*="head-btn"] {
+          width: 72%;
+        }
+      }
+       }
+  }
+}
+ 
+

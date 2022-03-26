@@ -3,73 +3,183 @@
   background-color: $bg--color;
   padding: 2rem 0 4rem;
   .back-link {
-    color: #fff;
+    color: #000;
     width: fit-content;
     font-size: 20px;
   }
+  .payment-modal {
+    background: #fff;
+    width: 50%;
+    position: fixed;
+    padding: 30px;
+    border-radius: 8px;
+    top: -200%;
+    left: 50%;
+    margin-left: -25%;
+    margin-top: -25%;
+    box-shadow: 0 0 10px #2e2e2e;
+    z-index: 3423;
+    transition: all 0.3s;
+    &.show {
+      top: 55%;
+      @media(max-width: 1000px){
+        top: 40%;
+      }
+      @media(max-width: 850px){
+        width: 65%;
+        left: 42%;
+      }
+      @media(max-width: 700px){
+        width: 85%;
+        left: 35%;
+      }
+      @media(max-width: 576px){
+        width: 100%;
+        left: 25%;
+        top: 30%;
+      }
+    }
+    .shut-btn {
+      margin-left: auto;
+      display: block;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      border: 1px solid lightgray;
+    }
+    .modal-card {
+      p.title {
+        color: #000;
+        font-size: 22px;
+      }
+      .card-price {
+        font-size: 22px;
+        border-radius: 4px;
+        color: $green--lightcolor;
+        border: 1px solid $green--lightcolor;
+        padding: 10px 20px;
+      }
+      .modal-body {
+        .pay {
+          width: fit-content;
+          cursor: pointer;
+          margin: 0 20px;
+          padding-bottom: 10px;
+          border-bottom: 4px solid transparent;
+          &.select {
+            border-radius: 13px;
+            border-bottom: 4px solid green;
+          }
+          img {
+            width: 100%;
+            margin: auto;
+            display: block;
+          }
+        }
+      }
+      .card-input {
+        p {
+          color: #6f6f6f;
+        }
+        span {
+          display: block;
+          margin-bottom: 10px;
+          color: #d32f2f;
+        }
+        input {
+          border: 1px solid darkgray;
+          border-radius: 4px;
+          color: #000;
+          &::-webkit-inner-spin-button,
+          &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+          }
+        }
+      }
+      .confirm-btn {
+        margin-top: 25px;
+        padding: 10px;
+      }
+    }
+  }
+
+  .fade-m {
+    transition: all 0.3s linear;
+    position: fixed;
+    &.active {
+      background-color: #000;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.5;
+      z-index: 323;
+    }
+  }
 
   .order-card {
-    background-color: $card--color;
+    background-color: $green--color;
     border-radius: 10px;
     overflow: hidden;
     padding: 30px;
     margin-top: 22px;
-    .css-88nv5c-MuiInputBase-root-MuiInput-root-MuiSelect-root:hover:not(.Mui-disabled):before{
+    .css-88nv5c-MuiInputBase-root-MuiInput-root-MuiSelect-root:hover:not(.Mui-disabled):before {
       border-bottom: 2px solid $green--color;
     }
-    
-    input{
-        border: 0;
-        outline: 0;
-        color: #fff;
+
+    input {
+      border: 0;
+      outline: 0;
+      color: #fff;
     }
-    .address-select{
-        width: 50%;
-        font-size: 20px;
+    .address-select {
+      width: 50%;
+      font-size: 20px;
       border-radius: 10px;
-      svg{
-          color: #fff;
+      svg {
+        color: #fff;
       }
-      select{
+      select {
         border: 1px solid rgba(255, 255, 255, 0.1);
         outline: none;
         color: #fff;
       }
-      .select{
+      .select {
         color: #fff;
       }
     }
     p {
-        color: #fff;
-        margin-left: 10px;
-        font-size: 20px;
-        display: flex;
-        align-items: center;
-        svg {
-          margin-right: 5px;
-        }
-        a{
-            margin-left: 7px;
-            font-size: 20px;
-            color: $green--color;
-            text-decoration: underline;
-        }
+      color: #fff;
+      margin-left: 10px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      svg {
+        margin-right: 5px;
       }
-    label{
-        font-size: 16px;
-        color: #fff;
-
+      a {
+        margin-left: 7px;
+        font-size: 20px;
+        color: $green--color;
+        text-decoration: underline;
+      }
     }
-    input{
-      &[type*="text"],  &[type*="number"] {
+    label {
+      font-size: 16px;
+      color: #fff;
+    }
+    input {
+      &[type*="text"],
+      &[type*="number"] {
         width: 50%;
-        &::-webkit-inner-spin-button, 
-        &::-webkit-outer-spin-button{
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
           -webkit-appearance: none;
         }
       }
     }
-    
+
     textarea {
       padding: 20px 30px;
       font-size: 20px;
@@ -84,6 +194,7 @@
     textarea {
       resize: none;
       width: 100%;
+      background-color: transparent;
     }
 
     .title {
@@ -94,9 +205,9 @@
       button {
         color: #fff;
         padding: 20px 50px;
-        border: 1px solid $green--color;
+        border: 1px solid $color-secondary;
         &.active {
-          background: $green--color;
+          background: $color-secondary;
         }
         &:nth-child(1) {
           border-radius: 10px 0 0 10px;
@@ -107,16 +218,45 @@
           overflow: hidden;
         }
       }
-      
     }
-    button{
-        &[type*=submit]{
-            margin-left: auto;
-            background-color: $green--color;
-            color: #fff;
-            // padding: 20px 30px;
-        }
+    .tel-number {
+      input {
+        width: 100%;
+      }
+    }
+    button {
+      &.confirm {
+        margin-left: auto;
+        background-color: $color-error;
+        color: #fff;
+      }
     }
   }
 }
 
+@media (max-width: 776px) {
+  .order-buttons {
+    button {
+      padding: 10px !important;
+    }
+    &.ss {
+      flex-direction: column;
+    }
+    p {
+      margin-top: 10px;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .order-card {
+    padding: 20px !important;
+  }
+  .address-select {
+    width: 100% !important;
+  }
+  .order-buttons {
+    button {
+    font-size: 12px;
+    }
+  }
+}

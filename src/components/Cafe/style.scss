@@ -2,7 +2,7 @@
 
 .cafe-content {
   background: {
-    image: linear-gradient(90deg, #211f20 30%, rgba(68, 64, 63, 0) 100%),
+    image: linear-gradient(90deg, #211f2071 30%, rgba(68, 64, 63, 0) 100%),
       url("../../assets/cafe-img.png");
     repeat: no-repeat;
     size: 100% 100%;
@@ -13,12 +13,13 @@
       font-size: 27px;
       line-height: 39px;
       color: #fff;
+      text-transform: uppercase;
     }
     p {
         font-size: 18px;
         line-height: 25px;
         &.info{
-          color: $text--color;
+          color: #fff;
           margin-top: 20px;
       }
     }
@@ -51,10 +52,21 @@
       }
       &:hover{
         svg, svg+p{          
-            color: $green--hov-clr;
+            color: $green--color;
         }
       }
 
     }
+  }
+}
+
+@media(max-width: 1200px){
+  .cafe-content{
+    padding: 50px 40px;
+  }
+}
+@media(max-width: 992px){
+  .cafe-content {
+    background-attachment: fixed;
   }
 }

@@ -29,7 +29,7 @@ const Filter = ({ filterItem, setFilterItem }) => {
     return (
         <div className="filter-form bg-dark">
             <Container>
-                <div className='filter-content d-flex a-center' >
+                <div className='filter-content d-flex a-center'>
                     <div className="item-filter w-100">
                         <ul className='d-flex j-between'>
                             {

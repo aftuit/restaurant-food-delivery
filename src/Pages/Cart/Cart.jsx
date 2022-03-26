@@ -28,21 +28,21 @@ const Cart = () => {
           className='back-link d-flex a-center'
         >
           <KeyboardArrowLeftIcon />
-          <span>Вернуться назад</span>
+          <span>Orqaga qaytish</span>
         </Link>
 
-        <Title title="Контакты" />
+        <Title title="Saqlanmalar" />
 
         <div className={`empty-cart-modal ${showModal && 'show'}`}>
           <div className="modal-card">
             <span onClick={() => setShowModal(false)}><AddIcon /></span>
             <img src="/assets/icn/empty_cart.svg" alt="" />
 
-            <h3>Корзина пустая</h3>
+            <h3>Savatcha bo'sh</h3>
 
             <Link to="/">
               <Button type="button">
-                Посмотреть меню
+                Menyuga qaytish
               </Button>
             </Link>
           </div>
@@ -55,8 +55,8 @@ const Cart = () => {
             cartStateList.length === 0 ?
               <div className="empty-card">
                 <div>
-                  <h3>You have no saved Products yet</h3>
-                  <p>Go to <Link to="/">Products list</Link></p>
+                  <h3>Savatchaga saqlangan mahsulotlar mavjud emas</h3>
+                  <p><Link to="/">Menyu</Link> ga qaytish</p>
                 </div>
               </div> :
               <div className="cart-item-list">
@@ -77,22 +77,20 @@ const Cart = () => {
           <div className="left-side">
             {
               cartStateList.length > 0 &&
-              <p className='total font-regular text-wh-50'>
-                Итого: <span>
-                  {cartStateList.reduce((a, b) => (+a) + (+b.price), 0)} ₽</span> </p>
+              <p className='total font-regular text-wh'>
+                Jami: <span>
+                  {cartStateList.reduce((a, b) => (+a) + (+b.price), 0)} So'm</span> </p>
             }
-            <p className='adding'>До бесплатной доставки не хватет: <span>100 ₽</span></p>
-            <p className='minimum'>Минимальная сума заказа 1500 ₽</p>
           </div>
 
           <div className="right-side">
-            {/* <Link to='/order'> */}
             <Button
               onClick={() => orderBtn()}
+              color={"primary"}
+              
             >
-              Оформить заказ
+              Buyurtma qilish
             </Button>
-            {/* </Link> */}
           </div>
         </div>
       </Container>

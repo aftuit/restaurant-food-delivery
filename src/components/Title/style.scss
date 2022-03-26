@@ -2,12 +2,10 @@
 
 .title-wrap {
   padding: 2rem 0;
-  border-bottom: 1px solid #413f3f;
-  border-top: 1px solid #413f3f;
   h2 {
     font-size: 32px;
     line-height: 39px;
-    color: #fff;
+    color: #000;
     margin-left: 20px;
     position: relative;
     text-transform: uppercase;
@@ -18,6 +16,17 @@
       width: 4px;
       height: 100%;
       background-color: $green--lightcolor;
+    }
+  }
+}
+
+@media(max-width: 576px){
+  .title-wrap{
+    padding: 1rem 0;
+    
+    h2{
+      font-size: 20px;
+      line-height: 25px;
     }
   }
 }

@@ -62,7 +62,7 @@ const Login = () => {
     <div className="login-wrap">
       <div className="login-card">
         <form onSubmit={handleSubmit}>
-          <h2>Admin Panel</h2>
+          <h2 className="text-dk">Admin Panel</h2>
 
           <div className="form-body">
             <label className='mt-2' htmlFor="login">username</label>

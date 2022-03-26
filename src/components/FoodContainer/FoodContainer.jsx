@@ -13,6 +13,29 @@ const FoodContainer = ({ parentData, title, data, path }) => {
         slidesToShow: data.length > 4 ? 4 : data.length,
         slidesToScroll: 1,
         autoplay: false,
+        responsive: [
+            {
+              breakpoint: 1100,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+              }
+            },
+            {
+              breakpoint: 830,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+              }
+            },
+            {
+              breakpoint: 576,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ],
     };
 
     return (

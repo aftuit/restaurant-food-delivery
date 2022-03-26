@@ -47,18 +47,6 @@ const AdminPanel = () => {
 
   const location = useLocation();
 
-  // const getAdminInfos = () => {
-
-  //   const token = JSON.parse(window.localStorage.getItem('Token'));
-
-  //   axios.get(`${API_URL}/auth/user/`, {
-  //     headers: {Authorization: 'Bearer ' + token}
-  //   })
-  //   .then(res => console.log(res))
-  //   .catch(err => console.log(err))
-
-  // }
-
   const getFoods = () => {
     axios.get(API_URL)
       .then(res => {
@@ -95,7 +83,6 @@ const AdminPanel = () => {
     getOrders();
     getFoods();
     getShares();
-    // getAdminInfos();
   }, [])
 
   const filterOrders = () => {
@@ -121,31 +108,26 @@ const AdminPanel = () => {
             </NavLink></li>
             <li><NavLink to="/admin-panel/orders" className="d-flex a-center">
               <BusinessCenterIcon />
-              {!tabPane && <span>Orders</span>}
+              {!tabPane && <span>Buyurtmalar</span>}
             </NavLink></li>
             <li><NavLink to="/admin-panel/foods" className="d-flex a-center">
               <FastfoodIcon />
 
-              {!tabPane && <span>Foods</span>}
+              {!tabPane && <span>Xomashiyo</span>}
             </NavLink></li>
             <li><NavLink to="/admin-panel/advertice" className="d-flex a-center">
               <AddTaskRoundedIcon />
 
-              {!tabPane && <span>Advertice</span>}
+              {!tabPane && <span>Reklama</span>}
             </NavLink></li>
             <li><NavLink to="/" className="d-flex a-center">
               <HomeIcon />
 
-              {!tabPane && <span>Home</span>}
-            </NavLink></li>
-            <li><NavLink to="/admin-panel/account" className="d-flex a-center">
-              <AccountCircleIcon />
-
-              {!tabPane && <span>Account</span>}
-            </NavLink></li>
+              {!tabPane && <span>Bosh sahifa</span>}
+            </NavLink></li>         
             <li className="nav-item" onClick={() => signOut()}>
               <Link to="/admin-panel" className={"nav-link"}>
-                <ExitToAppIcon /> {!tabPane && <span>Log out</span>}
+                <ExitToAppIcon /> {!tabPane && <span>Chiqish</span>}
               </Link>
             </li>
           </ul>
@@ -167,7 +149,7 @@ const AdminPanel = () => {
                   onChange={(e) => setSearch(e.target.value)}
                   value={search}
                   type="text"
-                  placeholder={"search..."}
+                  placeholder={"qidiruv..."}
                 />
                 {
                   search.length > 0 &&
@@ -199,7 +181,7 @@ const AdminPanel = () => {
               <div className="filter-div d-flex a-center j-between">
                 <div className="select-group">
                   <div>
-                    <p>Address</p>
+                    <p>Manzil</p>
                     <select
                       value={address}
                       onChange={(evt) => setAddress(evt.target.value)}
@@ -219,7 +201,7 @@ const AdminPanel = () => {
                     </select>
                   </div>
                   <div>
-                    <p>Delivery</p>
+                    <p>Yetkazish turi</p>
                     <select
                       value={delivery_type}
                       onChange={(evt) => setDelivery(evt.target.value)}
@@ -230,7 +212,7 @@ const AdminPanel = () => {
                     </select>
                   </div>
                   <div>
-                    <p>Payment</p>
+                    <p>To'lov</p>
                     <select
                       value={payment}
                       onChange={(evt) => setPayment(evt.target.value)}
@@ -267,7 +249,7 @@ const AdminPanel = () => {
                     variant="outlined" 
                     color="secondary">
                     <FilterListIcon />
-                    Filter
+                    Saralash
                   </Button>}
                   </>
 
