@@ -16,14 +16,16 @@ const FoodCard = ({
 
     const { setRoute } = React.useContext(routeContext);
     const [cartStateList, setCartStateList] = useCartState();
-    const { cartIdList, setCartIdList } = React.useContext(CartIdsContext)
+    const { cartIdList, setCartIdList } = React.useContext(CartIdsContext);
 
     const navigate = useNavigate();
 
     const moveItemPage = (path, id, data) => {
-        if (!window.location.href.includes("food")) {
+        if (!window.location.href.includes("access")) {
             setRoute({ routePath: path, foodData: foodDataFromParent ?? data });
-            navigate(`food/${path}/${id}`);
+            setTimeout(() => {
+                navigate(`access/${path}/${id}`);
+            }, 500)
         }
     }
 
@@ -44,62 +46,62 @@ const FoodCard = ({
     }
 
     return (
-  
-            <Card
-                className="card">
-                <img
-                    onClick={() => moveItemPage(path, food.id)}
-                    src={
-                        food.image.includes("http") ?
-                            food.image :
-                            API_URL + food.image
-                    }
-                    alt=""
-                />
-                <CardContent className="card-content text-wh font-regular">
-                    <div className="card-title-w d-flex j-between a-center text-dk">
-                        <h3>{food.name}</h3>
-                        <p className="text-dk">
-                            {
-                                food.weight ?
-                                    `Вес: ${food.weight} г` :
-                                    food.size
-                            }
-                        </p>
-                    </div>
-                    <p className='food-text mt-1 text-wh-50 font-light'>
-                        <ReactReadMoreReadLess
-                            charLimit={60}
-                            ellipsis="..."
-                            readMoreText=""
-                            readLessText=""
-                        >
-                            {food.description}
-                        </ReactReadMoreReadLess>
-                    </p>
-                    <div className="price d-flex j-between a-center mt-1 font-bold text-dk">
-                        <h4>{food.price} So'm</h4>
+
+        <Card
+            className="card">
+            <img
+                onClick={() => moveItemPage(path, food.id)}
+                src={
+                    food.image.includes("http") ?
+                        food.image :
+                        API_URL + food.image
+                }
+                alt=""
+            />
+            <CardContent className="card-content text-wh font-regular">
+                <div className="card-title-w d-flex j-between a-center text-dk">
+                    <h3>{food.name}</h3>
+                    <p className="text-dk">
                         {
-                            cartIdList?.every(id => id !== food.id) ?
-                                <Button
-                                    variant="contained"
-                                    className="korzinka"
-                                    onClick={() => saveToCart(food)}
-                                >
-                                    Saqlash
-                                    <ShoppingCartOutlinedIcon />
-                                </Button> :
-                                <Button
-                                    variant="contained"
-                                    className="korzinka delete"
-                                    onClick={() => removeFromCart(food.id)}
-                                >
-                                    <RemoveShoppingCartIcon />
-                                </Button>
+                            food.weight ?
+                                `Вес: ${food.weight} г` :
+                                food.size
                         }
-                    </div>
-                </CardContent>
-            </Card>
+                    </p>
+                </div>
+                <p className='food-text mt-1 text-wh-50 font-light'>
+                    <ReactReadMoreReadLess
+                        charLimit={60}
+                        ellipsis="..."
+                        readMoreText=""
+                        readLessText=""
+                    >
+                        {food.description}
+                    </ReactReadMoreReadLess>
+                </p>
+                <div className="price d-flex j-between a-center mt-1 font-bold text-dk">
+                    <h4>{food.price} So'm</h4>
+                    {
+                        cartIdList?.every(id => id !== food.id) ?
+                            <Button
+                                variant="contained"
+                                className="korzinka"
+                                onClick={() => saveToCart(food)}
+                            >
+                                Saqlash
+                                <ShoppingCartOutlinedIcon />
+                            </Button> :
+                            <Button
+                                variant="contained"
+                                className="korzinka delete"
+                                onClick={() => removeFromCart(food.id)}
+                            >
+                                <RemoveShoppingCartIcon />
+                            </Button>
+                    }
+                </div>
+            </CardContent>
+        </Card>
     )
 }
 

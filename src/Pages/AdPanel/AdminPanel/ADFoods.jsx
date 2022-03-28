@@ -16,6 +16,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
 
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState("baliqlitaom");
+  const [store, setStore] = useState("accessory");
   const [img, setImg] = useState(null);
   const [imageItem, setImageItem] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,8 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
     setImageItem("");
     setImg("");
     formEl.current.reset();
-    setCategory("baliqlitaom")
+    setCategory("baliqlitaom");
+    setStore('accessory');
   }
 
   const addProduct = (evt) => {
@@ -58,12 +60,17 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
     fd.append("image", imageItem)
     fd.append("name", name.value)
     fd.append("description", description.value)
-    fd.append("weight", weight.value)
+    if(store === "profin"){
+      fd.append("weight", weight.value)
+    }
     fd.append("price", price.value)
     fd.append("is_added", false)
+    if(store === "accessory"){
+      fd.append('model_code', 'GOSHTLITAOMLAR')
+    }
 
-    axios.post(`${API_URL}/taomlar/${category}/`, fd)
-      .then(res => {
+    axios.post(`${API_URL}/taomlar/${store === 'profin' ? category: store }/`, fd)
+      .then(() => {
         getFoods();
         getValues();
         formEl.current.reset();
@@ -76,7 +83,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
         })
 
       })
-      .catch(err => {
+      .catch(() => {
         setLoading(false)
         Swal.fire({
           position: 'center',
@@ -89,12 +96,12 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
 
   }
 
-  function editItem(id, category) {
+  function editItem(id, category, store) {
     showModal();
     setIsEditing(true)
     setIdItem(id)
     setCategory(category)
-
+    setStore(store)
   }
 
   const saveFile = (evt) => {
@@ -140,8 +147,8 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
     fd.append("price", price.value)
     fd.append("is_added", false)
 
-    axios.put(`${API_URL}/taomlar/${category}/${idItem}/`, fd)
-      .then(res => {
+    axios.patch(`${API_URL}/taomlar/${category}/${idItem}/`, fd)
+      .then(() => {
         getFoods();
         getValues();
         Swal.fire({
@@ -153,7 +160,7 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
         })
 
       })
-      .catch(err => {
+      .catch(() => {
         setLoading(false)
         Swal.fire({
           position: 'center',
@@ -176,8 +183,8 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
       </Button>
       <div className={`modal-card ${show && 'show'}`}>
         <form onSubmit={isEdting ? editProduct : addProduct} ref={formEl}>
-          <div className="w-100">
-            <InputLabel id="demo-" className='w-100'>Category</InputLabel>
+          <div className={`w-100 ${isEdting && 'd-none'}`}>
+            <InputLabel id="demo-" className='w-100'>Kategoriya</InputLabel>
             <Select
               disabled={isEdting}
               className='w-100'
@@ -185,13 +192,25 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
               value={category}
               onChange={(evt) => setCategory(evt.target.value)}
             >
-              <MenuItem value="baliqlitaom">Baliqli Taom</MenuItem>
-              <MenuItem value="goshtli">Go'shtli Taom</MenuItem>
+              <MenuItem value="baliqlitaom">PVX</MenuItem>
+              <MenuItem value="goshtli">Alyumin</MenuItem>
+              <MenuItem value="qaynoqtaom">Gbendo</MenuItem>
+              <MenuItem value="pizza">Stanok</MenuItem>
               <MenuItem value="ichimliklar">Ichimlik</MenuItem>
-              <MenuItem value="pizza">Pizza</MenuItem>
-              <MenuItem value="qaynoqtaom">Qaynoq Taom</MenuItem>
               <MenuItem value="suyuqtaom">Suyuq Taom</MenuItem>
               <MenuItem value="yaxnataom">Yaxna Taom</MenuItem>
+            </Select>
+
+            <InputLabel id="demo-d" className='mt-1 w-100'>Bo'lim</InputLabel>
+            <Select
+              disabled={isEdting}
+              className='w-100'
+              labelId="demo-d"
+              value={store}
+              onChange={(evt) => setStore(evt.target.value)}
+            >
+              <MenuItem value="accessory">Aksessuar</MenuItem>
+              <MenuItem value="profin">Profin</MenuItem>
             </Select>
           </div>
 
@@ -220,10 +239,12 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
           <div className='w-100 mt-2'>
             <TextField label="Description" color="primary" type="text" name="description" />
           </div>
+          
           {
+            
             category === "ichimliklar" ?
-              <div className='w-100 mt-2'>
-                <InputLabel id="demo-simple-select-label">Weight</InputLabel>
+              <div className={`w-100 mt-2`} >
+                <InputLabel id="demo-simple-select-label">Og'irligi (gr)</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -236,14 +257,14 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
                   <MenuItem value={'2L'}>2 L</MenuItem>
                 </Select>
               </div> :
-              <div className='w-100 mt-2'>
-                <TextField label="Weight (г)" color="primary" type="number" name="weight" />
+              <div className={`w-100 mt-2 ${(category==="accessory" || store === "accessory") && "d-none"}`}>
+                <TextField label="Og'irligi (gr)" color="primary" type="number" name="weight" />
               </div>
           }
 
 
           <div className='w-100 mt-2'>
-            <TextField label="Price (₽)" color="primary" type="number" name="price" />
+            <TextField label="Narxi (so'm)" color="primary" type="number" name="price" />
           </div>
 
           <div className='d-flex j-between mt-1'>
@@ -282,13 +303,14 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
                         <th>Rasm</th>
                         <th>Nomi</th>
                         <th>Ma'lumot</th>
-                        <th>Og'irligi</th>
+                        <th>Bo'limi</th>
                         <th>Narxi</th>
                         <th>Tahrir</th>
                       </tr>
                     </thead>
                     <tbody>
                       {
+                        
                         parentData?.data.map((item, index) => {
                           if (item.name.toLowerCase().includes(search.toLowerCase())) {
                             return (
@@ -303,13 +325,45 @@ const ADFoods = ({ state, setState, getFoods, search, filtered }) => {
                                     {`${item.description.substr(0, 8)}...`}
                                   </span>
                                 </td>
-                                <td>{item.weight ? `${item.weight} г` : item.size}</td>
+                                <td>Profin </td>
                                 <td>{item.price} so'm</td>
                                 <td>
-                                  <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, parentData.url)}>
+                                  <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, parentData.url, 'profin')}>
                                     <EditIcon type="button" />
                                   </Button>
                                   <Button type="button" className="delete" onClick={() => deleteItem(parentData.url, item.id, item.name)}>
+                                    <DeleteForeverIcon />
+                                  </Button></td>
+                              </tr>
+                            )
+                          } else {
+                            return (<></>)
+                          }
+                        })
+                      }
+                      
+                      {
+                        parentData?.accessory_data.map((item, index) => {
+                          if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                            return (
+                              <tr>
+                                <td><b>{index + parentData?.data.length + 1}</b></td>
+                                <td>
+                                  <img src={API_URL + item.image} alt="error" />
+                                </td>
+                                <td>{item.name}</td>
+                                <td>
+                                  <span>
+                                    {`${item.description.substr(0, 8)}...`}
+                                  </span>
+                                </td>
+                                <td>Aksessuar</td>
+                                <td>{item.price} so'm</td>
+                                <td>
+                                  <Button color="secondary" variant="outlined" onClick={() => editItem(item.id, 'accessory', 'accessory')}>
+                                    <EditIcon type="button" />
+                                  </Button>
+                                  <Button type="button" className="delete" onClick={() => deleteItem('accessory', item.id, item.name)}>
                                     <DeleteForeverIcon />
                                   </Button></td>
                               </tr>

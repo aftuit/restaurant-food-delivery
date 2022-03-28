@@ -5,8 +5,8 @@
   border-radius: 10px;
   overflow: hidden;
   background-color: #fff !important;
-  max-width: 341px;
-  border: 1px solid $green--color--op;
+  max-width: 352px!important;
+  border: 2px solid $green--color--op;
 
   img {
     width: 100%;
@@ -30,13 +30,12 @@
     height: 50px;
   }
   .card-content {
-    background-color: transparent;
-
+    background-color: #008c8c1f;
     .price {
       button {
         background-color: $green--lightcolor;
         &.delete {
-          background-color: $green--color;
+          background-color: $color-error;
         }
         &.korzinka {
           svg {

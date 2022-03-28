@@ -60,24 +60,7 @@
         border: 1px solid $green--lightcolor;
         padding: 10px 20px;
       }
-      .modal-body {
-        .pay {
-          width: fit-content;
-          cursor: pointer;
-          margin: 0 20px;
-          padding-bottom: 10px;
-          border-bottom: 4px solid transparent;
-          &.select {
-            border-radius: 13px;
-            border-bottom: 4px solid green;
-          }
-          img {
-            width: 100%;
-            margin: auto;
-            display: block;
-          }
-        }
-      }
+    
       .card-input {
         p {
           color: #6f6f6f;
@@ -229,6 +212,9 @@
         margin-left: auto;
         background-color: $color-error;
         color: #fff;
+        &.disabled{
+          background-color: #ff00009d;
+        }
       }
     }
   }

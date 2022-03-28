@@ -10,12 +10,14 @@ import { AnimatePresence } from 'framer-motion';
 import "./style.scss";
 const Cart = () => {
 
-  const [cartStateList] = useCartState();
+  const [cartStateList, setCartStateList] = useCartState();
   const [showModal, setShowModal] = React.useState(false);
+  const [cartList, setCartList] = React.useState(cartStateList);
 
   const navigate = useNavigate();
 
   const orderBtn = () => {
+    setCartStateList(cartList)
     cartStateList?.length > 0 ?
       navigate("/order") :
       setShowModal(true)
@@ -62,9 +64,13 @@ const Cart = () => {
               <div className="cart-item-list">
                 <AnimatePresence>
                 {
-                  cartStateList?.map(item => {
+                  cartList?.map(item => {
                     return (
-                      <CartItem key={item.image} item={item} />
+                      <CartItem 
+                        key={item.image} 
+                        item={item} 
+                        cartList={cartList} 
+                        setCartList={setCartList}/>
                     )
                   })
                 }
@@ -76,10 +82,10 @@ const Cart = () => {
         <div className="total-price mt-3 d-flex j-between a-center">
           <div className="left-side">
             {
-              cartStateList.length > 0 &&
+              cartList.length > 0 &&
               <p className='total font-regular text-wh'>
                 Jami: <span>
-                  {cartStateList.reduce((a, b) => (+a) + (+b.price), 0)} So'm</span> </p>
+                  {cartList.reduce((a, b) => (+a) + (+b.price), 0)} So'm</span> </p>
             }
           </div>
 

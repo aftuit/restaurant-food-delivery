@@ -1,78 +1,78 @@
+@import "../../mainStyle.scss";
+
 .head-content {
-  background: {
-    image: linear-gradient(90deg, rgba(0, 0, 0, 0.603) 0%, rgba(68, 64, 63, 0) 100%),
-      url("../../assets/header-img.png");
-    repeat: no-repeat;
-    size: 100% 100%;
-  }
-  padding: 60px 0 140px 0;
+  width: 100%;
+  height: 500px;
+    .slick-slide{
+      height: 500px;
+      width: 100%;
+    }
+    div{
+      margin: auto;
+      width: 100%;
+      text-align: center;
+    }
+    img{
+      height: 500px;
+      max-width: 1320px;
+      margin: auto;
+    }
 
-  .container-item {
-    position: relative;
-    margin-top: 3rem;
-    user-select: none;
     button {
-      color: #fff;
-      padding: 7px 1rem;
-      font-size: 20px;
-      line-height: 109.2%;
-      outline: none;
-      border: none;
-      transform: skewX(-20deg) rotate(-9deg) translateY(-23px);
-      display: block;
-      margin-left: 30%;
-    
-    }
-    img {
-      &[class*="text1"] {
-        position: absolute;
-        left: -3px;
-        width: 100%;
-      }
-      &[class*="head-btn"] {
-        position: absolute;
-        left: 30%;
-        bottom: 0;
-        
-      }
-    }
-  }
-}
-
-@media(max-width: 900px){
-  .head-content {
-    padding: 60px 0 100px 0;
-  }
-  
-}
-
-@media(max-width: 776px){
-  .head-content {
-    padding: 40px 0 60px 0;
-  }
-}
-@media(max-width: 576px){
-  .head-content {
-    padding: 20px 0;
-
-    }
-  }
-
-  @media(max-width: 420px){
-       .head-content{
-          .container-item{
-      button{
-        margin-left: auto;
-        font-size: 15px;
-        padding: 9px 30px;
-      }
-      img{
-        &[class*="head-btn"] {
-          width: 72%;
+      &.slick-next {
+        top: 50%;
+        right: 4%;
+        z-index: 3242434543;
+        &::before {
+          color: $green--color;
+          opacity: 1;
+          font-size: 55px;
+          font-family:  sans-serif;
         }
       }
-       }
+      &.slick-prev {
+        top: 50%;
+        z-index: 3242434543;
+        left: 4%;
+        &::before {
+          color: $green--color;
+          opacity: 1;
+          font-size: 55px;
+          font-family:  sans-serif;
+        }
+      }
+    }
+
+}
+
+@media(max-width: 800px){
+  .head-content{
+    height: 400px;
+    .slick-slide{
+      height: 400px;
+      img{
+        height: 400px;
+      }
+    }
+
+    button {
+      &.slick-next {
+        right: 15%;
+      }
+      &.slick-prev {
+        left: 15%;
+      }
+    }
   }
 }
- 
-
+@media(max-width: 500px){
+  .head-content{
+    height: 300px;
+    .slick-slide{
+      height: 300px;
+      img{
+        height: 300px;
+      }
+    }
+  }
+}

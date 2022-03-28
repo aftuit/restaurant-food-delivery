@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Cart from "./Pages/Cart/Cart";
 import DeliveryTerm from "./Pages/DeliveryTerm/DeliveryTerm";
-import Share from "./Pages/Share/Share";
 import Order from "./Pages/Order/Order";
 import AuthAdminPanel from "./Pages/AdPanel/AuthAdminPanel";
 import ItemPage from "./Pages/ItemPage/ItemPage";
@@ -16,7 +15,6 @@ import { RouteProvider } from "./Context/routeContext";
 import { CartProvider } from "./Context/cartContext";
 import { SearchProvider } from "./Context/searchContext";
 import { CartIdProvider } from "./Context/cartIds";
-
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import { useLocation, Navigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
@@ -29,8 +27,6 @@ function App() {
     const scrolled = document.documentElement.scrollTop;
     scrolled > 300 ? setVisible(true) : setVisible(false);
   };
-
-
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -69,7 +65,6 @@ function App() {
                   <Routes>
                     <Route exact path="/" element={<Home />} />
                     <Route exact path="/cart" element={<Cart />} />
-                    <Route exact path="/share" element={<Share />} />
                     <Route exact path="*" element={<NotFound />} />
                     <Route
                       exact
@@ -84,21 +79,9 @@ function App() {
                         )
                       }
                     />
-                    <Route
-                      exact
-                      path="/delivery-term"
-                      element={<DeliveryTerm />}
-                    />
-                    <Route
-                      exact
-                      path="/food/:path/:id"
-                      element={<ItemPage />}
-                    />
-                    <Route
-                      exact
-                      path="/admin-panel/*"
-                      element={<AuthAdminPanel />}
-                    />
+                    <Route exact path="/delivery-term" element={<DeliveryTerm />} />
+                    <Route exact path="/access/:path/:id" element={<ItemPage />} />
+                    <Route exact path="/admin-panel/*" element={<AuthAdminPanel />} />
                   </Routes>
                 </div>
                 {!window.location.href.includes("admin") && <Footer />}

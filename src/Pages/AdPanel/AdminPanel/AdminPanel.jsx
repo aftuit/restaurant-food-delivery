@@ -1,10 +1,8 @@
 import React from 'react'
-// import Login from "../Login/Login";
 import ADOrder from "./ADOrder";
 import ADShare from "./ADShare";
 import ADFoods from "./ADFoods";
 import Dashboard from "./Dashboard";
-import Cabinet from "./Cabinet/Cabinet";
 import { Routes, Route, NavLink, Link, useLocation } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuSharpIcon from '@mui/icons-material/MenuSharp';
@@ -56,7 +54,6 @@ const AdminPanel = () => {
             .reduce((a, b) => +a + +b?.data?.length, 0)
         )
       })
-      .catch(err => console.log(err))
   }
 
   const getOrders = () => {
@@ -65,7 +62,6 @@ const AdminPanel = () => {
         setStateOrders(res.data)
         setFilteredOrder(res.data)
       })
-      .catch(err => console.log(err))
   }
 
   const getShares = () => {
@@ -75,7 +71,7 @@ const AdminPanel = () => {
   }
 
   const signOut = () => {
-    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("_token_access_");
     setToken(false);
   }
 
@@ -91,15 +87,12 @@ const AdminPanel = () => {
       .filter(k => k.delivery_type.toLowerCase().includes(delivery_type.toLowerCase()))
       .filter(g => g.payment.toLowerCase().includes(payment.toLowerCase()))
     )
-    console.log('stateOrders', stateOrders)
-    console.log('filteredOrder', filteredOrder)
   }
 
   return (
     <div className='admin-panel-content d-flex'>
       <div className={`left-side ${tabPane && "tab"}`}>
-        <h1 style={{ textAlign: "center" }}>LOGO</h1>
-
+        <h2 className="logo">ACSESS 300</h2>
         <div className="links-content mt-3">
           <ul>
             <li><NavLink to="/admin-panel/dashboard" className="d-flex a-center">
@@ -289,7 +282,6 @@ const AdminPanel = () => {
             setState={setFoodDatas}
             getFoods={getFoods}
           />} />
-          <Route exact={true} path='/account' element={<Cabinet />} />
         </Routes>
       </div>
     </div >

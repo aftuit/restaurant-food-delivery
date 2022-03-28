@@ -16,12 +16,14 @@ import { API_URL } from '../../util/const';
 const ItemPage = () => {
 
   const { route } = React.useContext(routeContext)
-
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [state, setState] = useState(JSON.parse(window.localStorage.getItem("product")) || null)
   const [foodList, setFoodList] = useState(JSON.parse(window.localStorage.getItem("foodList")) || null)
+  const [filtered] = useState(JSON.parse(window.localStorage.getItem("filtered")) || null)
+
+  const url = JSON.parse(window.localStorage.getItem("_route_"))?.routePath || filtered?.path
 
 
   const [cartStateList, setCartStateList] = useCartState();
@@ -43,23 +45,24 @@ const ItemPage = () => {
     setCartIdList(newFilteredIDs)
   }
 
-
   React.useEffect(() => {
-    axios.get(`${API_URL}/taomlar/${route?.routePath}/${id}/`)
+    axios.get(`${API_URL}/taomlar/${url}/${id}/`)
       .then(res => {
         setState(res?.data)
         setFoodList(route?.foodData)
         window.localStorage.setItem("product", JSON.stringify(res?.data))
         window.localStorage.setItem("foodList", JSON.stringify(route?.foodData))
       })
-      .catch(err => console.log(err))
-  }, [id, route.foodData, route.routePath])
+  }, [filtered?.path, id, route?.foodData, route?.routePath, url])
 
 
   return (
     <div className='item-content'>
 
-      <Container className='item-container'>
+
+
+
+<Container className='item-container'>
         <div
           className='back-link d-flex a-center '
           onClick={() => navigate(-1)}
@@ -81,13 +84,9 @@ const ItemPage = () => {
                 <p className='text-dk'>{state?.description}</p>
               </div>
               <div className="info-part">
-                <span className='text-dk font-regular'>
-                  {
-                    state?.weight ?
-                      `Вес: ${state?.weight} г` :
-                      state?.size
-                  }
-                </span>
+                <h2 className='text-dk font-regular'>
+                  {state?.price} so'm
+                </h2>
                 <div className="buttons">
                   {
                     cartIdList?.every(id => id !== state.id) ?
@@ -108,7 +107,7 @@ const ItemPage = () => {
                   }
                   <span className='text-wh font-semibold'>{state?.price} ₽ </span>
                 </div>
-                {/* <table className='item-table'>
+               {/* <table className='item-table'>
                   <thead>
                     <tr className='table-tr'>
                       <th className='text-dk font-regular'>Белки</th>
@@ -127,7 +126,7 @@ const ItemPage = () => {
                       <td className='text-dk font-regular'>{`${state?.weight} г` ?? state?.size}</td>
                     </tr>
                   </tbody>
-                </table> */}
+                </table>  */}
               </div>
             </div>
           </div>

@@ -30,7 +30,7 @@ div {
     }
   }
   &.trow-info {
-    width: 50%;
+    width: 40%;
     h3 {
       text-transform: uppercase;
       font-size: 25px;
@@ -58,13 +58,15 @@ div {
   }
   &.trow-delete {
     button {
-      background: #d32f2f;
+      background: $color-error;
       &:hover {
-        background: #d32f2f;
+        background: $color-error;
       }
     }
     svg {
       margin: auto;
+      padding: 0;
+      font-size: 20px;
     }
   }
 }

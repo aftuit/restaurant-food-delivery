@@ -43,8 +43,10 @@ const Login = () => {
         })
         setToken(res.data.token)
      
-        window.localStorage.setItem("Token", JSON.stringify(res.data.token));
-        navigate("/admin-panel/dashboard")
+        window.localStorage.setItem("_token_access_", JSON.stringify(res.data.token));
+        setTimeout(() => {
+          navigate("/admin-panel/dashboard")
+        }, 1000)
       
       })
       .catch(err => {

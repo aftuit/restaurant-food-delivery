@@ -7,13 +7,12 @@ const Filter = ({ filterItem, setFilterItem }) => {
     const [setFoodDatas] = useFood(true);
   
     const items = [
-        { id: 0, value: "Bсе", path: "" },
-        { id: 1, name: "Yaxna taomlar", value: "Холодные закуски", path: "yaxnataom" },
-        { id: 2, name: "Issiq taomlar", value: "Горячие закуски", path: "qaynoqtaom" },
-        { id: 3, name: "Go'shtli taomlar", value: "Мясные блюда", path: "goshtli" },
-        { id: 4, name: "Baliqli taomlar", value: "Рыбные блюда", path: "baliqlitaom" },
-        { id: 5, name: "Pitsa", value: "Питса", path: "pizza" },
-        { id: 6, name: "Ichimliklar", value: "Напитки", path: "ichimliklar" },
+        { id: 0, name: "Yaxna taomlar", value: "Холодные закуски", path: "yaxnataom" },
+        { id: 1, name: "Issiq taomlar", value: "Горячие закуски", path: "qaynoqtaom" },
+        { id: 2, name: "Go'shtli taomlar", value: "Мясные блюда", path: "goshtli" },
+        { id: 3, name: "Baliqli taomlar", value: "Рыбные блюда", path: "baliqlitaom" },
+        { id: 4, name: "Pitsa", value: "Питса", path: "pizza" },
+        { id: 5, name: "Ichimliklar", value: "Напитки", path: "ichimliklar" },
     ]
 
     const changeCurrentItem = (item) => {

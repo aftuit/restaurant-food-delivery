@@ -18,8 +18,6 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [idItem, setIdItem] = React.useState(null);
 
-  console.log('search:', search)
-
   const formElement = React.useRef(null);
 
   function getNewValues() {
@@ -47,7 +45,6 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
     axios.post(`${API_URL}/advertising/`, fd)
 
       .then(res => {
-        console.log(res);
         getShares();
         getNewValues()
       })
@@ -62,7 +59,6 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
   const deleteAdvertItem = (id, title) => {
     axios.delete(`${API_URL}/advertising/${id}/`)
       .then(res => {
-        console.log(res)
         getShares();
         Swal.fire({
           position: 'center',
@@ -107,7 +103,6 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
     axios.put(`${API_URL}/advertising/${idItem}/`, fd)
 
       .then(res => {
-        console.log(res);
         getShares();
         getNewValues();
       })

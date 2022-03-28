@@ -12,10 +12,11 @@ import "./style.scss";
 const Home = () => {
 
     const [filterItem, setFilterItem] = useState(
-        JSON.parse(window.localStorage.getItem("filtered")) || { path: "", title: "", currentItem: 0 }
+        JSON.parse(window.localStorage.getItem("filtered")) || { path: "yaxnataom", title: "", currentItem: 0 }
     )
 
     const [foodDatas, setFoodDatas] = useFood();
+
 
 
     React.useEffect(() => {
@@ -23,9 +24,7 @@ const Home = () => {
             .then(res => {
                 setFoodDatas(res.data)
             })
-            .catch(err => console.log(err))
     }, [filterItem, setFoodDatas])
-
 
     return (
         <div>

@@ -9,7 +9,7 @@ function useToken(isUpdate) {
 
 function LoginProvider({ children }) {
   const [token, setToken] = React.useState(
-    JSON.parse(window.localStorage.getItem("Token")) ?? false
+    JSON.parse(window.localStorage.getItem("_token_access_")) ?? false
   );
 
   return (

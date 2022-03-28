@@ -9,15 +9,34 @@ import { motion } from 'framer-motion';
 import "./style.scss";
 import { API_URL } from '../../util/const';
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, cartList, setCartList }) => {
 
+    const [count, setCount] = React.useState(1)
+    const [price] = React.useState(item?.price)
     const [cartStateList, setCartStateList] = useCartState()
 
     const removeFromCart = (param) => {
         const newFilteredList = cartStateList.filter(list => list.id !== param);
         setCartStateList(newFilteredList)
+        setCartList(newFilteredList)
     }
 
+
+    const changeCount = (value) => {
+        setCount(value)
+        setCartList(
+            cartList.map(obj => {
+                if(obj.id === item.id){
+                    return {
+                        ...obj,
+                        buy_count: count,
+                        price: price * value
+                    }
+                }
+                else return obj
+            })
+        )
+    }
 
     return (
         <motion.div
@@ -41,18 +60,18 @@ const CartItem = ({ item }) => {
                 </div>
             </div>
             <div className='trow-count a d-flex a-center'>
-                <IconButton variant={"contained"}>
+                <IconButton disabled={!(count - 1)} variant={"contained"} onClick={() => changeCount(count - 1)}>
                     <RemoveIcon />
                 </IconButton>
-                <h2>1</h2>
-                <IconButton variant={"contained"}>
+                <h2>{count}</h2>
+                <IconButton variant={"contained"} onClick={() => changeCount(count + 1)}>
                     <AddIcon />
                 </IconButton>
             </div>
 
             <div className="d-flex j-between a-center pr">
                 <div className="trow-price a dd me-1">
-                    <h2>{item.price} ₽</h2>
+                    <h2>{item.price} so'm</h2>
                 </div>
 
                 <div className="trow-delete a dd">

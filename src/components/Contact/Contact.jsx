@@ -8,9 +8,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import "./style.scss";
 
-
 const Contact = () => {
-
 
     return (
         <div className="contact-content">
@@ -48,22 +46,6 @@ const Contact = () => {
                         </div>
                     </div>
                     <div className="social d-flex j-center a-center">
-                        {/* <span className="font-regular ">Мы в соц сетях:</span>
-
-                        <div className="social-net d-flex">
-                            <a href="/">
-                                <FacebookIcon />
-                            </a>
-                            <a href="http://t.me/Farrux_Aktamov">
-                                <TelegramIcon />
-                            </a>
-                            <a href="https://www.instagram.com/farrux__aktamov/">
-                                <InstagramIcon />
-                            </a>
-                            <a href="/">
-                                <YouTubeIcon />
-                            </a>
-                        </div> */}
                     </div>
                 </div>
             </Container>

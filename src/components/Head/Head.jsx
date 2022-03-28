@@ -1,19 +1,43 @@
 import React from "react";
-import { Grid, Container } from "@mui/material";
+import Silder from "react-slick";
+import axios from "axios";
+import { API_URL } from "../../util/const";
 import "./style.scss";
+
 const Head = () => {
+
+    const [state, setState] = React.useState(null)
+
+    React.useEffect(() => {
+        axios.get(`${API_URL}/advertising/`)
+            .then(res => {
+                setState(res.data)
+            })
+            .catch(err => console.error(err))
+    }, [])
+
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 700,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+    }
+
     return (
         <div className="head-content">
-            <Container className="head-container">
-                <Grid container>
-                    <Grid item xs={10} md={8} sm={12} className="container-item mt-3">
-                            <img src="/assets/img/headtext1.png" className="head-text1" alt="" />
-                            <img src="/assets/img/headtext.png" className="head-text w-100" alt="" />
-                            <img src="/assets/img/btn-shadow.png" className="head-btn" alt="" />
-                            <button className="bg-green mt-2 font-semibold">Ещё не пробовал?</button>
-                    </Grid>
-                </Grid>
-            </Container>
+
+            <Silder {...settings}>
+                {
+                    state?.map(item => <img
+                                        key={item.id}
+                                        width={'w-100'}
+                                        src={item?.image}
+                                        alt={item?.name} />)
+                }
+            </Silder>
         </div>
     )
 }

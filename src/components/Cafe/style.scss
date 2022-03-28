@@ -2,10 +2,7 @@
 
 .cafe-content {
   background: {
-    image: linear-gradient(90deg, #211f2071 30%, rgba(68, 64, 63, 0) 100%),
-      url("../../assets/cafe-img.png");
-    repeat: no-repeat;
-    size: 100% 100%;
+    image: linear-gradient(90deg, rgba(0, 0, 0, 0.603) 0%, rgba(68, 64, 63, 0) 100%),
   }
   padding: 100px 70px;
   .grid-container {

@@ -8,7 +8,7 @@ const Footer = () => {
             <Container>
                 <Grid container spacing={5} className="grid-container w-100">
                     <Grid item xs={12} md={3} sm={6} className="grid-item">
-                        <h1>LOGOS</h1>
+                       
                         <p className="font-regular">
                             OOO «BILLUR BURGUT PARVOZI» <br />
                             г. Ташкент Сергелийский р-н Джун Арык 27-А <br />
@@ -21,10 +21,9 @@ const Footer = () => {
 
                     <Grid item xs={12} md={9} sm={6} className="grid-item-links">
                         <ul>
-                            <li><Link to="/delivery-term" className='font-regular'>Yetkazib berish shartlari</Link></li>
+                            <li><Link to="/delivery-term" className='font-regular'>Yetkazib berish tartibi</Link></li>
                             <li><Link to="/cart" className='font-regular'>Savatcha</Link></li>
-                            <li><Link to="/share">Акции</Link></li>
-                            <li><Link to="/admin-panel/dashboard">ADMIN PANEL</Link></li>
+                            <li><Link to="/admin-panel/dashboard" style={{color: "yellow"}}>ADMIN PANEL</Link></li>
                         </ul>
                     </Grid>
                 </Grid>

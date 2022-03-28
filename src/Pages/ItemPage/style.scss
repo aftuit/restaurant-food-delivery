@@ -38,7 +38,6 @@
           align-content: space-between;
         }
         >img{
-          // width: 300px;
           height: 400px;
         }
         .grid-item-content{
@@ -98,7 +97,6 @@
           width: 100%;
           img{
             width: 300px;
-            // height: 100%;
           }
           .grid-item-content{
             .info-part{
@@ -114,9 +112,7 @@
 }
 
 @media(max-width: 600px){
-  .sold-with-content{
-    display: none;
-  }
+
   .item-content{
     .item-container{
       .grid-container{

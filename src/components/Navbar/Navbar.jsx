@@ -13,7 +13,7 @@ function Navbar() {
         <div className="navbar-content">
             <Container className="container">
                 <Link to="/" className="navbar-brand text-dk">
-                    LOGO
+                    <img src="/assets/img/logo_preview.png"  alt="Logo" className="w-100"/>
                 </Link>
 <div className="d-flex a-center">
                 <a href="tel:+998909411323" className="contact me-2">

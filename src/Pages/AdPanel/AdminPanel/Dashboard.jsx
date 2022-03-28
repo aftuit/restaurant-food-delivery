@@ -2,7 +2,6 @@ import React from 'react'
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 const Dashboard = ({orders, foods, shares}) => {
 
 
@@ -30,13 +29,6 @@ const Dashboard = ({orders, foods, shares}) => {
               </div>
               <AddTaskRoundedIcon />   
             </div>
-            {/* <div className="item">
-              <div className="counts">
-                <h2>{`${'20003 545'.substr(0,4)}.00`}$</h2>
-                <p>Earnings</p>
-              </div>
-              <MonetizationOnIcon />   
-            </div> */}
         </div>
 
     </div>

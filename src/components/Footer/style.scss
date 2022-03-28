@@ -9,11 +9,12 @@
         align-items: center;
         .grid-item{
             margin: 0;
+           
             h1{
                 color: #000;
             }
-            p{
-                margin-top: 7px;
+            p.font-regular{
+                margin-top: 20px;
                 color: #fff;
             }
         }

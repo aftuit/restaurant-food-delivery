@@ -21,58 +21,47 @@ const DeliveryTerm = () => {
         {
             id: 1,
             expanded: "panel1",
-            title: "У наших курьеров всегда должна быть сдача!",
-            text: `Мы очень внимательно следим за качеством нашей работы, 
-                    поэтому, если у вас будут какие-либо замечания или предложения, 
-                    то обязательно сообщайте их нам`,
+            title: "Lorem ipsum dolor sit.!",
+            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`,
         },
         {
             id: 2,
             expanded: "panel2",
-            title: "Вам что-то не довезли?",
-            text: `Мы очень внимательно следим за качеством нашей работы, 
-                    поэтому, если у вас будут какие-либо замечания или предложения, 
-                    то обязательно сообщайте их нам`
+            title: "Lorem ipsum dolor sit.?",
+            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
         },
         {
             id: 3,
             expanded: "panel3",
-            title: "Не понравился продукт?",
-            text: `Мы очень внимательно следим за качеством нашей работы, 
-                    поэтому, если у вас будут какие-либо замечания или предложения, 
-                    то обязательно сообщайте их нам`
+            title: "Lorem ipsum dolor sit.Lorem ipsum dolor sit.?",
+            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
         },
         {
             id: 4,
             expanded: "panel4",
-            title: "Если появились замечания",
-            text: `Мы очень внимательно следим за качеством нашей работы, 
-                    поэтому, если у вас будут какие-либо замечания или предложения, 
-                    то обязательно сообщайте их нам`
+            title: "Lorem ipsum dolor sit.",
+            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
         },
         {
             id: 5,
             expanded: "panel5",
-            title: "Оплата Visa, MasterCard и МИР",
-            text: `Мы очень внимательно следим за качеством нашей работы, 
-                    поэтому, если у вас будут какие-либо замечания или предложения, 
-                    то обязательно сообщайте их нам`
+            title: "Lorem ipsum dolor sit.",
+            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
         },
         {
             id: 6,
             expanded: "panel6",
-            title: "Реквизиты",
-            text: `Мы очень внимательно следим за качеством нашей работы, 
-                    поэтому, если у вас будут какие-либо замечания или предложения, 
-                    то обязательно сообщайте их нам`
+            title: "Lorem ipsum dolor sit.",
+            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
         },
     ]
 
     return (
         <div className='delivery-content'>
-            <Title title={'Условия доставки'} />
+            <Title title={'Yetkazib berish tartibi'} />
             <Container>
                 <div className="delivery-content-wrap">
+
 
 
                     <div className="left-side-col">
@@ -107,7 +96,6 @@ const DeliveryTerm = () => {
                         }
                     </div>
                     <div className="right-side-col">
-                        {/* <img src="/assets/img/location.png" className="w-100" alt="" /> */}
                         <SimpleMap />
                     </div>
                 </div>
@@ -115,12 +103,12 @@ const DeliveryTerm = () => {
                 <div className="time-table-wrap mt-3">
                     <div className="wrapper d-flex a-center j-between">
                         <div className="left">
-                            <h3 className='font-semibold text-dk'>График работы доставки:</h3>
-                            <p className="font-regular text-dk mt-1">с 10:00-21:00</p>
+                            <h3 className='font-semibold text-dk'>Yetkazib berish vaqti:</h3>
+                            <p className="font-regular text-dk mt-1">10:00-21:00</p>
                         </div>
                         <div className="right">
-                            <h3 className='font-semibold text-dk'>График работы кафе:</h3>
-                            <p className="font-regular text-dk mt-1">с 08:00-21:00</p>
+                            <h3 className='font-semibold text-dk'>Ish vaqti:</h3>
+                            <p className="font-regular text-dk mt-1">08:00-21:00</p>
                         </div>
                     </div>
 

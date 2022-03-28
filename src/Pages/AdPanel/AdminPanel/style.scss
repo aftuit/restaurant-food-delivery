@@ -11,6 +11,9 @@ $shadow: 0px 4px 11px #8080805e;
     height: 100vh;
     padding: 1rem 0;
     background-color: $main-light;
+    .logo{
+      text-align: center;
+    }
     &.tab {
       width: 6%;
       .links-content {

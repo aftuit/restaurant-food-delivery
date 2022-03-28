@@ -15,14 +15,7 @@ const Cafe = () => {
                     <Grid item xs={12} md={6}>
                             <h2 className="font-bold">Bizning xizmatlarimiz</h2>
                             <p className="font-regular info text-wh">
-                                {`Мы расположены в одном из самых живописных мест города — на 
-                        берегу реки, это ваш оазис в черте города, куда можно 
-                        сбежать от шумного и пыльного мегаполиса. Мы, действительно 
-                        уникальные, ведь все продумано до мелочей: проект построен 
-                        из дикого закарпатского сруба, камин в основном зале 
-                        ресторана и панорамные окна с видом на реку, уютные беседки 
-                        на берегу реки и лучшая видовая террасса, шатер с посадкой 
-                        на 200 человек, сказочный детский домик и бассейн.`}
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora neque blanditiis et ratione, ad eum sit est non corporis fugit, itaque temporibus architecto, labore in iure earum optio asperiores omnis cumque exercitationem molestiae harum repellendus? Suscipit doloribus omnis error dicta earum. Dolores, eius possimus modi minus quibusdam repudiandae. A dolorum id nihil officia, minima hic? Nostrum illo itaque molestiae dicta. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque magni voluptatum pariatur aperiam quia voluptatibus ipsam. Consectetur minima facilis eos.
                             </p>
                             
 
@@ -34,25 +27,25 @@ const Cafe = () => {
                                 <Grid item xs={12} sm={6}>
                                     <Card className="grid-card text-center" >
                                         <MeetingRoomIcon />
-                                        <p>Coffee</p>
+                                        <p>Ajoyib tanlov</p>
                                     </Card>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <Card className="grid-card text-center">
                                         <WindowIcon />
-                                        <p>Быстрая доставка</p>
+                                        <p>Yuqori sifat</p>
                                     </Card>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <Card className="grid-card text-center">
                                         <HandymanIcon />
-                                        <p>Лучшие повора</p>
+                                        <p>Yaxshi mahsulot</p>
                                     </Card>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <Card className="grid-card text-center">
                                         <ElectricRickshawIcon />
-                                        <p>Coffee</p>
+                                        <p>Yetkazib berish</p>
                                     </Card>
                                 </Grid>
                             </Grid>

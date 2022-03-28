@@ -8,7 +8,13 @@ const initialState = {
 };
 
 function RouteProvider({ children }) {
-  const [route, setRoute] = React.useState(initialState);
+  const [route, setRoute] = React.useState(
+    JSON.parse(window.localStorage.getItem("_route_")) || initialState
+  );
+  
+  React.useEffect(() => {
+    window.localStorage.setItem("_route_", JSON.stringify(route));
+  }, [route]);
 
   return (
     <routeContext.Provider value={{ route, setRoute }}>
@@ -17,4 +23,4 @@ function RouteProvider({ children }) {
   );
 }
 
-export {RouteProvider, routeContext};
+export { RouteProvider, routeContext };

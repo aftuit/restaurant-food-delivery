@@ -34,7 +34,6 @@ $main-light: #287bff;
         .input-wrap {
           padding: 5px 0;
           border-bottom: 1px solid gray;
-        //   border-radius: 5px;
           input{
               border: none;
               outline: none;
@@ -47,7 +46,6 @@ $main-light: #287bff;
         }
       }
       button{
-          // background-color: #056613;
           color: #fff;
           background-color: $main-light;
           margin-top: 1rem;
