@@ -158,13 +158,10 @@ const AdminPanel = () => {
                 location.pathname.includes("food") &&
                 <select value={filtered} onChange={(evt) => setFiltered(evt.target.value)}>
                   <option value="all">Hammasi</option>
-                  <option value="yaxnataomlar">Yaxna taomlar</option>
-                  <option value="suyuqtaomlar">Suyuq taomlar</option>
-                  <option value="qaynoqtaomlar">Qaynoq taomlar</option>
-                  <option value="baliqlitaomlar">Baliqli taomlar</option>
-                  <option value="pizza">Pitsa</option>
-                  <option value="goshtlitaomlar">Go'shtli taomlar</option>
-                  <option value="ichimliklar">Ichimliklar</option>
+                  <option value="yaxnataomlar">Stanok va uskunalar</option>
+                  <option value="qaynoqtaomlar">Thermo</option>
+                  <option value="baliqlitaomlar">PVH</option>
+                  <option value="goshtlitaomlar">Alyumin</option>
                 </select>
               }
             </div>

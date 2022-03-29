@@ -2,10 +2,11 @@ import React from 'react';
 import { Container, Button } from "@mui/material";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import {Link} from "react-router-dom"
+// import FacebookIcon from '@mui/icons-material/Facebook';
+// import TelegramIcon from '@mui/icons-material/Telegram';
+// import InstagramIcon from '@mui/icons-material/Instagram';
+// import YouTubeIcon from '@mui/icons-material/YouTube';
 import "./style.scss";
 
 const Contact = () => {
@@ -24,6 +25,10 @@ const Contact = () => {
                              <br />   Р/С 2020 8000 3050 4775 4001
                              <br />   в АТИБ Ипотека банк Яккасарайский ф-л
                              <br />   МФО 010017 ИНН: 306 275 341 ОКЭД: 25120
+                                <br/>
+                                <Link to={"delivery-term#location"}>
+                                    xaritadan ko'rish
+                                </Link>
                             </p>
                         </div>
                     </div>

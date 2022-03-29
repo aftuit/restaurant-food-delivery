@@ -95,7 +95,7 @@ const DeliveryTerm = () => {
                             })
                         }
                     </div>
-                    <div className="right-side-col">
+                    <div className="right-side-col" id={"location"}>
                         <SimpleMap />
                     </div>
                 </div>

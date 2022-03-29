@@ -5,14 +5,12 @@ import "./style.scss";
 const Filter = ({ filterItem, setFilterItem }) => {
 
     const [setFoodDatas] = useFood(true);
-  
+
     const items = [
-        { id: 0, name: "Yaxna taomlar", value: "Холодные закуски", path: "yaxnataom" },
-        { id: 1, name: "Issiq taomlar", value: "Горячие закуски", path: "qaynoqtaom" },
-        { id: 2, name: "Go'shtli taomlar", value: "Мясные блюда", path: "goshtli" },
-        { id: 3, name: "Baliqli taomlar", value: "Рыбные блюда", path: "baliqlitaom" },
-        { id: 4, name: "Pitsa", value: "Питса", path: "pizza" },
-        { id: 5, name: "Ichimliklar", value: "Напитки", path: "ichimliklar" },
+        { id: 0, name: "GOSHTLITAOMLAR", value: "Alyumin", path: "goshtli" },
+        { id: 1, name: "BALIQLITAOM", value: "PVH", path: "baliqlitaom" },
+        { id: 2, name: "QAYNOQTAOM", value: "Thermo", path: "qaynoqtaom" },
+        { id: 3, name: "YAXNATAOMLAR", value: "Stanok va uskunalar", path: "yaxnataom" },
     ]
 
     const changeCurrentItem = (item) => {
@@ -26,7 +24,7 @@ const Filter = ({ filterItem, setFilterItem }) => {
     }
 
     return (
-        <div className="filter-form bg-dark">
+        <div className="filter-form bg-dark mt-1">
             <Container>
                 <div className='filter-content d-flex a-center'>
                     <div className="item-filter w-100">

@@ -69,14 +69,6 @@ const ADOrder = ({ getOrders, state }) => {
                                     <h4>Soni:</h4>
                                     <p>{list?.buy_count || 1 }</p>
                                   </div>
-                                  <div className="d-flex j-between">
-                                    <h4>Og'irligi:</h4>
-                                    <p>{
-                                      list.weight ?
-                                        `${list.weight} gr` :
-                                        list.size
-                                    }</p>
-                                  </div>
                                 </div>
                               </div>
                             )

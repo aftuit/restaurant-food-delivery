@@ -31,11 +31,18 @@ const Head = () => {
 
             <Silder {...settings}>
                 {
-                    state?.map(item => <img
-                                        key={item.id}
-                                        width={'w-100'}
-                                        src={item?.image}
-                                        alt={item?.name} />)
+                    state?.map(item => <div key={item.id} className="carousel-item-wrap">
+                            <img
+                                width={'w-100'}
+                                src={item?.image}
+                                alt={item?.title} />
+
+                            <div className="info">
+                                <h1 className="text-wh">{item?.title ?? ''}</h1>
+                                <p className="text-wh">{item?.descriptions ?? ''}</p>
+                            </div>
+                        </div>
+                    )
                 }
             </Silder>
         </div>
