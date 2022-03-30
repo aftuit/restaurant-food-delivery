@@ -10,8 +10,6 @@
     justify-content: space-between;
     align-items: center;
     .navbar-brand {
-      text-decoration: none;
-      font-size: 23px;
       width: 100px;
       
     }
@@ -47,6 +45,8 @@
       padding: 12px 15px;
       cursor: pointer;
       transition: 0.2s linear;
+      -webkit-transition: 0.2s linear;
+      -moz-transition: 0.2s linear;
       .badge {
         font-size: 20px;
         position: relative;

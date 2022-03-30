@@ -54,13 +54,13 @@ const ADFoods = ({state, setState, getFoods, search, filtered}) => {
             case 'yaxnataom':
                 return 'YAXNATAOMLAR';
             case 'qaynoqtaom':
-                return 'QAYNOQTAOM';
+                return 'QAYNOQTAOMLAR';
             case 'goshtli':
                 return 'GOSHTLITAOMLAR';
             case 'baliqlitaom':
-                return 'BALIQLITAOM';
+                return 'BALIQLITAOMLAR';
             default:
-                return 'BALIQLITAOM';
+                return 'BALIQLITAOMLAR';
         }
     }
 

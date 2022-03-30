@@ -12,6 +12,9 @@
       max-width: 1320px;
       margin: auto;
       width: 100%;
+      @media (max-width: 667px) {
+        object-fit: cover;
+      }
     }
     .info {
       position: absolute;

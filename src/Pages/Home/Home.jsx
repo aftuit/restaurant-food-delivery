@@ -52,10 +52,7 @@ const Home = () => {
                     }
                     </div>
                     <Cafe />
-                <div className="mt-h">
                 <Contact />
-                </div>
-
             </main>
         </div>
     )

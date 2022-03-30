@@ -55,15 +55,15 @@ const CartItem = ({ item, cartList, setCartList }) => {
             </div>
             <div className="trow-info a">
                 <div className='ms-1'>
-                    <h3>{item.name}</h3>
-                    <p>{item.description}</p>
+                    <h3 className={'font-regular'}>{item.name}</h3>
+                    <p className={'font-regular'}>{item.description}</p>
                 </div>
             </div>
             <div className='trow-count a d-flex a-center'>
                 <IconButton disabled={!(count - 1)} variant={"contained"} onClick={() => changeCount(count - 1)}>
                     <RemoveIcon />
                 </IconButton>
-                <h2>{count}</h2>
+                <h2 className={'font-regular'}>{count}</h2>
                 <IconButton variant={"contained"} onClick={() => changeCount(count + 1)}>
                     <AddIcon />
                 </IconButton>
@@ -71,7 +71,7 @@ const CartItem = ({ item, cartList, setCartList }) => {
 
             <div className="d-flex j-between a-center pr">
                 <div className="trow-price a dd me-1">
-                    <h2>{item.price} so'm</h2>
+                    <h2 className={'font-regular'}>{item.price} so'm</h2>
                 </div>
 
                 <div className="trow-delete a dd">

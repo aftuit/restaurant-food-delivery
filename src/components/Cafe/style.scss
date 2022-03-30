@@ -2,7 +2,10 @@
 
 .cafe-content {
   background: {
-    image: linear-gradient(90deg, rgba(0, 0, 0, 0.603) 0%, rgba(68, 64, 63, 0) 100%),
+    image:  url("../../assets/service.jpg");
+    size: 100% 100%;
+    repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
   padding: 100px 70px;
   .grid-container {
@@ -34,25 +37,23 @@
     }
     .grid-card {
       padding: 60px 18px 35px;
-      background: rgba(80, 75, 74, 0.7);
+      background: $green--color;
       backdrop-filter: blur(4px);
       border-radius: 0px;
       svg{          
           transition-duration: 0.1s;
+          -webkit-transition-duration: 0.1s;
+          -moz-transition-duration: 0.1s;
           color: #fff;
           font-size: 3.5rem;
       }
       svg+p{
           transition: 0.1s linear;
+          -webkit-transition: 0.1s linear;
+        -moz-transition: 0.1s linear;
           color: #fff;
           margin-top: 16px;
       }
-      &:hover{
-        svg, svg+p{          
-            color: $green--color;
-        }
-      }
-
     }
   }
 }

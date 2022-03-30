@@ -8,9 +8,9 @@ const Filter = ({ filterItem, setFilterItem }) => {
 
     const items = [
         { id: 0, name: "GOSHTLITAOMLAR", value: "Alyumin", path: "goshtli" },
-        { id: 1, name: "BALIQLITAOM", value: "PVH", path: "baliqlitaom" },
-        { id: 2, name: "QAYNOQTAOM", value: "Thermo", path: "qaynoqtaom" },
-        { id: 3, name: "YAXNATAOMLAR", value: "Stanok va uskunalar", path: "yaxnataom" },
+        { id: 1, name: "BALIQLITAOMLAR", value: "PVH", path: "baliqlitaom" },
+        { id: 2, name: "QAYNOQTAOMLAR", value: "Thermo", path: "qaynoqtaom" },
+        { id: 3, name: "YAXNATAOMLARLAR", value: "Stanok va uskunalar", path: "yaxnataom" },
     ]
 
     const changeCurrentItem = (item) => {
@@ -34,7 +34,7 @@ const Filter = ({ filterItem, setFilterItem }) => {
                                     return (
                                         <li key={item.id}
                                             onClick={() => changeCurrentItem(item)}
-                                            className={`${filterItem.currentItem === item.id ? "active" : ""}`}
+                                            className={`font-semibold ${filterItem.currentItem === item.id ? "active" : ""}`}
                                         >{item.value}</li>
                                     )
                                 })

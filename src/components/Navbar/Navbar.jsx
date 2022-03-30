@@ -16,14 +16,14 @@ function Navbar() {
                     <img src="/assets/img/logo_preview.png"  alt="Logo" className="w-100"/>
                 </Link>
 <div className="d-flex a-center">
-                <a href="tel:+998909411323" className="contact me-2">
+                <a href="tel:+998333533033" className="contact me-2">
                     <div className="phone-icn">
                         <PhoneInTalkIcon />
                     </div>
 
                     <div className="ms-1">
                         <p>{"Aloqa:"}</p>
-                        <h5>+998  (90) 941-13-23</h5>
+                        <h5>+998 (33) 353-30-33</h5>
                     </div>
                 </a>
                 <Link to="/cart" className="text-dnone">

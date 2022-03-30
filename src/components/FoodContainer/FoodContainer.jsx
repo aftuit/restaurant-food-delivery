@@ -16,6 +16,7 @@ const FoodContainer = ({parentData, title, data, path}) => {
             .then((res) => {
                     setAccessuar(res?.data?.results)
                     setTimeout(() => {
+                        console.log({accessuar:accessuar, title: title})
                     }, 1000)
                 }
             )

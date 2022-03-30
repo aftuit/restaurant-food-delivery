@@ -13,9 +13,10 @@ const Contact = () => {
 
     return (
         <div className="contact-content">
+            {/*<img src="/assets/img/locate.jpg" className={'bg-img'} alt=""/>*/}
             <Container>
                 <div className="contact-card">
-                    <h2>Biz bilan aloqa:</h2>
+                    <h2 className={'font-regular'}>Biz bilan aloqa:</h2>
                     <div className="line"></div>
                     <div className="address d-flex">
                         <LocationOnOutlinedIcon />
@@ -42,11 +43,11 @@ const Contact = () => {
                     <div className="line"></div>
 
                     <div className="booking__ d-flex j-between a-center">
-                        <a href='tel:+998909411323'>
+                        <a href='tel:+998333533033'>
                             <Button>Biz bilan aloqa</Button>
                         </a>
                         <div className="tel-number">
-                            <h3 className="font-regular">+998 (90) 941-13-23</h3>
+                            <h3 className="font-regular">+998 (33) 353-30-33</h3>
                             <p className="font-regular">Qo'ng'iroq qiling yoki so'rov qoldiring</p>
                         </div>
                     </div>

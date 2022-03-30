@@ -24,6 +24,8 @@ const Head = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
+        // vertical: true,
+        cssEase: 'cubic-bezier(0.37, 0.05, 0.3, 1.15)'
     }
 
     return (

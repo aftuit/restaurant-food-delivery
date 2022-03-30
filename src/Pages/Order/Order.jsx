@@ -73,7 +73,7 @@ const Order = () => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: `Xaridingiz uchun rahmat! ${deliveryId === 1 ? 'Tez orada mahsulotni yetkazib beramiz' : 'Sizni kutamiz'} 😊!`,
+                    title: `Xaridingiz uchun rahmat! ${deliveryId === 1 ? '\nTez orada mahsulotni yetkazib beramiz' : '\nSizni kutamiz'} 😊!`,
                     showConfirmButton: false,
                     timer: "3000"
                 })
@@ -124,7 +124,7 @@ const Order = () => {
                     className='back-link d-flex a-center'
                 >
                     <KeyboardArrowLeftIcon/>
-                    <span>Orqaga qaytish</span>
+                    <span className={'font-regular'}>Orqaga qaytish</span>
                 </Link>
                 <Title title="Buyurtma"/>
                 <div className={`fade-m ${showModal && 'active'}`}></div>
@@ -135,9 +135,8 @@ const Order = () => {
                         </IconButton>
                         <div className="modal-card w-100">
                             <div className="d-flex j-between a-center w-100 mt-2">
-                                <p className={'title'}>To'lov</p>
+                                <p className={'title font-semibolditalic'}>To'lov</p>
                             </div>
-
                             <div className="modal-body">
                                 <div className="card-input mt-3">
                                     <TextField
@@ -161,7 +160,7 @@ const Order = () => {
                         </div>
                     </div>
                     <div className="order-card">
-                        <h3 className="title">1. Kontakt ma'lumotlari</h3>
+                        <h3 className="title font-semibolditalic">1. Kontakt ma'lumotlari</h3>
                         <div className="d-flex inp">
                             <TextField
                                 label="Ismingiz"
@@ -184,7 +183,7 @@ const Order = () => {
                     </div>
 
                     <div className="order-card">
-                        <h3 className="title">2. Yetkazish:</h3>
+                        <h3 className="title font-semibolditalic">2. Yetkazish:</h3>
                         <div className="order-buttons ss d-flex a-center">
                             <div className="d-flex">
                                 <Button type="button" className={`${deliveryId === 1 && "active"}`}
@@ -194,7 +193,7 @@ const Order = () => {
                             </div>
                         </div>
 
-                        <h3 className="title mt-3">3. Manzilingiz:</h3>
+                        <h3 className="title mt-3 font-semibolditalic">3. Manzilingiz:</h3>
                         <FormControl className="address-select ">
                             <InputLabel id="demo-simple-select-label">Tuman</InputLabel>
                             <Select
@@ -203,7 +202,7 @@ const Order = () => {
                                 id="demo-simple-select"
                                 value={address}
                                 label="Адрес"
-                                className="select me-1 border"
+                                className="select mee-1 border"
                                 onChange={(evt) => setAddress(evt.target.value)}
                                 variant={"outlined"}
                             >
@@ -248,13 +247,13 @@ const Order = () => {
                                 rows={"5"}
                                 value={descriptions}
                                 onChange={(evt) => setDescriptions(evt.target.value)}
-                                className="border"
+                                className="border text-wh"
                                 required
                             ></textarea>
                         </div>
                     </div>
                     <div className="order-card">
-                        <h3 className="title">3. To'lov</h3>
+                        <h3 className="title font-semibolditalic">4. To'lov</h3>
                         <div className="order-buttons d-flex">
                             <Button type="button"
                                     className={`${paymentId === 1 && "active"}`} onClick={() => getPaymentType(1)}
@@ -268,7 +267,7 @@ const Order = () => {
                             </Button>
                         </div>
 
-                        <h4 className="title mt-3">Qo'ng'rioq qilishimmizni xohlaysizmi?</h4>
+                        <h4 className="title mt-3 font-semibolditalic">Qo'ng'rioq qilishimizni xohlaysizmi?</h4>
                         <div>
                             <input
                                 required
