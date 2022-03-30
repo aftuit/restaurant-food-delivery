@@ -1,29 +1,30 @@
 import React from 'react';
-import { Container, Button, TextField, IconButton } from '@mui/material';
+import {Container, Button, TextField, IconButton} from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import SendIcon from '@mui/icons-material/Send';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Title from "../../components/Title/Title";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { useCartState } from '../../Context/cartContext';
+import {useCartState} from '../../Context/cartContext';
 import FormControl from '@mui/material/FormControl';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { API_URL } from '../../util/const';
+import {API_URL} from '../../util/const';
 import InputValidMask from '../../components/InputValidMask/InputValidMask';
 import "./style.scss";
+
 const Order = () => {
 
     const [deliveryId, setDeliveryId] = React.useState(1);
     const [deliveryType, setDeliveryType] = React.useState("YETKAZIB BERISH");
     const [address, setAddress] = React.useState('');
     const [paymentId, setPaymentId] = React.useState(1);
-    const [paymentType, setPaymentType] = React.useState("KARTA ORQALI");
+    const [paymentType, setPaymentType] = React.useState("NAQD PUL");
     const [loading, setLoading] = React.useState(false);
     const [tel, setTel] = React.useState('+998 ');
     const [cardCode, setCardCode] = React.useState('');
@@ -45,18 +46,18 @@ const Order = () => {
     const getPaymentType = (id) => {
         setPaymentId(id);
         (id === 1) ?
-            setPaymentType("KARTA ORQALI") :
-            setPaymentType("NAQD PUL")
+            setPaymentType("NAQD PUL") :
+            setPaymentType("KARTA ORQALI")
     }
     const sendDeliveryRequest = (evt) => {
         evt.preventDefault();
         setLoading(true);
         const FD = new FormData();
         FD.append("user_name", username)
-        FD.append("phone", tel.split("").filter(e => e !== " " 
-                                                && e !== "(" 
-                                                && e !== ")"
-                                                && e !== "+").join(""))
+        FD.append("phone", tel.split("").filter(e => e !== " "
+            && e !== "("
+            && e !== ")"
+            && e !== "+").join(""))
         FD.append("delivery_type", deliveryType)
         FD.append("address", address)
         FD.append("street", street)
@@ -72,7 +73,7 @@ const Order = () => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: `Xaridingiz uchun rahmat! ${deliveryId === 1 ? 'Tez orada mahsulotni yetkazib beramiz' : 'Sizni kutamiz'} 😊!`,
+                    title: `Xaridingiz uchun rahmat! ${deliveryId === 1 ? '\nTez orada mahsulotni yetkazib beramiz' : '\nSizni kutamiz'} 😊!`,
                     showConfirmButton: false,
                     timer: "3000"
                 })
@@ -122,21 +123,20 @@ const Order = () => {
                     to="/cart"
                     className='back-link d-flex a-center'
                 >
-                    <KeyboardArrowLeftIcon />
-                    <span>Orqaga qaytish</span>
+                    <KeyboardArrowLeftIcon/>
+                    <span className={'font-regular'}>Orqaga qaytish</span>
                 </Link>
-                <Title title="Buyurtma" />
+                <Title title="Buyurtma"/>
                 <div className={`fade-m ${showModal && 'active'}`}></div>
                 <form onSubmit={sendDeliveryRequest}>
                     <div className={`payment-modal ${showModal && 'show'}`}>
                         <IconButton className="shut-btn" onClick={() => setShowModal(false)}>
-                            <ClearOutlinedIcon />
+                            <ClearOutlinedIcon/>
                         </IconButton>
                         <div className="modal-card w-100">
                             <div className="d-flex j-between a-center w-100 mt-2">
-                                <p className={'title'}>To'lov</p>
+                                <p className={'title font-semibolditalic'}>To'lov</p>
                             </div>
-
                             <div className="modal-body">
                                 <div className="card-input mt-3">
                                     <TextField
@@ -151,16 +151,16 @@ const Order = () => {
                                     </TextField>
                                 </div>
                             </div>
-                            <Button type={"submit"} 
-                                    className={'confirm-btn w-100'} 
-                                    variant={'contained'} 
+                            <Button type={"submit"}
+                                    className={'confirm-btn w-100'}
+                                    variant={'contained'}
                                     color={'success'}
-                                    disabled={cardCode.length === 16 ? false: true }
-                                    >OK</Button>
+                                    disabled={cardCode.length === 16 ? false : true}
+                            >OK</Button>
                         </div>
                     </div>
                     <div className="order-card">
-                        <h3 className="title">1. Kontakt ma'lumotlari</h3>
+                        <h3 className="title font-semibolditalic">1. Kontakt ma'lumotlari</h3>
                         <div className="d-flex inp">
                             <TextField
                                 label="Ismingiz"
@@ -170,7 +170,7 @@ const Order = () => {
                                 value={username}
                                 onChange={(evt) => setUsername(evt.target.value)}
                                 name="user_name"
-                                className='me-1 w-50 border w-100-in' />
+                                className='me-1 w-50 border w-100-in'/>
                             <InputValidMask
                                 mask="+998 \(99) 999 99 99"
                                 maskChar=" "
@@ -183,15 +183,17 @@ const Order = () => {
                     </div>
 
                     <div className="order-card">
-                        <h3 className="title">2. Yetkazish:</h3>
+                        <h3 className="title font-semibolditalic">2. Yetkazish:</h3>
                         <div className="order-buttons ss d-flex a-center">
                             <div className="d-flex">
-                                <Button type="button" className={`${deliveryId === 1 && "active"}`} onClick={() => getDeliveryType(1)}>Yetkazib berish</Button>
-                                <Button type="button" className={`${deliveryId === 2 && "active"}`} onClick={() => getDeliveryType(2)}>Borib olish</Button>
+                                <Button type="button" className={`${deliveryId === 1 && "active"}`}
+                                        onClick={() => getDeliveryType(1)}>Yetkazib berish</Button>
+                                <Button type="button" className={`${deliveryId === 2 && "active"}`}
+                                        onClick={() => getDeliveryType(2)}>Borib olish</Button>
                             </div>
                         </div>
 
-                        <h3 className="title mt-3">3. Manzilingiz:</h3>
+                        <h3 className="title mt-3 font-semibolditalic">3. Manzilingiz:</h3>
                         <FormControl className="address-select ">
                             <InputLabel id="demo-simple-select-label">Tuman</InputLabel>
                             <Select
@@ -200,7 +202,7 @@ const Order = () => {
                                 id="demo-simple-select"
                                 value={address}
                                 label="Адрес"
-                                className="select me-1 border"
+                                className="select mee-1 border"
                                 onChange={(evt) => setAddress(evt.target.value)}
                                 variant={"outlined"}
                             >
@@ -225,7 +227,7 @@ const Order = () => {
                                 type="text"
                                 value={street}
                                 onChange={(evt) => setStreet(evt.target.value)}
-                                label="Ko'cha nomi" />
+                                label="Ko'cha nomi"/>
 
                             <TextField
                                 className="ms-1 w-50 border w-100-in"
@@ -235,7 +237,7 @@ const Order = () => {
                                 onChange={(evt) => setFlat(evt.target.value)}
                                 type="number"
                                 label="Xonadon raqami"
-                                name="flat" />
+                                name="flat"/>
                         </div>
                         <div className="mt-2">
                             <textarea
@@ -245,27 +247,27 @@ const Order = () => {
                                 rows={"5"}
                                 value={descriptions}
                                 onChange={(evt) => setDescriptions(evt.target.value)}
-                                className="border"
+                                className="border text-wh"
                                 required
                             ></textarea>
                         </div>
                     </div>
                     <div className="order-card">
-                        <h3 className="title">3. To'lov</h3>
+                        <h3 className="title font-semibolditalic">4. To'lov</h3>
                         <div className="order-buttons d-flex">
                             <Button type="button"
-                                className={`${paymentId === 1 && "active"}`} onClick={() => getPaymentType(1)}
-                            >
-                                Karta orqali
-                            </Button>
-                            <Button type="button"
-                                className={`${paymentId === 2 && "active"}`} onClick={() => getPaymentType(2)}
+                                    className={`${paymentId === 1 && "active"}`} onClick={() => getPaymentType(1)}
                             >
                                 Naqd pulda
                             </Button>
+                            <Button type="button"
+                                    className={`${paymentId === 2 && "active"}`} onClick={() => getPaymentType(2)}
+                            >
+                                Karta orqali
+                            </Button>
                         </div>
 
-                        <h4 className="title mt-3">Qo'ng'rioq qilishimmizni xohlaysizmi?</h4>
+                        <h4 className="title mt-3 font-semibolditalic">Qo'ng'rioq qilishimizni xohlaysizmi?</h4>
                         <div>
                             <input
                                 required
@@ -273,7 +275,7 @@ const Order = () => {
                                 id="want"
                                 name="call"
                                 onChange={() => setCall(true)}
-                                defaultChecked={true} />
+                                defaultChecked={true}/>
                             <label htmlFor="want" className="ms-1">Hodim qo'ng'irog'i talab qilinadi</label>
                         </div>
 
@@ -296,7 +298,7 @@ const Order = () => {
                                 onClick={() => setShowModal(paymentType === "KARTA ORQALI" ? true : false)}
                                 loading={loading}
                                 loadingPosition="end"
-                                endIcon={<SendIcon />}
+                                endIcon={<SendIcon/>}
                                 variant="contained"
                                 className={`confirm ${GetFilled() === false && 'disabled'}`}
                                 disabled={!GetFilled()}
@@ -307,7 +309,7 @@ const Order = () => {
                     </div>
                 </form>
             </Container>
-        </div >
+        </div>
     )
 }
 

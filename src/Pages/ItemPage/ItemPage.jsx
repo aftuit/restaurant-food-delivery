@@ -107,26 +107,6 @@ const ItemPage = () => {
                   }
                   <span className='text-wh font-semibold'>{state?.price} ₽ </span>
                 </div>
-               {/* <table className='item-table'>
-                  <thead>
-                    <tr className='table-tr'>
-                      <th className='text-dk font-regular'>Белки</th>
-                      <th className='text-dk font-regular'>Жиры</th>
-                      <th className='text-dk font-regular'>Углеводы</th>
-                      <th className='text-dk font-regular'>Ккал</th>
-                      <th className='text-dk font-regular'>Вес</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className='text-dk font-regular'>17.23</td>
-                      <td className='text-dk font-regular'>7.63</td>
-                      <td className='text-dk font-regular'>22.35</td>
-                      <td className='text-dk font-regular'>234</td>
-                      <td className='text-dk font-regular'>{`${state?.weight} г` ?? state?.size}</td>
-                    </tr>
-                  </tbody>
-                </table>  */}
               </div>
             </div>
           </div>

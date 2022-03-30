@@ -12,13 +12,9 @@ import "./style.scss";
 const Home = () => {
 
     const [filterItem, setFilterItem] = useState(
-        JSON.parse(window.localStorage.getItem("filtered")) || { path: "yaxnataom", title: "", currentItem: 0 }
+        JSON.parse(window.localStorage.getItem("filtered")) || { path: "goshtli", title: "GOSHTLITAOMLAR", currentItem: 0 }
     )
-
     const [foodDatas, setFoodDatas] = useFood();
-
-
-
     React.useEffect(() => {
         axios.get(`${API_URL}${filterItem.path ? "/taomlar/" : ""}${filterItem.path}/`)
             .then(res => {
@@ -54,12 +50,9 @@ const Home = () => {
                                     path={filterItem.path}
                                 />
                     }
-                </div>
+                    </div>
                     <Cafe />
-                <div className="mt-h">
                 <Contact />
-                </div>
-
             </main>
         </div>
     )

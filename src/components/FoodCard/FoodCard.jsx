@@ -52,7 +52,7 @@ const FoodCard = ({
             <img
                 onClick={() => moveItemPage(path, food.id)}
                 src={
-                    food.image.includes("http") ?
+                    food?.image?.includes("http") ?
                         food.image :
                         API_URL + food.image
                 }
@@ -61,13 +61,6 @@ const FoodCard = ({
             <CardContent className="card-content text-wh font-regular">
                 <div className="card-title-w d-flex j-between a-center text-dk">
                     <h3>{food.name}</h3>
-                    <p className="text-dk">
-                        {
-                            food.weight ?
-                                `Вес: ${food.weight} г` :
-                                food.size
-                        }
-                    </p>
                 </div>
                 <p className='food-text mt-1 text-wh-50 font-light'>
                     <ReactReadMoreReadLess

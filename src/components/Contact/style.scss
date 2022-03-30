@@ -1,19 +1,13 @@
 @import "../../mainStyle.scss";
 
 .contact-content {
-  // background: {
-  //   image: url("../../assets/location.png");
-  //   size: 100% 100%;
-  //   repeat: no-repeat;
-  //   mask-repeat: no-repeat;
-  // }
   background: {
-    image: linear-gradient(90deg, rgba(0, 0, 0, 0.603) 0%, rgba(68, 64, 63, 0) 100%),
+    image: linear-gradient(90deg, rgba(0, 0, 0, 0.603) 0%, rgba(68, 64, 63, 0) 100%), url("../../assets/locate.jpg");
+      size: 100% 100%;
+      repeat: no-repeat;
+      mask-repeat: no-repeat;
   }
-  // background: linear-gradient(to right rgba(0,0,0,0) 0%, rgb(255,255,255) 100%);
-
   padding: 50px 0;
-
   .contact-card {
     border-radius: 10px;
     background: #fff;
@@ -105,6 +99,12 @@
 
 @media(max-width: 1100px){
   .contact-content{
+    background: {
+      image: linear-gradient(90deg, rgba(0, 0, 0, 0.603) 0%, rgba(68, 64, 63, 0) 100%), url("../../assets/locate-12.jpg");
+      size: 100% 100%;
+      repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
     .contact-card{
       width: 65%;
     }
@@ -112,6 +112,7 @@
 }
 @media(max-width: 800px){
   .contact-content{
+
     .contact-card{
       margin: 0 auto;
       width: 85%;

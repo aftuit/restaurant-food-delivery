@@ -123,6 +123,8 @@
     margin-left: -150px; 
     margin-top: -135px; 
     transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
     z-index: 444;
     &.show{
       top: 50%;
@@ -160,7 +162,9 @@
     }
   }
   .fade-m{
-    transition: all 0.3s linear;      
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
     position: fixed;
     &.active{
       background-color: #000;
