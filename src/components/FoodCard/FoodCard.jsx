@@ -4,6 +4,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { API_URL } from "../../util/const";
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import { routeContext } from '../../Context/routeContext';
+import { LangContext } from "../../Context/localization";
 import { useNavigate } from "react-router-dom";
 import { useCartState } from '../../Context/cartContext';
 import { CartIdsContext } from "../../Context/cartIds"
@@ -13,6 +14,8 @@ const FoodCard = ({
     food,
     path,
     foodDataFromParent }) => {
+
+    const {lang, languageType} = React.useContext(LangContext);
 
     const { setRoute } = React.useContext(routeContext);
     const [cartStateList, setCartStateList] = useCartState();
@@ -73,7 +76,7 @@ const FoodCard = ({
                     </ReactReadMoreReadLess>
                 </p>
                 <div className="price d-flex j-between a-center mt-1 font-bold text-dk">
-                    <h4>{food.price} So'm</h4>
+                    <h4>{food.price} {lang[languageType].cart.soum}</h4>
                     {
                         cartIdList?.every(id => id !== food.id) ?
                             <Button
@@ -81,7 +84,7 @@ const FoodCard = ({
                                 className="korzinka"
                                 onClick={() => saveToCart(food)}
                             >
-                                Saqlash
+                                {lang[languageType].card.save}
                                 <ShoppingCartOutlinedIcon />
                             </Button> :
                             <Button

@@ -119,20 +119,45 @@ const ADShare = ({ shares, setShares, search, getShares }) => {
       <div className={`add-modal ${showModal ? "active" : ""}`}>
         <form onSubmit={isEditing ? editAdvert : addAdverts} id="form_" ref={formElement}>
           <div className="mt-2 w-100">
-            <TextField required className="mt-2 w-100" label="Sarlavha" color="primary" type="text" name="title" />
+            <TextField
+                required
+                className="mt-2 w-100"
+                label="Sarlavha"
+                color="primary"
+                type="text"
+                name="title" />
           </div>
           <div className="mt-2 w-100">
-            <TextField required className="mt-2 w-100" label="Ma'lumot" color="primary" type="text" name="descriptions" />
+            <TextField
+                required
+                className="mt-2 w-100"
+                label="Ma'lumot"
+                color="primary"
+                type="text"
+                name="descriptions" />
           </div>
 
           <div className="mt-2 w-100">
             <img src={img} alt="" className={img && "show"} />
 
-            <TextField helperText={'Rasm yuklang'} required className="mt-2 w-100" color="primary" type="file" onChange={saveFile} />
+            <TextField
+                helperText={'Rasm yuklang'}
+                required
+                className="mt-2 w-100"
+                color="primary"
+                type="file"
+                onChange={saveFile}
+                accept=".png, .svg, .jpg, .jpeg"/>
           </div>
           <div className="mt-2 w-100">
             <span style={{ color: "#000" }}>Tugash vaqti</span>
-            <TextField helperText={"O'chib ketish sanasi"} required className="mt-2 w-100" color="primary" type="date" name="finish_date" />
+            <TextField
+                helperText={"O'chib ketish sanasi"}
+                required
+                className="mt-2 w-100"
+                color="primary"
+                type="date"
+                name="finish_date" />
           </div>
 
           <div className="d-flex j-between a-center mt-2">

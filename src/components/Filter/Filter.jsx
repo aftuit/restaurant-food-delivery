@@ -2,7 +2,7 @@ import React from 'react';
 import { useFood } from '../../Context/foodsContext';
 import {Container} from "@mui/material";
 import "./style.scss";
-const Filter = ({ filterItem, setFilterItem }) => {
+const Filter = ({ filterItem, setFilterItem, lang, languageType }) => {
 
     const [setFoodDatas] = useFood(true);
 
@@ -30,12 +30,12 @@ const Filter = ({ filterItem, setFilterItem }) => {
                     <div className="item-filter w-100">
                         <ul className='d-flex j-between'>
                             {
-                                items.map((item) => {
+                                items.map((item, index) => {
                                     return (
                                         <li key={item.id}
                                             onClick={() => changeCurrentItem(item)}
                                             className={`font-semibold ${filterItem.currentItem === item.id ? "active" : ""}`}
-                                        >{item.value}</li>
+                                        >{lang[languageType].filter[index]}</li>
                                     )
                                 })
                             }

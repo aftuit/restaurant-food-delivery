@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import "./style.scss";
 import { API_URL } from '../../util/const';
 
-const CartItem = ({ item, cartList, setCartList }) => {
+const CartItem = ({ item, cartList, setCartList, lang, languageType }) => {
 
     const [count, setCount] = React.useState(1)
     const [price] = React.useState(item?.price)
@@ -71,7 +71,7 @@ const CartItem = ({ item, cartList, setCartList }) => {
 
             <div className="d-flex j-between a-center pr">
                 <div className="trow-price a dd me-1">
-                    <h2 className={'font-regular'}>{item.price} so'm</h2>
+                    <h2 className={'font-regular'}>{item.price} {lang[languageType].cart.soum}</h2>
                 </div>
 
                 <div className="trow-delete a dd">
@@ -83,7 +83,7 @@ const CartItem = ({ item, cartList, setCartList }) => {
                         variant="contained"
                         className="korzina delete"
                         onClick={() => removeFromCart(item.id)}
-                    >   O'chirish
+                    >   {lang[languageType].cart.delete}
                         <RemoveShoppingCartIcon />
                     </Button>
                 </div>

@@ -261,6 +261,7 @@ const ADFoods = ({state, setState, getFoods, search, filtered}) => {
                             required
                             type="file"
                             name="image"
+                            accept=".png, .svg, .jpg, .jpeg"
                             helperText="Please enter product picture"
                             onChange={saveFile}/>
                     </div>

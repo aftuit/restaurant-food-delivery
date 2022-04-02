@@ -7,13 +7,14 @@ import { useCartState } from '../../Context/cartContext';
 import AddIcon from '@mui/icons-material/Add';
 import Title from "../../components/Title/Title";
 import { AnimatePresence } from 'framer-motion';
+import {LangContext} from "../../Context/localization";
 import "./style.scss";
 const Cart = () => {
 
   const [cartStateList, setCartStateList] = useCartState();
   const [showModal, setShowModal] = React.useState(false);
   const [cartList, setCartList] = React.useState(cartStateList);
-
+  const {lang, languageType} = React.useContext(LangContext);
   const navigate = useNavigate();
 
   const orderBtn = () => {
@@ -30,21 +31,21 @@ const Cart = () => {
           className='back-link d-flex a-center'
         >
           <KeyboardArrowLeftIcon />
-          <span>Orqaga qaytish</span>
+          <span>{lang[languageType].goBack}</span>
         </Link>
 
-        <Title title="Saqlanmalar" />
+        <Title title={lang[languageType].cart.title} />
 
         <div className={`empty-cart-modal ${showModal && 'show'}`}>
           <div className="modal-card">
             <span onClick={() => setShowModal(false)}><AddIcon /></span>
             <img src="/assets/icn/empty_cart.svg" alt="" />
 
-            <h3>Savatcha bo'sh</h3>
+            <h3>{lang[languageType].cart.modal.title}</h3>
 
             <Link to="/">
               <Button type="button">
-                Menyuga qaytish
+                {lang[languageType].cart.modal.btn}
               </Button>
             </Link>
           </div>
@@ -57,8 +58,8 @@ const Cart = () => {
             cartStateList.length === 0 ?
               <div className="empty-card">
                 <div>
-                  <h3>Savatchaga saqlangan mahsulotlar mavjud emas</h3>
-                  <p><Link to="/">Menyu</Link> ga qaytish</p>
+                  <h3>{lang[languageType].cart.empty.title}</h3>
+                  <p><Link to="/">{lang[languageType].cart.empty.menu}</Link> {lang[languageType].cart.empty.go}</p>
                 </div>
               </div> :
               <div className="cart-item-list">
@@ -70,7 +71,10 @@ const Cart = () => {
                         key={item.image} 
                         item={item} 
                         cartList={cartList} 
-                        setCartList={setCartList}/>
+                        setCartList={setCartList}
+                        lang={lang}
+                        languageType={languageType}
+                      />
                     )
                   })
                 }
@@ -84,8 +88,8 @@ const Cart = () => {
             {
               cartList.length > 0 &&
               <p className='total font-regular text-wh'>
-                Jami: <span>
-                  {cartList.reduce((a, b) => (+a) + (+b.price), 0)} So'm</span> </p>
+                {lang[languageType].cart.total} <span>
+                  {cartList.reduce((a, b) => (+a) + (+b.price), 0)} {lang[languageType].cart.soum}</span> </p>
             }
           </div>
 
@@ -93,9 +97,8 @@ const Cart = () => {
             <Button
               onClick={() => orderBtn()}
               color={"primary"}
-              
             >
-              Buyurtma qilish
+              {lang[languageType].cart.btn}
             </Button>
           </div>
         </div>

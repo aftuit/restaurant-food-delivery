@@ -15,10 +15,13 @@ import FormControl from '@mui/material/FormControl';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import {API_URL} from '../../util/const';
+import {LangContext} from "../../Context/localization"
 import InputValidMask from '../../components/InputValidMask/InputValidMask';
 import "./style.scss";
 
 const Order = () => {
+
+    const {lang, languageType} = React.useContext(LangContext);
 
     const [deliveryId, setDeliveryId] = React.useState(1);
     const [deliveryType, setDeliveryType] = React.useState("YETKAZIB BERISH");
@@ -124,9 +127,9 @@ const Order = () => {
                     className='back-link d-flex a-center'
                 >
                     <KeyboardArrowLeftIcon/>
-                    <span className={'font-regular'}>Orqaga qaytish</span>
+                    <span className={'font-regular'}>{lang[languageType].goBack}</span>
                 </Link>
-                <Title title="Buyurtma"/>
+                <Title title={lang[languageType].order.title}/>
                 <div className={`fade-m ${showModal && 'active'}`}></div>
                 <form onSubmit={sendDeliveryRequest}>
                     <div className={`payment-modal ${showModal && 'show'}`}>
@@ -135,7 +138,7 @@ const Order = () => {
                         </IconButton>
                         <div className="modal-card w-100">
                             <div className="d-flex j-between a-center w-100 mt-2">
-                                <p className={'title font-semibolditalic'}>To'lov</p>
+                                <p className={'title font-semibolditalic'}>{lang[languageType].order.modal.title}</p>
                             </div>
                             <div className="modal-body">
                                 <div className="card-input mt-3">
@@ -145,8 +148,8 @@ const Order = () => {
                                         value={cardCode}
                                         onChange={(e) => getCardCode(e.target.value)}
                                         placeholder={'8600000000000000'}
-                                        label={"Karta raqami"}
-                                        helperText={'16 xonali karta raqamingizni kiriting!'}
+                                        label={lang[languageType].order.modal.input}
+                                        helperText={lang[languageType].order.modal.label}
                                         className={'w-50 w-100-in mt-3 text-wh '}>
                                     </TextField>
                                 </div>
@@ -160,10 +163,10 @@ const Order = () => {
                         </div>
                     </div>
                     <div className="order-card">
-                        <h3 className="title font-semibolditalic">1. Kontakt ma'lumotlari</h3>
+                        <h3 className="title font-semibolditalic">1. {lang[languageType].order.contact.title}</h3>
                         <div className="d-flex inp">
                             <TextField
-                                label="Ismingiz"
+                                label={lang[languageType].order.contact.name}
                                 autoComplete="off"
                                 required
                                 type="text"
@@ -174,7 +177,7 @@ const Order = () => {
                             <InputValidMask
                                 mask="+998 \(99) 999 99 99"
                                 maskChar=" "
-                                label='Telefon raqam*'
+                                label={`${lang[languageType].order.contact.tel}*`}
                                 value={tel}
                                 onChange={evt => setTel(evt.target.value)}
                                 className="w-50 border tel-number w-100-in"
@@ -183,19 +186,19 @@ const Order = () => {
                     </div>
 
                     <div className="order-card">
-                        <h3 className="title font-semibolditalic">2. Yetkazish:</h3>
+                        <h3 className="title font-semibolditalic">2. {lang[languageType].order.deliver.title}</h3>
                         <div className="order-buttons ss d-flex a-center">
                             <div className="d-flex">
                                 <Button type="button" className={`${deliveryId === 1 && "active"}`}
-                                        onClick={() => getDeliveryType(1)}>Yetkazib berish</Button>
+                                        onClick={() => getDeliveryType(1)}>{lang[languageType].order.deliver.btn1}</Button>
                                 <Button type="button" className={`${deliveryId === 2 && "active"}`}
-                                        onClick={() => getDeliveryType(2)}>Borib olish</Button>
+                                        onClick={() => getDeliveryType(2)}>{lang[languageType].order.deliver.btn2}</Button>
                             </div>
                         </div>
 
-                        <h3 className="title mt-3 font-semibolditalic">3. Manzilingiz:</h3>
+                        <h3 className="title mt-3 font-semibolditalic">3. {lang[languageType].order.address.title}</h3>
                         <FormControl className="address-select ">
-                            <InputLabel id="demo-simple-select-label">Tuman</InputLabel>
+                            <InputLabel id="demo-simple-select-label">{lang[languageType].order.address.dist.title}</InputLabel>
                             <Select
                                 required
                                 labelId="demo-simple-select-label"
@@ -206,17 +209,20 @@ const Order = () => {
                                 onChange={(evt) => setAddress(evt.target.value)}
                                 variant={"outlined"}
                             >
-                                <MenuItem value={"BEKTEMIR"}>Bektemir</MenuItem>
-                                <MenuItem value={"MIROBOD"}>Mirobod</MenuItem>
-                                <MenuItem value={"MIRZO ULUGBEK"}>Mirzo Ulug'bek</MenuItem>
-                                <MenuItem value={"CHILONZOR"}>Chilonzor</MenuItem>
-                                <MenuItem value={"OLMAZOR"}>Olmazor</MenuItem>
-                                <MenuItem value={"SERGELI"}>Sergeli</MenuItem>
-                                <MenuItem value={"SHAYHONTOHUR"}>Shayhontohur</MenuItem>
-                                <MenuItem value={"UCHTEPA"}>Uchtepa</MenuItem>
-                                <MenuItem value={"YAKKASAROY"}>Yakkasaroy</MenuItem>
-                                <MenuItem value={"YASHNAOBOD"}>Yashnabod</MenuItem>
-                                <MenuItem value={"YUNUSOBOD"}>Yunusobod</MenuItem>
+                                {
+                                    lang[languageType].order.address.dist.obl.map(item => <MenuItem value={item.val}>{item.name}</MenuItem>)
+                                }
+                                {/*<MenuItem value={"BEKTEMIR"}>Bektemir</MenuItem>*/}
+                                {/*<MenuItem value={"MIROBOD"}>Mirobod</MenuItem>*/}
+                                {/*<MenuItem value={"MIRZO ULUGBEK"}>Mirzo Ulug'bek</MenuItem>*/}
+                                {/*<MenuItem value={"CHILONZOR"}>Chilonzor</MenuItem>*/}
+                                {/*<MenuItem value={"OLMAZOR"}>Olmazor</MenuItem>*/}
+                                {/*<MenuItem value={"SERGELI"}>Sergeli</MenuItem>*/}
+                                {/*<MenuItem value={"SHAYHONTOHUR"}>Shayhontohur</MenuItem>*/}
+                                {/*<MenuItem value={"UCHTEPA"}>Uchtepa</MenuItem>*/}
+                                {/*<MenuItem value={"YAKKASAROY"}>Yakkasaroy</MenuItem>*/}
+                                {/*<MenuItem value={"YASHNAOBOD"}>Yashnabod</MenuItem>*/}
+                                {/*<MenuItem value={"YUNUSOBOD"}>Yunusobod</MenuItem>*/}
                             </Select>
                         </FormControl>
                         <div className="d-flex address mt-2 inp">
@@ -227,7 +233,7 @@ const Order = () => {
                                 type="text"
                                 value={street}
                                 onChange={(evt) => setStreet(evt.target.value)}
-                                label="Ko'cha nomi"/>
+                                label={lang[languageType].order.address.street} />
 
                             <TextField
                                 className="ms-1 w-50 border w-100-in"
@@ -236,12 +242,12 @@ const Order = () => {
                                 value={flat}
                                 onChange={(evt) => setFlat(evt.target.value)}
                                 type="number"
-                                label="Xonadon raqami"
+                                label={lang[languageType].order.address.flat}
                                 name="flat"/>
                         </div>
                         <div className="mt-2">
                             <textarea
-                                placeholder="Izoh qoldiring"
+                                placeholder={lang[languageType].order.address.comment}
                                 name="descriptions"
                                 cols={"100"}
                                 rows={"5"}
@@ -253,21 +259,21 @@ const Order = () => {
                         </div>
                     </div>
                     <div className="order-card">
-                        <h3 className="title font-semibolditalic">4. To'lov</h3>
+                        <h3 className="title font-semibolditalic">4. {lang[languageType].order.payment.title}</h3>
                         <div className="order-buttons d-flex">
                             <Button type="button"
                                     className={`${paymentId === 1 && "active"}`} onClick={() => getPaymentType(1)}
                             >
-                                Naqd pulda
+                                {lang[languageType].order.payment.btn1}
                             </Button>
                             <Button type="button"
                                     className={`${paymentId === 2 && "active"}`} onClick={() => getPaymentType(2)}
                             >
-                                Karta orqali
+                                {lang[languageType].order.payment.btn2}
                             </Button>
                         </div>
 
-                        <h4 className="title mt-3 font-semibolditalic">Qo'ng'rioq qilishimizni xohlaysizmi?</h4>
+                        <h4 className="title mt-3 font-semibolditalic">{lang[languageType].order.call.title}</h4>
                         <div>
                             <input
                                 required
@@ -276,7 +282,7 @@ const Order = () => {
                                 name="call"
                                 onChange={() => setCall(true)}
                                 defaultChecked={true}/>
-                            <label htmlFor="want" className="ms-1">Hodim qo'ng'irog'i talab qilinadi</label>
+                            <label htmlFor="want" className="ms-1">{lang[languageType].order.call.opt1}</label>
                         </div>
 
                         <div className='mt-1'>
@@ -287,7 +293,7 @@ const Order = () => {
                                 name="call"
                                 onChange={() => setCall(false)}
                             />
-                            <label htmlFor="dontwant" className="ms-1">Yo'q shart emas</label>
+                            <label htmlFor="dontwant" className="ms-1">{lang[languageType].order.call.opt2}</label>
                         </div>
                     </div>
 
@@ -303,7 +309,7 @@ const Order = () => {
                                 className={`confirm ${GetFilled() === false && 'disabled'}`}
                                 disabled={!GetFilled()}
                             >
-                                Yuborish
+                                {lang[languageType].order.btn}
                             </LoadingButton>
                         </div>
                     </div>

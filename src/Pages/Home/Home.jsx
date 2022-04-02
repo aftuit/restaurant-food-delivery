@@ -5,11 +5,14 @@ import Filter from "../../components/Filter/Filter";
 import Contact from "../../components/Contact/Contact";
 import FoodContainer from '../../components/FoodContainer/FoodContainer';
 import { useFood } from "../../Context/foodsContext";
+import { LangContext } from '../../Context/localization';
 import axios from "axios";
 import Loader from '../../components/Loader/Loader';
 import { API_URL } from "../../util/const";
 import "./style.scss";
 const Home = () => {
+
+    const {lang, languageType} = React.useContext(LangContext);
 
     const [filterItem, setFilterItem] = useState(
         JSON.parse(window.localStorage.getItem("filtered")) || { path: "goshtli", title: "GOSHTLITAOMLAR", currentItem: 0 }
@@ -26,7 +29,12 @@ const Home = () => {
         <div>
             <Head />
             <main className='bg-dark'>
-                <Filter filterItem={filterItem} setFilterItem={setFilterItem} />
+                <Filter
+                    filterItem={filterItem}
+                    setFilterItem={setFilterItem}
+                    lang={lang}
+                    languageType={languageType}
+                />
                 <div className="cards">
 
                     {
@@ -51,8 +59,14 @@ const Home = () => {
                                 />
                     }
                     </div>
-                    <Cafe />
-                <Contact />
+                    <Cafe
+                        lang={lang}
+                        languageType={languageType}
+                    />
+                <Contact
+                    lang={lang}
+                    languageType={languageType}
+                />
             </main>
         </div>
     )

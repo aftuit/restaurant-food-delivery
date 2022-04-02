@@ -8,9 +8,10 @@ import {Container} from '@mui/material';
 import SimpleMap from "../../components/Location/Location"
 import Title from '../../components/Title/Title';
 import "./style.scss";
+import {LangContext} from "../../Context/localization";
 
 const DeliveryTerm = () => {
-
+    const {lang, languageType} = React.useContext(LangContext);
     const [expanded, setExpanded] = React.useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
@@ -57,14 +58,14 @@ const DeliveryTerm = () => {
     ]
     return (
         <div className='delivery-content'>
-            <Title title={'Yetkazib berish tartibi'}/>
+            <Title title={lang[languageType].delivery.title}/>
             <Container>
                 <div className="delivery-content-wrap">
 
 
                     <div className="left-side-col">
                         {
-                            terms.map(term => {
+                            lang[languageType].delivery.points.map(term => {
                                 return (
                                     <Accordion
                                         key={term.id}
@@ -85,7 +86,7 @@ const DeliveryTerm = () => {
                                             className="accordion-item-text"
                                         >
                                             <Typography>
-                                                {term.text}
+                                                {term.info}
                                             </Typography>
                                         </AccordionDetails>
                                     </Accordion>
@@ -100,7 +101,7 @@ const DeliveryTerm = () => {
                 <div className="time-table-wrap mt-3">
                     <div className="wrapper d-flex a-center j-between">
                         <div className="right">
-                            <h3 className='font-semibold text-dk'>Ish vaqti:</h3>
+                            <h3 className='font-semibold text-dk'>{lang[languageType].delivery.time.title}</h3>
                             <p className="font-regular text-dk mt-1">08:00-21:00</p>
                         </div>
                     </div>

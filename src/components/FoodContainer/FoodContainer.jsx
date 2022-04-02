@@ -2,12 +2,14 @@ import React from 'react'
 import FoodCard from '../FoodCard/FoodCard';
 import Title from "../Title/Title";
 import Slider from "react-slick";
+import { LangContext } from "../../Context/localization";
 import axios from "axios";
 import {API_URL} from '../../util/const';
 import "./style.scss";
 
 const FoodContainer = ({parentData, title, data, path}) => {
 
+const {lang, languageType} = React.useContext(LangContext);
 
     const [accessuar, setAccessuar] = React.useState([])
 
@@ -91,7 +93,7 @@ const FoodContainer = ({parentData, title, data, path}) => {
     return (
         <div className="food-container">
             <div className="mt-1"></div>
-            <Title title={'Profil'}/>
+            <Title title={lang[languageType].storeTitle.prof}/>
 
             <div className="food-content">
                 <Slider {...settings}>
@@ -115,7 +117,7 @@ const FoodContainer = ({parentData, title, data, path}) => {
                     accessuar?.filter(item => item.model_code === title)?.length === 0 ?
                         <></> :
                         <>
-                            <Title title={'Aksessuarlar'}/>
+                            <Title title={lang[languageType].storeTitle.acces}/>
 
                             <div className="food-content">
                                 <Slider {...settingsAccess}>
