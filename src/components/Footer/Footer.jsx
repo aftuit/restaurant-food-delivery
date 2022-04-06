@@ -23,7 +23,6 @@ const Footer = () => {
                         <ul>
                             <li><Link to="/delivery-term" className='font-regular'>{lang[languageType].footer.links[0]}</Link></li>
                             <li><Link to="/cart" className='font-regular'>{lang[languageType].footer.links[1]}</Link></li>
-                            <li><Link to="/admin-panel/dashboard" style={{color: "yellow"}}>ADMIN PANEL</Link></li>
                         </ul>
                     </Grid>
                 </Grid>
