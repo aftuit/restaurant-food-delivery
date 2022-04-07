@@ -36,10 +36,6 @@ export const language = {
             title: 'Biz bilan aloqa',
             address: {
                 title: 'Manzil:',
-                info: 'Toshkent shahar Sergeli rayoni 27-А Jun Ariq\n' +
-                    'Р/С 2020 8000 3050 4775 4001\n' +
-                    'ATIB Ipoteka banki Yakkasaroy filyal\n' +
-                    'МФО 010017 ИНН: 306 275 341 ОКЭД: 25120',
                 link: "Xaritadan ko'rish",
             },
             email: {
@@ -53,10 +49,10 @@ export const language = {
         },
         footer: {
             address: 'OOO «BILLUR BURGUT PARVOZI»\n' +
-                'г. Ташкент Сергелийский р-н Джун Арык 27-А\n' +
-                'в АТИБ Ипотека банк Яккасарайский ф-л\n' +
-                'Р/С 2020 8000 3050 4775 4001\n' +
-                'МФО 010017 ИНН: 306 275 341 ОКЭД: 25120',
+                'Toshkent vil. Sergeli tumani Джун Арык 27-А\n' +
+                'АТB Yakkasaroy fil. Ipoteka bank\n' +
+                'H/R 2020 8000 3050 4775 4001\n' +
+                'МФО 010017 STIR: 306 275 341 ОКЭД: 25120',
             links: ['Yetkazib berish', 'Savatcha']
         },
         card: {
