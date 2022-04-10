@@ -63,7 +63,7 @@ function App() {
                             <CartProvider>
                                 <SearchProvider>
                                     <CartIdProvider>
-                                        {!window.location.href.includes("admin") && <Navbar/>}
+                                        {!window.location.href.toLowerCase().includes("admin") && <Navbar/>}
                                         <div className="routes-wrap bg-dark">
                                             <Routes>
                                                 <Route exact path="/" element={<Home/>}/>
@@ -87,7 +87,7 @@ function App() {
                                                 <Route exact path="/admin-panel/*" element={<AuthAdminPanel/>}/>
                                             </Routes>
                                         </div>
-                                        {!window.location.href.includes("admin") && <Footer/>}
+                                        {!window.location.href.toLowerCase().includes("admin") && <Footer/>}
                                     </CartIdProvider>
                                 </SearchProvider>
                             </CartProvider>

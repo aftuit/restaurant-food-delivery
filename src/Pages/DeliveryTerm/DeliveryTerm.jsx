@@ -18,44 +18,6 @@ const DeliveryTerm = () => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const terms = [
-        {
-            id: 1,
-            expanded: "panel1",
-            title: "Lorem ipsum dolor sit.!",
-            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`,
-        },
-        {
-            id: 2,
-            expanded: "panel2",
-            title: "Lorem ipsum dolor sit.?",
-            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
-        },
-        {
-            id: 3,
-            expanded: "panel3",
-            title: "Lorem ipsum dolor sit.Lorem ipsum dolor sit.?",
-            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
-        },
-        {
-            id: 4,
-            expanded: "panel4",
-            title: "Lorem ipsum dolor sit.",
-            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
-        },
-        {
-            id: 5,
-            expanded: "panel5",
-            title: "Lorem ipsum dolor sit.",
-            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
-        },
-        {
-            id: 6,
-            expanded: "panel6",
-            title: "Lorem ipsum dolor sit.",
-            text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.`
-        },
-    ]
     return (
         <div className='delivery-content'>
             <Title title={lang[languageType].delivery.title}/>

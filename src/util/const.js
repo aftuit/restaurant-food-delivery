@@ -61,8 +61,8 @@ export const language = {
         cart: {
             title: 'SAQLANMALAR',
             empty: {
-                title: 'Savatchaga saqlangan mahsulotlar mavjud emas',
-                menu: 'Manyu',
+                title: 'Saqlangan mahsulotlar mavjud emas',
+                menu: 'Menyu',
                 go: ' ga qaytish'
             },
             soum: "so'm",
@@ -132,10 +132,10 @@ export const language = {
         delivery: {
             title: 'YETKAZIB BERISH TARTIBI',
             points: [
-                {id: 1, title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
-                {id: 2, title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
-                {id: 3, title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
-                {id: 4, title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
+                {id: 1, expanded: 'panel1', title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
+                {id: 2, expanded: 'panel2', title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
+                {id: 3, expanded: 'panel3', title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
+                {id: 4, expanded: 'panel4', title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
             ],
             time: {
                 title: 'Ish vaqti:',
@@ -272,10 +272,10 @@ export const language = {
         delivery: {
             title: 'Условия доставки',
             points: [
-                {id: 1, title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
-                {id: 2, title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
-                {id: 3, title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
-                {id: 4, title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
+                {id: 1, expanded: 'panel1', title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
+                {id: 2, expanded: 'panel2', title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
+                {id: 3, expanded: 'panel3', title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
+                {id: 4, expanded: 'panel4', title: 'lorem ipsum dore', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dolorem perspiciatis ab illum reprehenderit fuga ipsa aperiam recusandae! Hic facere quia esse in ipsa a, minus maxime perspiciatis omnis qui.'},
             ],
             time: {
                 title: 'График работы: ',

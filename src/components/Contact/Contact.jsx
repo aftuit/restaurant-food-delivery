@@ -21,12 +21,12 @@ const Contact = ({lang, languageType}) => {
                         <LocationOnOutlinedIcon />
                         <div className="info">
                             <span className="font-regular text-dk">{lang[languageType].contact.address.title}</span>
-                            <p className="font-regular text-dk">{lang[languageType].footer.address}
-                            <div>
+                            <p className="font-regular text-dk">
+                                {lang[languageType].footer.address}
+                            <br />
                                 <Link to={"delivery-term#location"} className={'font-semibold'}>
                                     {lang[languageType].contact.address.link}
                                 </Link>
-                            </div>
                             </p>
                         </div>
                     </div>

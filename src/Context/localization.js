@@ -9,9 +9,6 @@ const LangProvider = ({children}) => {
 
     React.useEffect(() => {
         window.localStorage.setItem('_curr_lang_type_', languageType)
-        console.log(languageType)
-        console.log(lang)
-
     }, [languageType])
 
     return <LangContext.Provider value={{lang, setLang, languageType, setLanguageType}}>

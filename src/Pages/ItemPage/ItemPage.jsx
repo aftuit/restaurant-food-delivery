@@ -97,10 +97,10 @@ const ItemPage = () => {
                         <LocalMallOutlinedIcon />
                       </Button> :
 
-                      <Button className='text-dk'
+                      <Button className='text-dk' style={{backgroundColor: '#FF5230'}}
                         onClick={() => removeFromCart(state.id)}
                       >
-                        <span>удалить из корзины</span>
+                        <span >удалить из корзины</span>
                         <RemoveShoppingCartIcon />
                       </Button>
 

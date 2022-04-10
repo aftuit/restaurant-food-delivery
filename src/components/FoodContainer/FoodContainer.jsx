@@ -17,9 +17,6 @@ const {lang, languageType} = React.useContext(LangContext);
         axios.get(`${API_URL}/taomlar/accessory/`)
             .then((res) => {
                     setAccessuar(res?.data?.results)
-                    setTimeout(() => {
-                        console.log({accessuar:accessuar, title: title})
-                    }, 1000)
                 }
             )
     }, [])
